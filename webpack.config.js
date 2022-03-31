@@ -7,8 +7,6 @@ module.exports = {
     filename: 'bundle.js',
   },
   module: {
-    // /\.svg$/
-    // hellopspsps
     rules: [
       {
         test: /\.(js|jsx)$/,
