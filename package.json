@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "server-dev": "npx nodemon --watch server/index.js",
+    "server-dev": "npx nodemon --watch server server/index.js",
     "client-dev": "npx webpack --config webpack.config.js --mode development --watch"
   },
   "dependencies": {
@@ -11,7 +11,9 @@
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "babel-loader": "^8.2.4",
+    "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "path": "^0.12.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "webpack": "^5.70.0",
