@@ -7,7 +7,8 @@ module.exports = {
     filename: 'bundle.js',
   },
   module: {
-    ///\.svg$/
+    // /\.svg$/
+    // hellopspsps
     rules: [
       {
         test: /\.(js|jsx)$/,
@@ -17,10 +18,10 @@ module.exports = {
           options: {
             presets: [
               ['@babel/preset-env', {
-                "targets": "defaults"
+                targets: 'defaults',
               }],
-              '@babel/preset-react'
-            ]
+              '@babel/preset-react',
+            ],
           },
         },
       },
