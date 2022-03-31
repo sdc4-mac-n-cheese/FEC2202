@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 class App extends React.Component {
   constructor(props) {
@@ -10,5 +10,6 @@ class App extends React.Component {
     return <h1>From App</h1>;
   }
 }
+
 
 export default App;
