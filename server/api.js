@@ -25,6 +25,13 @@ module.exports = {
   },
 
   putData: function (category, body) {
+    let options = {
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/${category}`,
+      headers: {
+        'AUTHORIZATION': process.env.API_KEY,
+      }
+    }
 
-  },
+    return axios.put(options.url, body, options);
+  }
 }
