@@ -120,6 +120,7 @@ app.get('/reviews', (req, res) => {
     })
 })
 
+//Update the helpful ratings
 app.put('/reviews/helpful', (req, res) => {
   api.putData(`reviews/${req.body.review_id}`)
     .then((result) => {
@@ -144,7 +145,7 @@ app.get('/getQuestions', (req, res) => {
 });
 
 app.get('/getAnswers', (req, res) => {
-  api.getData(`qa/question/${req.query.question_id}/answers`)
+  api.getData(`qa/questions?question_id=${req.query.question_id}/answers`)
     .then((response) => {
       res.send(response.data)
     })
@@ -237,15 +238,15 @@ app.post('/cart', (req, res) => {
 });
 
 //route to have interaction
-app.post('/interaction', (req, res) => {
-  api.postData('interaction', req.body)
-    .then(response => {
-      res.status(201).send(response);
-    })
-    .catch(err => {
-      res.status(500).send(err);
-    })
-});
+// app.post('/interaction', (req, res) => {
+//   api.postData('interaction', req.body)
+//     .then(response => {
+//       res.status(201).send(response);
+//     })
+//     .catch(err => {
+//       res.status(500).send(err);
+//     })
+// });
 
 app.listen(process.env.PORT, (err) => {
   if (err) {
