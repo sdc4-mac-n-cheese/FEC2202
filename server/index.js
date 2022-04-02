@@ -144,7 +144,8 @@ app.get('/getQuestions', (req, res) => {
 });
 
 app.get('/getAnswers', (req, res) => {
-  api.getData(`qa/question/${req.query.question_id}/answers`)
+  console.log('HERE>>>>', req.query)
+  api.getData(`qa/questions/${req.query.question_id}/answers?page=${req.query.page}&count=${req.query.count}`)
     .then((response) => {
       res.send(response.data)
     })
