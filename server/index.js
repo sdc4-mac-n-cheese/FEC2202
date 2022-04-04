@@ -62,8 +62,11 @@ app.get('/relatedProducts', (req, res) => {
 });
 
 
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
 //***** REVIEWS */
 //route to post reviews
+//POST A REVIEW
 app.post('/reviews', (req, res) => {
   let request = req.body;
   //send in FO object with data below and send var
@@ -89,11 +92,12 @@ app.post('/reviews', (req, res) => {
 });
 
 //route to get product review's meta data
+//GET REVIEWS/META
 app.get('/reviews/meta', (req, res) => {
   console.log(req.query.product_id);
   api.getData(`reviews/meta?product_id=${req.query.product_id}`)
     .then(response => {
-      console.log("shanshan meta reviews", response.data);
+      // console.log("shanshan meta reviews", response.data,'end data');
       res.status(200).send(response.data);
     })
     .catch(err => {
@@ -111,26 +115,48 @@ app.get('/reviews', (req, res) => {
   }
   api.getData(`reviews?page=${parameters.page}&count=${parameters.count}&sort=${parameters.sort}&product_id=${parameters.product_id}`)
     .then((result) => {
-      console.log(result.data);
-      res.status(200).send('good get');
+      console.log(result.data.results);
+      res.status(200).send(result.data.results);
     })
     .catch((err) => {
-      console.log('error in get list of reviews', err);
+      // console.log('error in get list of reviews', err);
       res.status(500).send('could not get');
     })
 })
 
+//Update the helpful ratings
+//PUT HELPFUL REVIEW
+
+//review_id=1136196
 app.put('/reviews/helpful', (req, res) => {
-  api.putData(`reviews/${req.body.review_id}`)
+  // console.log('in review id:')
+  // console.log(req.body.review_id);
+  api.putData(`reviews/${req.body.review_id}/helpful`)
     .then((result) => {
-      console.log(result);
-      res.status(204).send('good send brah');
+      // console.log('data: ',result.data);
+      res.status(204).send('updated helpful review brah');
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).send('bad send');
     })
 })
+
+app.put('/reviews/report', (req, res) => {
+  // console.log('in report');
+  // console.log(req.body.review_id);
+  api.putData(`reviews/${req.body.review_id}/report`)
+    .then((result) => {
+      // console.log(result);
+      res.status(204).send('review reported brah');
+    })
+    .catch((err) => {
+      // console.log(err);
+      res.status(500).send('bad send');
+    })
+})
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
 
 //***** Q&A */
 app.get('/getQuestions', (req, res) => {
@@ -144,7 +170,7 @@ app.get('/getQuestions', (req, res) => {
 });
 
 app.get('/getAnswers', (req, res) => {
-  api.getData(`qa/question/${req.query.question_id}/answers`)
+  api.getData(`qa/questions?question_id=${req.query.question_id}/answers`)
     .then((response) => {
       res.send(response.data)
     })
@@ -237,15 +263,15 @@ app.post('/cart', (req, res) => {
 });
 
 //route to have interaction
-app.post('/interaction', (req, res) => {
-  api.postData('interaction', req.body)
-    .then(response => {
-      res.status(201).send(response);
-    })
-    .catch(err => {
-      res.status(500).send(err);
-    })
-});
+// app.post('/interaction', (req, res) => {
+//   api.postData('interaction', req.body)
+//     .then(response => {
+//       res.status(201).send(response);
+//     })
+//     .catch(err => {
+//       res.status(500).send(err);
+//     })
+// });
 
 app.listen(process.env.PORT, (err) => {
   if (err) {
