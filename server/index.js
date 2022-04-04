@@ -13,11 +13,12 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 //***** PRODUCTS */
 //route to get all product data
+//fixed a bug of sending response.data instead of response
 app.get('/products', (req, res) => {
   api.getData('products')
     .then(response => {
       console.log(response);
-      res.status(200).send(response);
+      res.status(200).send(response.data);
     })
     .catch(err => {
       res.status(500).send(err);
@@ -25,6 +26,8 @@ app.get('/products', (req, res) => {
 });
 
 //route to get single product data
+//ss noticed if we used endpoint '/products' we will always getting the fullist
+//of all products
 app.get('/product', (req, res) => {
   // console.log('here', req.query)
   api.getData(`products/${req.query.product_id}`)
@@ -50,7 +53,7 @@ app.get('/productStyle', (req, res) => {
 });
 
 //route to get product's related products
-app.get('/relatedProducts', (req, res) => {
+app.get('/relatedProduct', (req, res) => {
   api.getData(`products/${req.query.product_id}/related`)
     .then(response => {
       console.log(response);
@@ -93,7 +96,7 @@ app.get('/reviews/meta', (req, res) => {
   console.log(req.query.product_id);
   api.getData(`reviews/meta?product_id=${req.query.product_id}`)
     .then(response => {
-      console.log("shanshan meta reviews", response.data);
+     // console.log("shanshan meta reviews", response.data);
       res.status(200).send(response.data);
     })
     .catch(err => {
@@ -238,15 +241,18 @@ app.post('/cart', (req, res) => {
 });
 
 //route to have interaction
-// app.post('/interaction', (req, res) => {
-//   api.postData('interaction', req.body)
-//     .then(response => {
-//       res.status(201).send(response);
-//     })
-//     .catch(err => {
-//       res.status(500).send(err);
-//     })
-// });
+app.post('/interaction', (req, res) => {
+  //console.log("req.body>>>>>>",req.body)
+  api.postData('interactions', req.body)
+    .then(response => {
+     // console.log(response.data)
+      res.status(201).send(response.data);
+    })
+    .catch(err => {
+    //  console.log(err)
+      res.status(500).send(err);
+    })
+});
 
 app.listen(process.env.PORT, (err) => {
   if (err) {
