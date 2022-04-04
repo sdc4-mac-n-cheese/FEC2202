@@ -13,18 +13,22 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 
 //***** PRODUCTS */
 //route to get all product data
+//fixed a bug of sending response.data instead of response
 app.get('/products', (req, res) => {
+  console.log(req);
   api.getData('products')
     .then(response => {
-      console.log(response);
-      res.status(200).send(response);
+      console.log(response.data);
+      res.status(200).send(response.data);
     })
     .catch(err => {
-      res.status(500).send(err);
+      res.setStatus(500).send(err);
     })
 });
 
 //route to get single product data
+//ss noticed if we used endpoint '/products' we will always getting the fullist
+//of all products
 app.get('/product', (req, res) => {
   // console.log('here', req.query)
   api.getData(`products/${req.query.product_id}`)
@@ -50,7 +54,7 @@ app.get('/productStyle', (req, res) => {
 });
 
 //route to get product's related products
-app.get('/relatedProducts', (req, res) => {
+app.get('/relatedProduct', (req, res) => {
   api.getData(`products/${req.query.product_id}/related`)
     .then(response => {
       console.log(response);
@@ -170,7 +174,8 @@ app.get('/getQuestions', (req, res) => {
 });
 
 app.get('/getAnswers', (req, res) => {
-  api.getData(`qa/questions?question_id=${req.query.question_id}/answers`)
+  // console.log('HERE>>>>', req.query)
+  api.getData(`qa/questions/${req.query.question_id}/answers?page=${req.query.page}&count=${req.query.count}`)
     .then((response) => {
       res.send(response.data)
     })
@@ -180,9 +185,18 @@ app.get('/getAnswers', (req, res) => {
 });
 
 app.post('/addQuestion', (req, res) => {
-  api.getData('qa/questions')
+
+  let parameters = {
+    body: req.body.body,
+    name: req.body.name,
+    email: req.body.email,
+    product_id: req.body.product_id
+  };
+
+  api.postData('qa/questions', parameters)
     .then((response) => {
       res.send(response.data)
+      // console.log(response);
     })
     .catch((err) => {
       res.status(500).send(err)
@@ -190,17 +204,30 @@ app.post('/addQuestion', (req, res) => {
 });
 
 app.post('/addAnswer', (req, res) => {
-  api.getData(`qa/questions/${req.query.question_id}/answers`)
+
+  let parameters = {
+
+    product_id: req.body.product_id,
+    body: req.body.body,
+    name: req.body.name,
+    email: req.body.email,
+    photos: req.body.photos
+  };
+  // needs work!!!
+  // ${req.query.question_id}/answers?body=${req.body.body}&name=${req.body.name}&email=${req.body.email}&photos=${req.body.photos}`
+  // ?question_id=${req.query.question_id}`
+  api.postData(`qa/questions?question_id=${req.query.question_id}/answers`, parameters)
     .then((response) => {
-      res.send(response.data)
+      res.status(201).send(response.data)
     })
     .catch((err) => {
+      console.log('here>>>>>', req.query)
       res.status(500).send(err)
     })
 });
 
 app.put('/helpfulQuestion', (req, res) => {
-  api.getData(`qa/questions/${req.query.question_id}/helpful`)
+  api.putData(`qa/questions/${req.query.question_id}/helpful`)
     .then((response) => {
       res.send(response.data)
     })
@@ -210,7 +237,7 @@ app.put('/helpfulQuestion', (req, res) => {
 });
 
 app.put('/reportQuestion', (req, res) => {
-  api.getData(`qa/questions/${req.query.question_id}/report`)
+  api.putData(`qa/questions/${req.query.question_id}/report`)
     .then((response) => {
       res.send(response.data)
     })
@@ -220,7 +247,7 @@ app.put('/reportQuestion', (req, res) => {
 });
 
 app.put('/helpfulAnswer', (req, res) => {
-  api.getData(`qa/answers/${req.query.answer_id}/helpful`)
+  api.putData(`qa/answers/${req.query.answer_id}/helpful`)
     .then((response) => {
       res.send(response.data)
     })
@@ -230,7 +257,7 @@ app.put('/helpfulAnswer', (req, res) => {
 });
 
 app.put('/reportAnswer', (req, res) => {
-  api.getData(`qa/answers/${req.query.answer_id}/report`)
+  api.putData(`qa/answers/${req.query.answer_id}/report`)
     .then((response) => {
       res.send(response.data)
     })
@@ -263,15 +290,18 @@ app.post('/cart', (req, res) => {
 });
 
 //route to have interaction
-// app.post('/interaction', (req, res) => {
-//   api.postData('interaction', req.body)
-//     .then(response => {
-//       res.status(201).send(response);
-//     })
-//     .catch(err => {
-//       res.status(500).send(err);
-//     })
-// });
+app.post('/interaction', (req, res) => {
+  //console.log("req.body>>>>>>",req.body)
+  api.postData('interactions', req.body)
+    .then(response => {
+     // console.log(response.data)
+      res.status(201).send(response.data);
+    })
+    .catch(err => {
+    //  console.log(err)
+      res.status(500).send(err);
+    })
+});
 
 app.listen(process.env.PORT, (err) => {
   if (err) {
