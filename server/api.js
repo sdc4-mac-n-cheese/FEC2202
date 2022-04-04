@@ -20,6 +20,7 @@ module.exports = {
         'AUTHORIZATION': process.env.API_KEY,
       }
     }
+    console.log(body);
 
     return axios.post(options.url, body, options);
   },
