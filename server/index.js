@@ -145,7 +145,8 @@ app.get('/getQuestions', (req, res) => {
 });
 
 app.get('/getAnswers', (req, res) => {
-  api.getData(`qa/questions?question_id=${req.query.question_id}/answers`)
+  // console.log('HERE>>>>', req.query)
+  api.getData(`qa/questions/${req.query.question_id}/answers?page=${req.query.page}&count=${req.query.count}`)
     .then((response) => {
       res.send(response.data)
     })
@@ -155,9 +156,18 @@ app.get('/getAnswers', (req, res) => {
 });
 
 app.post('/addQuestion', (req, res) => {
-  api.getData('qa/questions')
+
+  let parameters = {
+    body: req.body.body,
+    name: req.body.name,
+    email: req.body.email,
+    product_id: req.body.product_id
+  };
+
+  api.postData('qa/questions', parameters)
     .then((response) => {
       res.send(response.data)
+      // console.log(response);
     })
     .catch((err) => {
       res.status(500).send(err)
@@ -165,17 +175,30 @@ app.post('/addQuestion', (req, res) => {
 });
 
 app.post('/addAnswer', (req, res) => {
-  api.getData(`qa/questions/${req.query.question_id}/answers`)
+
+  let parameters = {
+
+    product_id: req.body.product_id,
+    body: req.body.body,
+    name: req.body.name,
+    email: req.body.email,
+    photos: req.body.photos
+  };
+  // needs work!!!
+  // ${req.query.question_id}/answers?body=${req.body.body}&name=${req.body.name}&email=${req.body.email}&photos=${req.body.photos}`
+  // ?question_id=${req.query.question_id}`
+  api.postData(`qa/questions?question_id=${req.query.question_id}/answers`, parameters)
     .then((response) => {
-      res.send(response.data)
+      res.status(201).send(response.data)
     })
     .catch((err) => {
+      console.log('here>>>>>', req.query)
       res.status(500).send(err)
     })
 });
 
 app.put('/helpfulQuestion', (req, res) => {
-  api.getData(`qa/questions/${req.query.question_id}/helpful`)
+  api.putData(`qa/questions/${req.query.question_id}/helpful`)
     .then((response) => {
       res.send(response.data)
     })
@@ -185,7 +208,7 @@ app.put('/helpfulQuestion', (req, res) => {
 });
 
 app.put('/reportQuestion', (req, res) => {
-  api.getData(`qa/questions/${req.query.question_id}/report`)
+  api.putData(`qa/questions/${req.query.question_id}/report`)
     .then((response) => {
       res.send(response.data)
     })
@@ -195,7 +218,7 @@ app.put('/reportQuestion', (req, res) => {
 });
 
 app.put('/helpfulAnswer', (req, res) => {
-  api.getData(`qa/answers/${req.query.answer_id}/helpful`)
+  api.putData(`qa/answers/${req.query.answer_id}/helpful`)
     .then((response) => {
       res.send(response.data)
     })
@@ -205,7 +228,7 @@ app.put('/helpfulAnswer', (req, res) => {
 });
 
 app.put('/reportAnswer', (req, res) => {
-  api.getData(`qa/answers/${req.query.answer_id}/report`)
+  api.putData(`qa/answers/${req.query.answer_id}/report`)
     .then((response) => {
       res.send(response.data)
     })
