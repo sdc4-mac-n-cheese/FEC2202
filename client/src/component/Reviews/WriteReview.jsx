@@ -16,7 +16,9 @@ class WriteReview extends React.Component {
 
   render() {
     return (
-      <h1>In WriteReview</h1>
+      <div>
+        <div>In WriteReview</div>
+        </div>
     )
   }
 }

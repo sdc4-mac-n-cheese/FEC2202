@@ -1,5 +1,5 @@
 const path = require('path');
-
+console.log('this is a test');
 module.exports = {
   entry: path.resolve(__dirname, 'client', 'src', 'index.jsx'),
   output: {
