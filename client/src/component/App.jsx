@@ -104,10 +104,11 @@ class App extends React.Component {
           data={this.state.data}
           currentProduct={this.state.currentProduct}
         />
-        <QA data={this.state.data} currentProduct={this.state.currentProduct} />
+        <QA
+          id={this.state.currentProduct}
+        />
         <Reviews
           id={this.state.currentProduct}
-        // currentProduct={this.state.currentProduct}
         />
       </>
     );
