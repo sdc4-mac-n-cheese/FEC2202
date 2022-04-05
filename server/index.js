@@ -222,12 +222,13 @@ app.post('/addAnswer', (req, res) => {
       res.status(201).send(response.data)
     })
     .catch((err) => {
-      console.log('here>>>>>', req.query)
+      // console.log('here>>>>>', req.query)
       res.status(500).send(err)
     })
 });
 
 app.put('/helpfulQuestion', (req, res) => {
+  console.log('HERERERE', req.query)
   api.putData(`qa/questions/${req.query.question_id}/helpful`)
     .then((response) => {
       res.send(response.data)
