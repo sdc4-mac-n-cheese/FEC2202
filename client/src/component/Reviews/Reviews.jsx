@@ -7,23 +7,31 @@ class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      //should be receiving everything along with ID for ease from james
-      product_id: 65632,
+      metaData: [],
+      product_id: 0,
       reviewData: [],
       ratingAvg: 0,
       totalRatings: 0,
-      wouldRecommend: 0
-
+      wouldRecommend: 0,
+      helpfulness: 0
     };
+    this.getMetaData = this.getMetaData.bind(this);
     this.getReviewInfo = this.getReviewInfo.bind(this);
   }
 
+  componentDidMount() {
+    this.setState({
+      product_id: this.props.id
+    }, () => { this.getMetaData() })
+    this.getReviewInfo();
+  }
+
   getReviewInfo() {
-    axios.get(`reviews?page=1&count=300&sort=newest&product_id=${this.state.product_id}`)
+    axios.get(`reviews?page=1&count=300&sort=newest&product_id=${this.props.id}`)
       .then((result) => {
-        //setting the review information to prop down
         var temp = result.data;
-        console.log('in reviews GET',temp);
+
+        var tempHelpfulness = 0;
         var tempRatings = 0;
         var tempAvg = 0;
         var ratingCtr = 0;
@@ -31,7 +39,6 @@ class Reviews extends React.Component {
           ratingCtr++;
           tempRatings += temp[i].rating;
         }
-        console.log(tempRatings, ratingCtr);
         tempAvg = tempRatings / ratingCtr;
         tempAvg = tempAvg.toFixed(1);
 
@@ -41,44 +48,56 @@ class Reviews extends React.Component {
           if (temp[i].recommend === true) {
             wouldRecommend++;
           }
+          tempHelpfulness += temp[i].helpfulness;
         }
         var recPct = 100 * (wouldRecommend / ratingCtr).toFixed(2);
-        // console.log(recPct);
 
         this.setState({
           reviewData: temp,
           ratingAvg: tempAvg,
           totalRatings: ratingCtr,
-          wouldRecommend: recPct
+          wouldRecommend: recPct,
+          helpfulness: tempHelpfulness
         })
-        // console.log(recPct, this.state.wouldRecommend);
-        // console.log(this.state.reviewData);
       })
       .catch((err) => {
         console.log(err);
       });
-  }
+}
 
-  //sample product ID's
-  //65631, 65632, 65633,65634, 65635,
-  componentDidMount() {
-    this.getReviewInfo()
+
+  getMetaData() {
+    axios.get(`reviews/meta?product_id=${this.state.product_id}`)
+      .then((result) => {
+        // console.log(result);
+        var temp = [];
+        temp.push(result.data);
+        this.setState({
+          metaData: temp
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+        // console.log('no success')
+      })
   }
 
   render() {
+    var loadingDiv;
+    if (this.state.metaData.length === 0) {
+      loadingDiv = <div>Reviews are loading...</div>
+    } else {
+      loadingDiv = <div><h5>Reviews finished loading</h5><Feed ratingAvg={this.state.ratingAvg} reviewData={this.state.reviewData} wouldRecommend={this.state.wouldRecommend} totalRatings={this.state.totalRatings}/></div>
+    }
     return (
-      <div>In Reviews
-        <WriteReview />
-        {/* will also need to prop meta data into it for characteristic info */}
-        <Feed
-          data={this.state.reviewData}
-          ratingAvg={this.state.ratingAvg}
-          ratings={this.state.totalRatings}
-          wouldRecommend={this.state.wouldRecommend}
-        />
+      <div>
+        In Reviews
+        {loadingDiv}
       </div>
     )
   }
 }
 
 export default Reviews;
+
+// // //65631, 65632, 65633,65634, 65635

@@ -9,19 +9,30 @@ import axios from 'axios';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {data:[]
+    this.state = {
+      product_id: 65631,
     };
   }
 
 
-componentDidMount(){
-axios
-.get("http://localhost:3000/products")
-.then((res)=>{
-  this.setState({data:res.data})
-})
-.catch((err)=>{console.log(err)})
-}
+  componentDidMount() {
+  }
+
+  // getMetaData() {
+  //   axios.get(`reviews/meta?product_id=${this.state.product_id}`)
+  //     .then((result) => {
+  //       console.log(result);
+  //       var temp = [];
+  //       temp.push(result.data);
+  //       this.setState({
+  //         metaData: temp
+  //       })
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       // console.log('no success')
+  //     })
+  // }
 
   render() {
     return (
@@ -30,7 +41,7 @@ axios
         <Relatedcards data={this.state.data}/>
         <Outfitcards data={this.state.data}/>
         <QA data={this.state.data}/>
-        <Reviews data={this.state.data}/>
+        <Reviews id={this.state.product_id}/>
       </>
     )
   }

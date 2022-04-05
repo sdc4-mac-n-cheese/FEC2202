@@ -26,14 +26,15 @@ class Feed extends React.Component {
     }
     return (
       <div>
+        in feed
         <div>In Feed</div>
         <button >More Reviews</button>      <button align="right">Leave a Review!</button>
-        <br></br><div>Total Ratings: {this.props.ratings}</div><br></br>
+        <br></br><div>Total Ratings: {this.props.totalRatings}</div><br></br>
         <RatingsCharacteristics ratingAvg={this.props.ratingAvg} wouldRecommend={this.props.wouldRecommend}/>
         <ul>
-          {this.props.data.map((data, i) => (
+          {this.props.reviewData.map((data, i) => (
             <FeedItem
-              data={data}
+              reviewData={data}
               key={i}
             />
           ))}

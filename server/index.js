@@ -15,13 +15,14 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 //route to get all product data
 //fixed a bug of sending response.data instead of response
 app.get('/products', (req, res) => {
-  console.log(req);
   api.getData('products')
     .then(response => {
-      console.log(response.data);
+      // console.log(response.data);
+      // console.log('in get then');
       res.status(200).send(response.data);
     })
     .catch(err => {
+      console.log('in get catch');
       res.setStatus(500).send(err);
     })
 });
@@ -45,7 +46,7 @@ app.get('/product', (req, res) => {
 app.get('/productStyle', (req, res) => {
   api.getData(`products/${req.query.product_id}/styles`)
     .then(response => {
-      console.log(response);
+      // console.log(response);
       res.status(200).send(response.data);
     })
     .catch(err => {
@@ -57,7 +58,7 @@ app.get('/productStyle', (req, res) => {
 app.get('/relatedProduct', (req, res) => {
   api.getData(`products/${req.query.product_id}/related`)
     .then(response => {
-      console.log(response);
+      // console.log(response);
       res.status(200).send(response.data);
     })
     .catch(err => {
@@ -98,7 +99,7 @@ app.post('/reviews', (req, res) => {
 //route to get product review's meta data
 //GET REVIEWS/META
 app.get('/reviews/meta', (req, res) => {
-  console.log(req.query.product_id);
+  // (req.queconsole.logry.product_id);
   api.getData(`reviews/meta?product_id=${req.query.product_id}`)
     .then(response => {
       // console.log("shanshan meta reviews", response.data,'end data');
@@ -119,7 +120,7 @@ app.get('/reviews', (req, res) => {
   }
   api.getData(`reviews?page=${parameters.page}&count=${parameters.count}&sort=${parameters.sort}&product_id=${parameters.product_id}`)
     .then((result) => {
-      console.log(result.data.results);
+      // console.log(result.data.results);
       res.status(200).send(result.data.results);
     })
     .catch((err) => {
