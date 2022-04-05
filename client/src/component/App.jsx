@@ -106,8 +106,8 @@ class App extends React.Component {
         />
         <QA data={this.state.data} currentProduct={this.state.currentProduct} />
         <Reviews
-          data={this.state.data}
-          currentProduct={this.state.currentProduct}
+          id={this.state.currentProduct}
+        // currentProduct={this.state.currentProduct}
         />
       </>
     );
