@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.get('/products', (req, res) => {
   api.getData('products')
     .then(response => {
-      console.log(response);
+     // console.log(response);
       res.status(200).send(response.data);
     })
     .catch(err => {
@@ -32,7 +32,7 @@ app.get('/product', (req, res) => {
   // console.log('here', req.query)
   api.getData(`products/${req.query.product_id}`)
     .then(response => {
-      console.log(response);
+   //   console.log(response);
       res.status(200).send(response.data);
     })
     .catch(err => {
@@ -44,7 +44,7 @@ app.get('/product', (req, res) => {
 app.get('/productStyle', (req, res) => {
   api.getData(`products/${req.query.product_id}/styles`)
     .then(response => {
-      console.log(response);
+    //  console.log(response);
       res.status(200).send(response.data);
     })
     .catch(err => {
@@ -54,6 +54,7 @@ app.get('/productStyle', (req, res) => {
 
 //route to get product's related products
 app.get('/relatedProduct', (req, res) => {
+  console.log("req.query>>>>>",req.query)
   api.getData(`products/${req.query.product_id}/related`)
     .then(response => {
       console.log(response);
