@@ -9,7 +9,10 @@ import axios from 'axios';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {data:[]
+    this.state = {
+      data:[],
+      currentProductId: 65632
+
     };
   }
 
@@ -18,7 +21,11 @@ componentDidMount(){
 axios
 .get("http://localhost:3000/products")
 .then((res)=>{
-  this.setState({data:res.data})
+  // console.log('HERE>>>>', res.data[0].id)
+  this.setState({
+    data:res.data,
+    currentProductId: res.data[0].id
+  })
 })
 .catch((err)=>{console.log(err)})
 }
@@ -29,7 +36,7 @@ axios
         <ProductDetail data={this.state.data}/>
         <Relatedcards data={this.state.data}/>
         <Outfitcards data={this.state.data}/>
-        <QA data={this.state.data}/>
+        <QA id={this.state.currentProductId}/>
         <Reviews data={this.state.data}/>
       </>
     )
