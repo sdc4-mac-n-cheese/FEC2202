@@ -1,0 +1,42 @@
+.main {
+
+  font-weight: bolder;
+  font-size: xx-large;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  border-color: blue;
+  background-color: rgb(197, 207, 207);
+}
+
+.searchBar {
+
+  height: 30px;
+  width: 1000px;
+  border-radius: 50px;
+  position: relative;
+  display: flex;
+  min-width: 100px;
+}
+
+.questions {
+
+  font-size: large;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+
+.answers {
+
+  font-size: medium;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: normal;
+}
+
+.helpfulQuestion {
+
+  float: right;
+}
+
+.addAnswer {
+
+  float:inline-end;
+}
