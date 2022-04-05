@@ -61,9 +61,9 @@ class App extends React.Component {
                 });
 
               // console.log("res>>>>>",res.data)
-             // relatedProductsData.push(res.data);
+              // relatedProductsData.push(res.data);
               //console.log("relatedproductsData>>>>",relatedProductsData)
-             // this.setState({ relatedProducts: relatedProductsData });
+              // this.setState({ relatedProducts: relatedProductsData });
               console.log(
                 "staterelatedproducts>>>>",
                 this.state.relatedProducts

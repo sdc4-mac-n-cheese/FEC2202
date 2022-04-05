@@ -1,3 +1,81 @@
+/* general styles */
+h1 {
+  margin: 0;
+}
+
+p {
+  margin-top: 0;
+}
+
 .main {
-  background-color: aquamarine
+  display: flex;
+  height: 70vh;
+  margin: 0 5% 0 5%;
+}
+
+/* carousel styles */
+.carousel {
+  background-color: #EBEBEB;
+  position: relative;
+  width: 60%;
+  margin: 20px;
+  overflow: hidden;
+}
+
+.carouselContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spotlight {
+  position: relative;
+  top: -60px;
+  width: 100%;
+  object-fit: cover;
+}
+
+button {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: larger;
+  font-weight: bold;
+  color: #525252;
+  cursor: pointer;
+}
+
+.leftArrow {
+  left: 20%;
+}
+
+.rightArrow {
+  right: 10%;
+}
+
+.style {
+  opacity: 0;
+  transition-duration: 1s ease;
+}
+
+.style.active {
+  opacity: 1;
+  transition-duration: 1s;
+}
+
+/* product detail styles */
+.info {
+  color: #525252;
+  padding: 15px;
+  width: 40%;
+  margin: 20px;
+}
+
+/* style selector styles */
+.selectorContainer {
+  display: flex;
 }
