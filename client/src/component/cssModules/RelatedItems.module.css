@@ -1,0 +1,48 @@
+* {
+  padding: 5px;
+  margin: 5px;
+}
+
+.container {
+  /* height: 300px;
+    width: 100%; */
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  padding: 20px;
+  align-items: center;
+ 
+}
+
+.card {
+
+  max-width: 500px;
+min-height: 500px;
+ max-width: 500px;
+ min-width: 500px;
+  background-color: antiquewhite;
+  border: 1px;
+  border-radius: 5%;
+  border-color: black;
+  margin-right: 10px;
+  transition: transform 450ms;
+}
+
+.card:hover {
+  transform: scale(1.08);
+}
+.container img {
+  max-height: 200px;
+  max-width: 200px;
+  text-align: center;
+  align-items: center; justify-content: center; flex-direction: column; 
+}
+.button {
+  z-index: 99;
+}
+.relateditembutton {
+  background: url("http://imgur.com/I0EwG.png") transparent;
+  height: 48px;
+  width: 45px;
+  border: none;
+}
