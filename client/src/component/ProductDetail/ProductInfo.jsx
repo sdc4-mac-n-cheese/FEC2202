@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ProductCSS from '../cssModules/ProductDetail.module.css';
-import StyleSelector from './StyleSelector.jsx'
+import StyleSelector from './StyleSelector.jsx';
+import Cart from './Cart.jsx';
 
 const ProductInfo = (props) => {
-  const [currStyle, setCurrStyle] = useState(props.styles[0]);
+  const product = props.product;
+  const currStyle = props.currStyle;
 
   return (
     <div className={ProductCSS.info}>
-      <p>[insert stars here] <a>Read all reviews</a></p>
-      <p>{props.product.category.toUpperCase()}</p>
-      <h1>{props.product.name}</h1>
-      <p>${props.product.default_price}</p>
-      <p><strong>STYLE ></strong> {currStyle.name}</p>
-      <StyleSelector styles={props.styles} />
+      <div className={ProductCSS.details}>
+        <p>[insert stars here] <a>Read all reviews</a></p>
+        <p>{product.category.toUpperCase()}</p>
+        <h1>{product.name}</h1>
+        <p>${product.default_price}</p>
+        <p><strong>STYLE ></strong> {currStyle.name}</p>
+      </div>
+      <StyleSelector styles={props.styles} currStyle={currStyle} onSelect={props.onSelect} />
+      <Cart />
     </div>
   );
 };

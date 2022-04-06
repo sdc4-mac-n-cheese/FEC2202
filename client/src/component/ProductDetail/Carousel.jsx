@@ -3,17 +3,13 @@ import PropTypes from 'prop-types';
 import ProductCSS from '../cssModules/ProductDetail.module.css';
 
 const Carousel = (props) => {
-  const styles = props.photos;
+  const styles = props.currStyle.photos;
+  console.log('========>', styles)
 
   const [currIndex, setCurrIndex] = useState(0);
-  const [length, setLength] = useState(styles.length);
-
-  useEffect(() => {
-    setLength(styles.length)
-  }, [props.productId]);
 
   const next = () => {
-    setCurrIndex(currIndex === length - 1 ? 0 : currIndex + 1);
+    setCurrIndex(currIndex === styles.length - 1 ? 0 : currIndex + 1);
   }
 
   const prev = () => {
@@ -22,23 +18,26 @@ const Carousel = (props) => {
 
   return (
     <div className={ProductCSS.carousel}>
-      <button className={ProductCSS.leftArrow} onClick={prev}>&lt;</button>
-      <button className={ProductCSS.rightArrow} onClick={next}>&gt;</button>
-      <div className={ProductCSS.carouselContent}>
+      <div className={ProductCSS.verticalView}>
         {styles.map((photo, i) =>
-          <div key={i} className={i === currIndex ? `${ProductCSS.style} ${ProductCSS.active}` : ProductCSS.style}>
-            {i === currIndex && (
-              <img src={photo.url} alt='style' className={ProductCSS.spotlight} />
-            )}
+          <img className={currIndex === i ? `${ProductCSS.verticalPhotos} ${ProductCSS.verticalSelected}` : ProductCSS.verticalPhotos} src={photo.url} alt='product style' key={i} />
+        )}
+      </div>
+      <div className={ProductCSS.carouselView} style={{ transform: `translateX(-${currIndex * 100}%)` }}>
+        {styles.map((photo, i) =>
+          <div className={ProductCSS.carouselItem} key={i}>
+            <img className={ProductCSS.spotlight} src={photo.url} alt='product style' />
           </div>
         )}
       </div>
+      <button onClick={prev}>&lt;</button>
+      <button onClick={next}>&gt;</button>
     </div>
   );
-};
+}
 
 Carousel.propTypes = {
-  photos: PropTypes.array,
+  currStyle: PropTypes.object,
   productId: PropTypes.number
 }
 
