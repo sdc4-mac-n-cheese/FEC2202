@@ -24,15 +24,6 @@ class Answers extends React.Component {
       this.props.updateQuestions();
       alert('answer has been reported!')
     })
-<<<<<<< HEAD
-      .then((response) => {
-       // console.log('RES', response.data)
-        this.setState({ currentAnswers: response.data.results })
-        this.props.updateQuestions();
-        // console.log('results>>>', response.results)
-        // return response.results;
-      })
-=======
     .catch((err) => {
       console.error(err);
     })
@@ -46,9 +37,9 @@ class Answers extends React.Component {
       }),
         this.props.updateQuestions()
       )
->>>>>>> main
       .catch((err) => {
         console.error(err);
+        //console.log(deleteME);
       })
   }
 
