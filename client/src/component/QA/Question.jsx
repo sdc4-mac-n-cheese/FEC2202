@@ -3,6 +3,7 @@ import Answers from './Answers.jsx';
 import ProductCSS from '../cssModules/QA.module.css';
 import axios from 'axios';
 import AnswerModal from './AnswerModal.jsx';
+import PropTypes from 'prop-types';
 
 class Question extends React.Component {
   constructor(props) {
@@ -17,6 +18,12 @@ class Question extends React.Component {
     this.questionWasHelpful = this.questionWasHelpful.bind(this);
     this.openAnswerModal = this.openAnswerModal.bind(this);
     this.showMore = this.showMore.bind(this);
+    this.collapse = this.collapse.bind(this);
+  }
+
+  collapse() {
+
+    this.setState({ count: 2 })
   }
 
   showMore() {
@@ -39,7 +46,7 @@ class Question extends React.Component {
     event.preventDefault();
     // console.log('inside help', this.props.question)
     axios.put(`/helpfulQuestion?question_id=${this.props.question.question_id}`)
-      .then((response) => {
+      .then(() => {
         this.props.updateQuestions()
       })
       .catch((err) => {
@@ -49,6 +56,7 @@ class Question extends React.Component {
 
   render() {
     // console.log('in render question', this.state.question)
+
     return (
       <div className={ProductCSS.questions}>
         <span>Q. {this.props.question.question_body}
@@ -73,10 +81,7 @@ class Question extends React.Component {
             helpful? yes ({this.props.question.question_helpfulness})
           </a>
         </span>
-        {/* <span>A. </span> */}
         <div>
-          {/* {console.log('OVER HERE', Object.values(this.props.question.answers))} */}
-          {/* {'IDIDIDID', this.props.question.question_id} */}
           {Object.values(this.props.question.answers).slice(0, this.state.count).map((answer) => (
 
             <Answers
@@ -86,11 +91,18 @@ class Question extends React.Component {
               updateQuestions={this.props.updateQuestions}
             />
             ))}
-            <span onClick={this.showMore}>load more answers</span>
+            <span className={ProductCSS.showMore}onClick={this.showMore}>load more answers</span>
+            <span onClick={this.collapse}>collapse answers</span>
         </div>
       </div>
     )
   }
+}
+
+Question.propTypes = {
+  question: PropTypes.object,
+  styles: PropTypes.array,
+  updateQuestions: PropTypes.func
 }
 
 export default Question;

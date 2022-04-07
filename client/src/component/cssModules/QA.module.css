@@ -4,13 +4,13 @@
   font-size: xx-large;
   font-family: Georgia, 'Times New Roman', Times, serif;
   border-color: blue;
-  background-color: rgb(197, 207, 207);
+  /* background-color: rgb(197, 207, 207); */
 }
 
 .searchBar {
 
   height: 30px;
-  width: 1000px;
+  width: 1300px;
   border-radius: 50px;
   position: relative;
   display: flex;
@@ -71,4 +71,9 @@
   bottom: 0;
   backgroundColor: 'rgba(0, 0, 0, .7)';
   zIndex: 1000;
+}
+
+.showMore {
+
+  background-color: cornflowerblue;
 }
