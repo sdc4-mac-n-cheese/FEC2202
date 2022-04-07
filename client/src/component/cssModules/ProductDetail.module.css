@@ -33,11 +33,11 @@ p {
 
 .spotlight {
   width: 500px;
-  height: 500px;
+  height: 700px;
   object-fit: cover;
 }
 
-/* button {
+/* .carousel button {
   position: absolute;
   z-index: 1;
   top: 50%;
@@ -50,6 +50,14 @@ p {
   color: #525252;
   cursor: pointer;
 } */
+
+.leftBtn {
+
+}
+
+.rightBtn {
+
+}
 
 .verticalView {
   position: absolute;
@@ -74,7 +82,7 @@ p {
 .info {
   color: #525252;
   padding: 15px;
-  width: 400px;
+  width: 500px;
 }
 
 .details p {
@@ -82,7 +90,7 @@ p {
 }
 
 .details p strong {
-  margin: 0;
+  margin: 0 25px 0 0;
   padding: 0;
 }
 
@@ -103,6 +111,10 @@ p {
   object-fit: cover;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.styleNotSelected {
+  opacity: 0.5;
 }
 
 .check {
@@ -132,54 +144,33 @@ p {
   cursor: pointer;
 }
 
-.size {
-  width: 200px;
+.sizes button {
+  width: 80px;
+  text-align: center;
+  font-weight: lighter;
 }
 
-.size span {
-  margin-left: 55px;
+.btnSelected {
+  font-weight: bold !important;
+  border-width: 2px !important;
 }
 
 .quantity {
-  width: 100px;
-  margin-left: 15px;
+  display: flex;
+  align-items: center;
 }
 
-.quantity span {
-  margin-left: 30px;
+.quantity button {
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  padding: 0;
 }
 
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdownMenu {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 180px;
-  z-index: 1;
-}
-
-.dropdown a {
-  padding: 15px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown a:hover {
-  background-color: #ddd;
-}
-
-.showSizeDropdown {
-  display: block;
-}
-
-.showQuantityDropdown {
-  display: block;
-  /* right: 200px; */
+.quantity p {
+  width: 45%;
+  padding: 0;
+  text-align: center;
 }
 
 .add {
@@ -195,4 +186,11 @@ p {
   margin-left: 15px;
   padding: 0;
   text-align: center;
+}
+
+.favorite i {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  font-size: large;
 }

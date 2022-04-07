@@ -2,7 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { configure, shallow, mount } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-configure({ adapter: new Adapter() })
+configure({ adapter: new Adapter() });
 import ProductDetail from '../component/ProductDetail/ProductDetail.jsx';
 import Carousel from '../component/ProductDetail/Carousel.jsx';
 
@@ -37,5 +37,4 @@ describe('Carousel tests', () => {
     const wrapper = mount(<Carousel currStyle={style} />);
     expect(wrapper.props().currStyle.photos).to.exist;
   })
-
 });

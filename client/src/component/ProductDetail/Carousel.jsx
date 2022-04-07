@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ProductCSS from '../cssModules/ProductDetail.module.css';
 
 const Carousel = (props) => {
   const styles = props.currStyle.photos;
-  console.log('========>', styles)
 
   const [currIndex, setCurrIndex] = useState(0);
 
@@ -30,8 +29,8 @@ const Carousel = (props) => {
           </div>
         )}
       </div>
-      <button onClick={prev}>&lt;</button>
-      <button onClick={next}>&gt;</button>
+      <button className={ProductCSS.leftBtn} onClick={prev}>&lt;</button>
+      <button className={ProductCSS.rightBtn} onClick={next}>&gt;</button>
     </div>
   );
 }

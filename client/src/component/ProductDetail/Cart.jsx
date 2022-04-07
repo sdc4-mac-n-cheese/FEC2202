@@ -1,52 +1,77 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ProductCSS from '../cssModules/ProductDetail.module.css';
 
 const Cart = (props) => {
+  const [count, setCount] = useState(1);
+  const [countLimit, setCountLimit] = useState(15)
+  const [isStarred, setIsStarred] = useState(false);
 
-  const dropdownOnClick = function (id) {
-    if (id === 'size') {
-      document.getElementById(id).classList.toggle(ProductCSS.showSizeDropdown);
-    } else {
-      document.getElementById(id).classList.toggle(ProductCSS.showQuantityDropdown);
+  const quantities = [];
+  for (let key in props.currStyle.skus) {
+    quantities.push([key, props.currStyle.skus[key]]);
+  }
+
+  const selectSize = function (event) {
+    //toggles style for selected button
+    let sizeOptions = [...document.getElementById('sizes').children];
+    sizeOptions.forEach(size => {
+      if (size.classList.contains(ProductCSS.btnSelected)) {
+        size.classList.remove(ProductCSS.btnSelected);
+      }
+    });
+
+    event.target.classList.toggle(ProductCSS.btnSelected);
+    setCount(1);
+
+    //set limit on quantity based on size
+    let sizeQuantity = event.target.getAttribute('quantity');
+    console.log('SIZE QUANTITY', sizeQuantity)
+    setCountLimit(sizeQuantity > 15 ? 15 : sizeQuantity);
+  }
+
+  const incrementCount = function () {
+    if (count >= countLimit) {
+      return;
     }
+    setCount(count + 1);
+  }
+
+  const decrementCount = function () {
+    if (count <= 1) {
+      return;
+    }
+    setCount(count - 1);
   }
 
   return (
     <div className={ProductCSS.cartOptions}>
-      <div>
-
-        <div className={ProductCSS.dropdown}>
-          <button className={ProductCSS.size} onClick={() => dropdownOnClick('size')}>SELECT SIZE <span>v</span></button>
-          <div className={ProductCSS.dropdownMenu} id='size'>
-            {/* Sizes not available should not appear within the list. If there is no remaining stock for the current style, the dropdown should become inactive and read “OUT OF STOCK”.  */}
-            <a>XS</a>
-            <a>S</a>
-            <a>M</a>
-            <a>L</a>
-            <a>XL</a>
-          </div>
-        </div>
-
-
-        <div className={ProductCSS.dropdown}>
-          <button className={ProductCSS.quantity} onClick={() => dropdownOnClick('quantity')}>1 <span>v</span></button>
-          <div className={ProductCSS.dropdownMenu} id='quantity'>
-            {/* The maximum selection will be capped by either the quantity of this style and size in stock, or a hard limit of 15. */}
-            <a>1</a>
-            <a>2</a>
-            <a>3</a>
-            <a>4</a>
-          </div>
-        </div>
-
+      <h4>Sizes:</h4>
+      <div className={ProductCSS.sizes} id='sizes' >
+        {quantities.map((sku, i) =>
+          <button onClick={(e) => selectSize(e)} skuNumber={sku[0]} quantity={sku[1].quantity} key={i}>{sku[1].size}</button>
+        )}
       </div>
+
+      <h4>Quantity:</h4>
+      <div className={ProductCSS.quantity}>
+        <button onClick={decrementCount}>-</button>
+        <p>{count}</p>
+        <button onClick={incrementCount}>+</button>
+      </div>
+
       <div>
         <button className={ProductCSS.add}>ADD TO BAG <span>+</span></button>
-        <button className={ProductCSS.favorite}>star</button>
+        <button className={ProductCSS.favorite} onClick={() => setIsStarred(!isStarred)}>
+          {isStarred ? <i className="fa fa-star" aria-hidden="true"></i> : <i className="fa fa-star-o" aria-hidden="true"></i>}
+        </button>
       </div>
     </div>
   );
+}
+
+Cart.propTypes = {
+  currStyle: PropTypes.object
 }
 
 export default Cart;

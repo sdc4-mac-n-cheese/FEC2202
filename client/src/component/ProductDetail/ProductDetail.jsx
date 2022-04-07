@@ -42,7 +42,7 @@ const ProductDetail = (props) => {
   return (
     < div className={ProductCSS.main} >
       {/* 0 & 65631 are placeholders */}
-      {styleResults.length && currStyle && <Carousel styles={styleResults} productId={65631} currStyle={currStyle} />}
+      {styleResults.length && currStyle && <Carousel currStyle={currStyle} />}
       {Object.keys(currProduct).length && styleResults.length && currStyle && <ProductInfo product={currProduct} currStyle={currStyle} styles={styleResults} onSelect={selectStyle} />}
     </div >
   );

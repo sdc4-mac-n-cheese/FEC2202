@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ProductCSS from '../cssModules/ProductDetail.module.css';
 
@@ -11,8 +11,7 @@ const StyleSelector = (props) => {
       {props.styles.map((style, i) =>
         <div className={ProductCSS.styleSelector} key={i}>
           {currStyle.style_id === style.style_id && <span className={ProductCSS.check}>&#10003;</span>}
-          {console.log('YOOOOO', style)}
-          <img src={style.photos[0].thumbnail_url} alt='alt styles' onClick={() => props.onSelect(style.style_id)} />
+          <img src={style.photos[0].thumbnail_url} alt='alt styles' className={currStyle.style_id === style.style_id ? '' : ProductCSS.styleNotSelected} onClick={() => props.onSelect(style.style_id)} />
         </div>
       )}
     </div>

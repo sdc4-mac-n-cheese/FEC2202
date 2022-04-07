@@ -7,6 +7,7 @@ import Cart from './Cart.jsx';
 const ProductInfo = (props) => {
   const product = props.product;
   const currStyle = props.currStyle;
+  console.log('in PRODUCT INFO >>>>>>', currStyle)
 
   return (
     <div className={ProductCSS.info}>
@@ -15,10 +16,10 @@ const ProductInfo = (props) => {
         <p>{product.category.toUpperCase()}</p>
         <h1>{product.name}</h1>
         <p>${product.default_price}</p>
-        <p><strong>STYLE ></strong> {currStyle.name}</p>
+        <p><strong>STYLE  ></strong>{currStyle.name}</p>
       </div>
       <StyleSelector styles={props.styles} currStyle={currStyle} onSelect={props.onSelect} />
-      <Cart />
+      <Cart currStyle={currStyle} />
     </div>
   );
 };
