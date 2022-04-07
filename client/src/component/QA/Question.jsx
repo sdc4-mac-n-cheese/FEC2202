@@ -30,7 +30,7 @@ class Question extends React.Component {
   questionWasHelpful(event) {
 
     event.preventDefault();
-    console.log('inside help', this.props.question)
+   // console.log('inside help', this.props.question)
     axios.put(`/helpfulQuestion?question_id=${this.props.question.question_id}`)
     .then((response) => {
       this.props.updateQuestions();

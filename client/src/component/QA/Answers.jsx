@@ -36,7 +36,7 @@ class Answers extends React.Component {
       }
     })
       .then((response) => {
-        console.log('RES', response.data)
+       // console.log('RES', response.data)
         this.setState({ currentAnswers: response.data.results })
         this.props.updateQuestions();
         // console.log('results>>>', response.results)

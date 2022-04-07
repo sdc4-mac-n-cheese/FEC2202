@@ -10,10 +10,10 @@ const ProductDetail = (props) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    //65631 is a placeholder
+    //65631 is a placeholdr
     axios.get(`/product?product_id=${65631}`)
       .then(product => {
-        console.log(product.data)
+        //console.log(product.data)
         setCurrProduct(product.data);
         return axios.get(`/productStyle?product_id=${65631}`);
       })
