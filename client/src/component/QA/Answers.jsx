@@ -1,47 +1,42 @@
 import React from 'react';
 import axios from 'axios';
 import ProductCSS from '../cssModules/QA.module.css';
+import moment from 'moment';
+
 
 class Answers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
 
-      currentAnswers: [],
-      count: 2,
-      // loadMore: false
+      helpfulCount: this.props.answer.helpfulness,
+      // report: false
     }
 
-    this.getAnswers = this.getAnswers.bind(this);
-    this.showMore = this.showMore.bind(this);
+    this.helpfulAnswer = this.helpfulAnswer.bind(this);
+    this.reportAnswer = this.reportAnswer.bind(this);
   }
 
-  showMore() {
-
-    this.setState({ count: this.state.count + 2 })
-    this.getAnswers()
-  }
-
-  componentDidMount() {
-
-    this.getAnswers()
-  }
-
-  getAnswers() {
-    axios.get('/getAnswers', {
-      params: {
-        question_id: this.props.id,
-        page: 1,
-        count: this.state.count
-      }
+  reportAnswer(event) {
+    event.preventDefault();
+    axios.put(`/reportAnswer?answer_id=${this.props.answer.id}`)
+    .then(() => {
+      this.props.updateQuestions();
+      alert('answer has been reported!')
     })
-      .then((response) => {
-        // console.log('RES', response.data)
-        this.setState({ currentAnswers: response.data.results })
-        this.props.updateQuestions();
-        // console.log('results>>>', response.results)
-        // return response.results;
-      })
+    .catch((err) => {
+      console.error(err);
+    })
+  }
+
+  helpfulAnswer(event) {
+    event.preventDefault();
+    axios.put(`/helpfulAnswer?answer_id=${this.props.answer.id}`)
+      .then(this.setState({
+        helpfulCount: this.state.helpfulCount++
+      }),
+        this.props.updateQuestions()
+      )
       .catch((err) => {
         console.error(err);
       })
@@ -52,11 +47,23 @@ class Answers extends React.Component {
 
     return (
       <div className={ProductCSS.answers}>
-       A. {this.state.currentAnswers.map((answer) => (
-          // console.log('YOOOOOO', answer)
-          <div>{answer.body}</div>
-        ))}
-        <button onClick={this.showMore}>load more answers</button>
+        <div>
+          <div>
+            <span> {this.props.answer.body}</span>
+          </div>
+          <div>
+            <span>  by {this.props.answer.answerer_name}</span>
+            <span>{moment(this.props.answer.date).format('MMM DD, YYYY')}</span>
+            <a
+              className={ProductCSS.reportAnswer}
+              onClick={this.reportAnswer}
+            >report</a>
+            <a
+              className={ProductCSS.helpfulAnswer}
+              onClick={this.helpfulAnswer}
+            >helpful? yes ({this.props.answer.helpfulness})</a>
+          </div>
+        </div>
       </div>
     )
   }

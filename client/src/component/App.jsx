@@ -85,14 +85,15 @@ class App extends React.Component {
 
   changeProduct(val) {
     this.setState({ currentProduct: val });
-    console.log(this.state.currentProduct);
+    // console.log('change product', val);
+    // console.log('change product', this.state.currentProduct)
     this.componentDidMount();
   }
 
   render() {
     return (
       <>
-        {/* <ProductDetail
+        <ProductDetail
           data={this.state.data}
           currentProduct={this.state.currentProduct}
         />
@@ -107,7 +108,7 @@ class App extends React.Component {
         />
         <QA
         id={this.state.currentProduct}
-        /> */}
+        />
         <Reviews
           id={this.state.currentProduct}
         />
