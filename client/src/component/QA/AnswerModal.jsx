@@ -28,6 +28,7 @@ class AnswerModal extends React.Component {
   }
   handleEmail() {
     this.setState({ email: event.target.value })
+    //commmmmment
   }
   handlePhotos() {
     this.setState({ photos: [event.target.value] })
