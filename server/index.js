@@ -21,7 +21,7 @@ app.get('/products', (req, res) => {
       res.status(200).send(response.data);
     })
     .catch(err => {
-      console.log('in get catch');
+      // console.log('in get catch');
       res.setStatus(500).send(err);
     })
 });
@@ -55,7 +55,7 @@ app.get('/productStyle', (req, res) => {
 
 //route to get product's related products
 app.get('/relatedProduct', (req, res) => {
-  console.log("req.query>>>>>",req.query)
+  // console.log("req.query>>>>>",req.query)
   api.getData(`products/${req.query.product_id}/related`)
     .then(response => {
       // console.log(response);
@@ -92,7 +92,7 @@ app.post('/reviews', (req, res) => {
       res.status(201).send(response);
     })
     .catch(err => {
-      res.status(500).send(err);
+      res.status(500).send('error in POST review');
     })
 });
 
@@ -125,7 +125,7 @@ app.get('/reviews', (req, res) => {
     })
     .catch((err) => {
       // console.log('error in get list of reviews', err);
-      res.status(500).send('could not get');
+      res.status(500).send('error in GET reviews');
     })
 })
 
@@ -134,30 +134,28 @@ app.get('/reviews', (req, res) => {
 
 //review_id=1136196
 app.put('/reviews/helpful', (req, res) => {
-  // console.log('in review id:')
-  // console.log(req.body.review_id);
+  // console.log('===============\n',req.body.review_id);
   api.putData(`reviews/${req.body.review_id}/helpful`)
     .then((result) => {
       // console.log('data: ',result.data);
-      res.status(204).send('updated helpful review brah');
+      res.status(204).send();
     })
     .catch((err) => {
       // console.log(err);
-      res.status(500).send('bad send');
+      res.status(500).send('error in helpful PUT');
     })
 })
 
 app.put('/reviews/report', (req, res) => {
-  // console.log('in report');
-  // console.log(req.body.review_id);
+  console.log('in report:', req);
   api.putData(`reviews/${req.body.review_id}/report`)
     .then((result) => {
       // console.log(result);
-      res.status(204).send('review reported brah');
+      res.status(204).send();
     })
     .catch((err) => {
       // console.log(err);
-      res.status(500).send('bad send');
+      res.status(500).send('error in report PUT');
     })
 })
 ///////////////////////////////////////////////////
@@ -228,7 +226,7 @@ app.post('/addAnswer', (req, res) => {
 });
 
 app.put('/helpfulQuestion', (req, res) => {
-  console.log('HERERERE', req.query)
+  // console.log('HERERERE', req.query)
   api.putData(`qa/questions/${req.query.question_id}/helpful`)
     .then((response) => {
       res.send(response.data)

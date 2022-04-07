@@ -10,12 +10,12 @@ class Relateditem extends React.Component {
   changeItem(e) {
     e.preventDefault()
     this.props.changeProduct(this.props.item.id);
-    
+
   }
 
   render() {
-    console.log("item", this.props.item);
-    console.log("image>>>>", this.props.item.image);
+    // console.log("item", this.props.item);
+    // console.log("image>>>>", this.props.item.image);
     return (
       <div className={RelateditemsCSS.card}>
         <button className={RelateditemsCSS.relateditembutton}></button>

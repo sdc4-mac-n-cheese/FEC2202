@@ -13,13 +13,13 @@ const ProductDetail = (props) => {
     //65631 is a placeholder
     axios.get(`/product?product_id=${65631}`)
       .then(product => {
-        console.log(product.data)
+        // console.log(product.data)
         setCurrProduct(product.data);
         return axios.get(`/productStyle?product_id=${65631}`);
       })
       .then(styles => {
         setProducts(styles.data.results);
-        console.log('images here', products)
+        // console.log('images here', products)
       })
       .catch(err => {
         console.log(err);

@@ -41,7 +41,7 @@ class Question extends React.Component {
   }
 
   render() {
-    console.log('question', this.props.question)
+    // console.log('question', this.props.question)
     return (
       <div className={ProductCSS.questions}>
         <span>Q. {this.props.question.question_body}
