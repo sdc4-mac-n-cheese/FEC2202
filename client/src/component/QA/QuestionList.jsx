@@ -17,6 +17,12 @@ class QuestionList extends React.Component {
     this.showMore = this.showMore.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+
+    if(this.props.currentQuestions !== prevProps.currentQuestions)
+    this.setState({ count: 4 })
+  }
+
   showMore() {
 
     this.setState({ count: this.state.count + 4 })
