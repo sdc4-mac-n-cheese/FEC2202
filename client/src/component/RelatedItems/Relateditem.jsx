@@ -1,6 +1,7 @@
 import React from "react";
 import RelateditemsCSS from "../cssModules/RelatedItems.module.css";
 import Modal from "./Modal.jsx";
+import PropTypes from 'prop-types';
 
 class Relateditem extends React.Component {
   constructor(props) {
@@ -16,8 +17,10 @@ class Relateditem extends React.Component {
     // console.log('THE id', this.props.item.id)
 
   }
+  
 
   render() {
+    
     // console.log("item", this.props.item);
     // console.log("image>>>>", this.props.item.image);
     return (
@@ -28,12 +31,23 @@ class Relateditem extends React.Component {
         <h3>{this.props.item.category}</h3>
         <p>{this.props.item.description}</p>
         <h3>{this.props.item.default_price}</h3>
-        <img src={this.props.item.image} onClick={this.changeItem}></img>
+        <img src={this.props.item.image} onClick={this.changeItem} className={RelateditemsCSS.relateditemimg}></img>
         {/* has issue.cant show images*/}
+        <div className={RelateditemsCSS.modalparent}>
         <Modal open={this.state.openModal} onClose={()=>{this.setState({openModal:false})}} compareditem={this.props.item} currentitemid={this.props.currentProduct}/>
+        </div>
       </div>
     );
   }
+}
+
+Relateditem.propTypes = {
+  name: PropTypes.string,
+  productId: PropTypes.number,
+  item: PropTypes.object,
+  changeProduct: PropTypes.func,
+  currentProduct: PropTypes.number
+
 }
 
 export default Relateditem;

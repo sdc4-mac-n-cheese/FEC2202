@@ -17,11 +17,11 @@
 
 .card {
 position:relative;
-  max-width: 500px;
-min-height: 500px;
- max-width: 500px;
- min-width: 500px;
-  background-color: #EBEBEB;
+  max-width:305px;
+min-height: 357px;
+ max-width: 305px;
+ min-width: 357px;
+  background-color: white;
   border: 1px;
   border-radius: 5%;
   border-color: black;
@@ -31,18 +31,19 @@ min-height: 500px;
 }
 
 .card:hover {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
-.container img {
-  max-height: 200px;
-  max-width: 200px;
-  text-align: center;
-  align-items: center; justify-content: center; flex-direction: column;
-}
-.button {
-
+.relateditemimg {
+  max-height: 305px;
+  min-height: 305;
+  min-width: 305;
+  max-width: 305px;
+  object-fit: cover;
+  /* text-align: center;
+  align-items: center; justify-content: center; flex-direction: column; */
 }
 .relateditembutton {
+  border: transparent;
   background:transparent;
   display:flex;
   justify-content:flex-start;
@@ -50,11 +51,13 @@ min-height: 500px;
   left: 5px;
   top:5px;
 }
-
+.modalparent{
+  position:relative;
+}
 .Modal_styles {
     position:absolute;
-    left:50%;
-    top:50%;
+    left:500px;
+    top:500px;
     height:500px;
     width:500px;
     z-Index: 1041;

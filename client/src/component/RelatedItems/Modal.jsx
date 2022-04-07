@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import ReactDom from "react-dom";
 import RelateditemsCSS from "../cssModules/RelatedItems.module.css";
+//import PropTypes from 'prop-types';
 
 // const Modal_styles ={
 //     position: "fixed",
@@ -21,31 +22,32 @@ import RelateditemsCSS from "../cssModules/RelatedItems.module.css";
 
 // }
 
-var fakedata = [
-  {
-    feature: "Lenses",
-    currentvalue: "Ultrasheen",
-  },
-  {
-    feature: "UV Protection",
+// var fakedata = [
+//   {
+//     feature: "Lenses",
+//     currentvalue: "Ultrasheen",
+//   },
+//   {
+//     feature: "UV Protection",
 
-    comparedvalue: "nice protection",
-  },
-  {
-    feature: "Frames",
-    currentvalue: "LightCompose",
-    comparedvalue: "supersolid",
-  },
-];
+//     comparedvalue: "nice protection",
+//   },
+//   {
+//     feature: "Frames",
+//     currentvalue: "LightCompose",
+//     comparedvalue: "supersolid",
+//   },
+// ];
 
 
 
-function Modal(props) {
+const Modal =function(props) {
   const [compareData, setCompareData] = useState([]);
   let composingdata = [];
-  let currentitemdata = [];
+  //let currentitemdata = [];
 
   useEffect(() => {
+    console.log("modal props>>>>>>",props.compareditem)
     var compareditemdata = props.compareditem.features;
     for (var i = 0; i < compareditemdata.length; i++) {
       compareditemdata[i]["compareditemvalue"] = compareditemdata[i]["value"];
@@ -78,8 +80,8 @@ function Modal(props) {
 
   }, []);
 
-  console.log("composingdata>>>>",composingdata)
-    console.log("compareData>>>>", compareData);
+  // console.log("composingdata>>>>",composingdata)
+  //   console.log("compareData>>>>", compareData);
 
   if (!props.open) return null;
   return ReactDom.createPortal(
@@ -101,7 +103,7 @@ function Modal(props) {
               </thead>
               <tbody>
                 {compareData.map((item) => (
-                  <tr>
+                  <tr key={item.index}>
                     <td>{item.compareditemvalue}</td>
                     <td>{item.feature}</td>
                     <td>{item.currentitemvalue}</td>
@@ -116,5 +118,12 @@ function Modal(props) {
     document.getElementById("portal")
   );
 }
+
+
+// Modal.propTypes = {
+//   compareditemvalue: PropTypes.string,
+//   feature: PropTypes.string,
+//   currentitemvalue: PropTypes.string,
+// }
 
 export default Modal;

@@ -5,7 +5,7 @@ function Outfitcard(props) {
   return (
       
       <div className={OutfitCSS.card}>
-      <button className={OutfitCSS.outfitcardbutton}>&#8722;</button>
+      <button className={OutfitCSS.outfitcardbutton}>&#8854;</button>
       <br/>
       <h2>{props.item.name}</h2>
       <p>{props.item.category}</p>

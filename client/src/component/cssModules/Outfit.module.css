@@ -32,6 +32,7 @@
       }
     
       .outfitcardbutton {
+          border:transparent;
         background:transparent;
         display:flex;
         justify-content:flex-start;
