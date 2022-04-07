@@ -29,23 +29,6 @@ class Answers extends React.Component {
     })
   }
 
-<<<<<<< HEAD
-  getAnswers() {
-    axios.get('/getAnswers', {
-      params: {
-        question_id: this.props.id,
-        page: 1,
-        count: this.state.count
-      }
-    })
-      .then((response) => {
-        // console.log('RES', response.data)
-        this.setState({ currentAnswers: response.data.results })
-        this.props.updateQuestions();
-        // console.log('results>>>', response.results)
-        // return response.results;
-      })
-=======
   helpfulAnswer(event) {
     event.preventDefault();
     axios.put(`/helpfulAnswer?answer_id=${this.props.answer.id}`)
@@ -54,7 +37,6 @@ class Answers extends React.Component {
       }),
         this.props.updateQuestions()
       )
->>>>>>> main
       .catch((err) => {
         console.error(err);
       })
