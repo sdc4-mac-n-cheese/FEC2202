@@ -34,7 +34,7 @@ class App extends React.Component {
       })
 
       .then((res) => {
-        // console.log("related items res.data>>>>", res.data);
+        //console.log("related items res.data>>>>", res.data);
         let relatedProductsData = [];
         //for loop gather related products data
         console.log(res.data);
@@ -48,11 +48,11 @@ class App extends React.Component {
               axios
                 .get("/productStyle", { params: { product_id: product_id } })
                 .then((styleres) => {
-                  // console.log("styleres>>>>", styleres.data);
+             //     console.log("styleres>>>>", styleres.data);
                   //append the image information to the data
                   res.data.image =
                     styleres.data.results[0].photos[0].thumbnail_url;
-                  // console.log("image", res.data.image);
+                //  console.log("image", res.data.image);
                   relatedProductsData.push(res.data);
                   this.setState({ relatedProducts: relatedProductsData });
                 })
@@ -65,10 +65,10 @@ class App extends React.Component {
               // relatedProductsData.push(res.data);
               //console.log("relatedproductsData>>>>",relatedProductsData)
               // this.setState({ relatedProducts: relatedProductsData });
-              // console.log(
-              //   "staterelatedproducts>>>>",
-              //   this.state.relatedProducts
-              // );
+            //  console.log(
+            //    "staterelatedproducts>>>>",
+            //    this.state.relatedProducts
+            //  );
             })
 
             .catch((err) => {
@@ -93,6 +93,7 @@ class App extends React.Component {
   render() {
     return (
       <>
+      
         <ProductDetail
           data={this.state.data}
           currentProduct={this.state.currentProduct}
@@ -103,11 +104,11 @@ class App extends React.Component {
           changeProduct={this.changeProduct}
         />
         <Outfitcards
-          data={this.state.data}
+       
           currentProduct={this.state.currentProduct}
         />
         <QA
-        id={this.state.currentProduct}
+          id={this.state.currentProduct}
         />
         <Reviews
           id={this.state.currentProduct}

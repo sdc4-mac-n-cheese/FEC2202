@@ -6,35 +6,45 @@ import ProductInfo from './ProductInfo.jsx';
 
 const ProductDetail = (props) => {
   //product_id should be passed in through props
-  const [currProduct, setCurrProduct] = useState({})
-  const [products, setProducts] = useState([]);
+  const [currProduct, setCurrProduct] = useState({});
+  const [styleResults, setStyleResults] = useState([]);
+  const [currStyle, setCurrStyle] = useState({});
 
   useEffect(() => {
-    //65631 is a placeholder
+    //65631 is a placeholdr
     axios.get(`/product?product_id=${65631}`)
       .then(product => {
-        console.log(product.data)
+        //console.log(product.data)
         setCurrProduct(product.data);
         return axios.get(`/productStyle?product_id=${65631}`);
       })
       .then(styles => {
-        setProducts(styles.data.results);
-        console.log('images here', products)
+        setStyleResults(styles.data.results);
       })
       .catch(err => {
         console.log(err);
       });
   }, [currProduct.id]);
 
-  if (!products.length) {
-    return null;
+  useEffect(() => {
+    //set default style to the first style
+    setCurrStyle(styleResults[0]);
+  }, [styleResults]);
+
+  const selectStyle = function (id) {
+    // console.log('invoked', id);
+    styleResults.forEach(style => {
+      if (style.style_id === id) {
+        setCurrStyle(style);
+      }
+    });
   }
 
   return (
     < div className={ProductCSS.main} >
       {/* 0 & 65631 are placeholders */}
-      <Carousel photos={products[0].photos} productId={65631} />
-      <ProductInfo product={currProduct} styles={products} />
+      {styleResults.length && currStyle && <Carousel currStyle={currStyle} />}
+      {Object.keys(currProduct).length && styleResults.length && currStyle && <ProductInfo product={currProduct} currStyle={currStyle} styles={styleResults} onSelect={selectStyle} />}
     </div >
   );
 }
