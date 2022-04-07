@@ -10,7 +10,10 @@ class Relateditem extends React.Component {
   changeItem(e) {
     e.preventDefault()
     this.props.changeProduct(this.props.item.id);
+<<<<<<< HEAD
+=======
     // console.log('THE id', this.props.item.id)
+>>>>>>> main
 
   }
 

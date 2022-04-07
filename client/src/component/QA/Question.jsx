@@ -48,7 +48,11 @@ class Question extends React.Component {
   }
 
   render() {
+<<<<<<< HEAD
+    // console.log('question', this.props.question)
+=======
     // console.log('in render question', this.state.question)
+>>>>>>> main
     return (
       <div className={ProductCSS.questions}>
         <span>Q. {this.props.question.question_body}

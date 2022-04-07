@@ -12,7 +12,7 @@ const ProductInfo = (props) => {
       <p>{props.product.category.toUpperCase()}</p>
       <h1>{props.product.name}</h1>
       <p>${props.product.default_price}</p>
-      <p><strong>STYLE ></strong> {currStyle.name}</p>
+      <p><strong>STYLE </strong> {currStyle.name}</p>
       <StyleSelector styles={props.styles} />
     </div>
   );
