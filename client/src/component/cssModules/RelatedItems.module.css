@@ -9,23 +9,25 @@
   display: flex;
   overflow-y: hidden;
   overflow-x: scroll;
-  padding: 20px;
-  align-items: center;
+  padding: 30px;
+  
+  
  
 }
 
 .card {
-
+position:relative;
   max-width: 500px;
 min-height: 500px;
  max-width: 500px;
  min-width: 500px;
-  background-color: antiquewhite;
+  background-color: #EBEBEB;
   border: 1px;
   border-radius: 5%;
   border-color: black;
-  margin-right: 10px;
+  margin-right: 20px;
   transition: transform 450ms;
+  box-shadow: rgba(0,0,0,0.35) 0px 5px 15px;
 }
 
 .card:hover {
@@ -38,11 +40,56 @@ min-height: 500px;
   align-items: center; justify-content: center; flex-direction: column; 
 }
 .button {
-  z-index: 99;
+ 
 }
 .relateditembutton {
-  background: url("http://imgur.com/I0EwG.png") transparent;
-  height: 48px;
-  width: 45px;
-  border: none;
+  background:transparent;
+  display:flex;
+  justify-content:flex-start;
+  position: absolute;
+  left: 5px;
+  top:5px;
+}
+
+.Modal_styles {
+    position:absolute;
+    left:50%;
+    top:50%;
+    height:500px;
+    width:500px;
+    z-Index: 1041;
+    background-color: white;
+    border-radius: 5%;
+    border: 2px;
+    box-shadow:  rgba(0,0,0,0.35) 0px 5px 15px;
+    text-align: center;
+}
+
+    .Overlay_style{
+             position:fixed;
+             top:0;
+             left:0;
+            right:0;
+            bottom:0;
+            background-color:rgba(0,0,0, .7);
+            z-Index:1041;
+            margin: 0px;
+            padding:0px;
+        
+         }
+
+.modalbutton{
+    position: absolute;
+    left: 5px;
+    top:5px;
+}
+.tablediv{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    max-width: 480px;
+    max-height: 480px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+
 }
