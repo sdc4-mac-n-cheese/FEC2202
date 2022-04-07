@@ -206,9 +206,10 @@ app.post('/addQuestion', (req, res) => {
 
 app.post('/addAnswer', (req, res) => {
 
+  console.log('fired!!')
   let parameters = {
 
-    product_id: req.body.product_id,
+    // product_id: req.body.product_id,
     body: req.body.body,
     name: req.body.name,
     email: req.body.email,
@@ -217,18 +218,19 @@ app.post('/addAnswer', (req, res) => {
   // needs work!!!
   // ${req.query.question_id}/answers?body=${req.body.body}&name=${req.body.name}&email=${req.body.email}&photos=${req.body.photos}`
   // ?question_id=${req.query.question_id}`
-  api.postData(`qa/questions?question_id=${req.query.question_id}/answers`, parameters)
+  api.postData(`qa/questions/${req.query.question_id}/answers`, parameters)
     .then((response) => {
       res.status(201).send(response.data)
     })
     .catch((err) => {
-      // console.log('here>>>>>', req.query)
+      console.log('params', parameters)
+      console.log('here>>>>>', req.query.question_id)
       res.status(500).send(err)
     })
 });
 
 app.put('/helpfulQuestion', (req, res) => {
-  console.log('HERERERE', req.query)
+  // console.log('HERERERE', req.query)
   api.putData(`qa/questions/${req.query.question_id}/helpful`)
     .then((response) => {
       res.send(response.data)
