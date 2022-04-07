@@ -8,7 +8,7 @@ class Relatedcards extends React.Component {
     super(props);
     this.state = {
       //fake data. it will come from props
-      product_id:this.props.currentProduct
+      product_id:this.props.currentProduct.id
     };
   }
 
@@ -28,15 +28,18 @@ class Relatedcards extends React.Component {
 
   render() {
     return (
+      <>
+      <h1>Related products</h1>
       <div className={RelateditemsCSS.container}>
         {/* <button>left</button>
         <button>right</button> */}
-
         {this.props.data.map((item) => {
-          //console.log("data>>>>",this.props.data)
-           return <Relateditem key={item.id} item={item} changeProduct={this.props.changeProduct}/>;
+          console.log("data from relatedcards file>>>>",this.props.data)
+           return <Relateditem key={item.id} item={item} changeProduct={this.props.changeProduct} 
+           currentProduct={this.props.currentProduct}/>;
         })}
       </div>
+      </>
     );
   }
 }
