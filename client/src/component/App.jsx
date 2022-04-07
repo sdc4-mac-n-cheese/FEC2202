@@ -34,7 +34,7 @@ class App extends React.Component {
       })
 
       .then((res) => {
-        console.log("related items res.data>>>>", res.data);
+        // console.log("related items res.data>>>>", res.data);
         let relatedProductsData = [];
         //for loop gather related products data
         for (var i = 0; i < res.data.length; i++) {
@@ -47,11 +47,11 @@ class App extends React.Component {
               axios
                 .get("/productStyle", { params: { product_id: product_id } })
                 .then((styleres) => {
-                  console.log("styleres>>>>", styleres.data);
+                  // console.log("styleres>>>>", styleres.data);
                   //append the image information to the data
                   res.data.image =
                     styleres.data.results[0].photos[0].thumbnail_url;
-                  console.log("image", res.data.image);
+                  // console.log("image", res.data.image);
                   relatedProductsData.push(res.data);
                   this.setState({ relatedProducts: relatedProductsData });
                 })
@@ -64,10 +64,10 @@ class App extends React.Component {
               // relatedProductsData.push(res.data);
               //console.log("relatedproductsData>>>>",relatedProductsData)
               // this.setState({ relatedProducts: relatedProductsData });
-              console.log(
-                "staterelatedproducts>>>>",
-                this.state.relatedProducts
-              );
+              // console.log(
+              //   "staterelatedproducts>>>>",
+              //   this.state.relatedProducts
+              // );
             })
 
             .catch((err) => {
@@ -84,7 +84,8 @@ class App extends React.Component {
 
   changeProduct(val) {
     this.setState({ currentProduct: val });
-    console.log(this.state.currentProduct);
+    // console.log('change product', val);
+    // console.log('change product', this.state.currentProduct)
     this.componentDidMount();
   }
 
