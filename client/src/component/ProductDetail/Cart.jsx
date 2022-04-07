@@ -6,6 +6,7 @@ const Cart = (props) => {
   const [count, setCount] = useState(1);
   const [countLimit, setCountLimit] = useState(15)
   const [isStarred, setIsStarred] = useState(false);
+  const [sku, setSku] = useState();
 
   const quantities = [];
   for (let key in props.currStyle.skus) {
@@ -49,7 +50,10 @@ const Cart = (props) => {
       <h4>Sizes:</h4>
       <div className={ProductCSS.sizes} id='sizes' >
         {quantities.map((sku, i) =>
-          <button onClick={(e) => selectSize(e)} skuNumber={sku[0]} quantity={sku[1].quantity} key={i}>{sku[1].size}</button>
+          <button onClick={(e) => {
+            setSku(sku[0])
+            selectSize(e)
+          }} quantity={sku[1].quantity} key={i}>{sku[1].size}</button>
         )}
       </div>
 
@@ -61,7 +65,14 @@ const Cart = (props) => {
       </div>
 
       <div>
-        <button className={ProductCSS.add}>ADD TO BAG <span>+</span></button>
+        <button className={ProductCSS.add} onClick={() => {
+          if (!sku) {
+            alert('Please select an item to add to the cart');
+            return;
+          }
+          props.addCart(sku);
+          alert('Added to Cart!');
+        }}>ADD TO BAG <span>+</span></button>
         <button className={ProductCSS.favorite} onClick={() => setIsStarred(!isStarred)}>
           {isStarred ? <i className="fa fa-star" aria-hidden="true"></i> : <i className="fa fa-star-o" aria-hidden="true"></i>}
         </button>
@@ -71,7 +82,8 @@ const Cart = (props) => {
 }
 
 Cart.propTypes = {
-  currStyle: PropTypes.object
+  currStyle: PropTypes.object,
+  addCart: PropTypes.func
 }
 
 export default Cart;

@@ -19,7 +19,7 @@ const ProductInfo = (props) => {
         <p><strong>STYLE  ></strong>{currStyle.name}</p>
       </div>
       <StyleSelector styles={props.styles} currStyle={currStyle} onSelect={props.onSelect} />
-      <Cart currStyle={currStyle} />
+      <Cart currStyle={currStyle} addCart={props.addCart} />
     </div>
   );
 };
