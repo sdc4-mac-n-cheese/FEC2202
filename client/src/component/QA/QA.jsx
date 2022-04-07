@@ -19,52 +19,77 @@ class QA extends React.Component {
   }
 
   updateQuestions() {
-    // console.log('YOOOOO1!!!!', this.props.id)
+    // console.log('inside updateQuestions', this.props.id)
     axios.get('/getQuestions', {
       params: {
         product_id: this.props.id,
         page: 1,
-        count: 4
+        count: 100
       }
     })
       .then((questions) => {
-        // console.log('here>>>>>', questions)
+        // console.log('updateQuestions.then', questions)
         this.setState({ currentQuestions: questions.data.results })
+        this.componentDidMount()
       })
       .catch((err) => {
         console.error(err)
       })
+    // this.componentDidMount();
   }
+
+  componentDidUpdate(prevProps) {
+
+    // this.setState({ currentProduct: this.props.id })
+    if (this.props.id !== prevProps.id) {
+      this.componentDidMount();
+    }
+
+  }
+
 
   componentDidMount() {
-    // console.log('YOOOOO!!!!', this.props.id)
+    // console.log('component did mount props', this.props.id)
+    // console.log('component did mount state', this.state.currentQuestions)
+
+    // this.setState({ currentProduct: this.props.id })
 
     axios.get('/getQuestions', {
       params: {
         product_id: this.props.id,
+        // product_id: this.props.id,
         page: 1,
-        count: 4
+        count: 100
       }
     })
       .then((questions) => {
-        // console.log('here>>>>>', questions)
-        this.setState({ currentQuestions: questions.data.results })
+        console.log('component did mount .then', questions)
+        this.setState({
+          currentQuestions: questions.data.results
+        })
       })
       .catch((err) => {
         console.error(err)
       })
   }
+
 
   render() {
     return (
 
       <div >
-        <span className={ProductCSS.main}>Questions and Answers</span>
+        {/* {this.updateQuestions()} */}
+        {/* <span className={ProductCSS.main}>Questions and Answers</span>
         <br/>
-        <input className={ProductCSS.searchBar} type='text' placeholder='search for questions' />
+        <input
+        className={ProductCSS.searchBar}
+        type='text'
+        placeholder='search for questions' /> */}
+        {/* {console.log('QA render', this.state.currentProduct)} */}
         <QuestionList
           className={ProductCSS.main}
           currentQuestions={this.state.currentQuestions}
+          currentProduct={this.state.currentProduct}
           updateQuestions={this.updateQuestions}
         />
       </div>
