@@ -7,7 +7,7 @@ import Cart from './Cart.jsx';
 const ProductInfo = (props) => {
   const product = props.product;
   const currStyle = props.currStyle;
-  console.log('in PRODUCT INFO >>>>>>', currStyle)
+  // console.log('in PRODUCT INFO >>>>>>', currStyle)
 
   return (
     <div className={ProductCSS.info}>

@@ -34,8 +34,8 @@ class Relatedcards extends React.Component {
         {/* <button>left</button>
         <button>right</button> */}
         {this.props.data.map((item) => {
-          console.log("data from relatedcards file>>>>",this.props.data)
-           return <Relateditem key={item.id} item={item} changeProduct={this.props.changeProduct} 
+          // console.log("data from relatedcards file>>>>",this.props.data)
+           return <Relateditem key={item.id} item={item} changeProduct={this.props.changeProduct}
            currentProduct={this.props.currentProduct}/>;
         })}
       </div>

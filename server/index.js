@@ -147,7 +147,7 @@ app.put('/reviews/helpful', (req, res) => {
 })
 
 app.put('/reviews/report', (req, res) => {
-  console.log('in report:', req);
+  // console.log('in report:', req);
   api.putData(`reviews/${req.body.review_id}/report`)
     .then((result) => {
       // console.log(result);
@@ -204,7 +204,7 @@ app.post('/addQuestion', (req, res) => {
 
 app.post('/addAnswer', (req, res) => {
 
-  console.log('fired!!')
+  // console.log('fired!!')
   let parameters = {
 
     // product_id: req.body.product_id,
@@ -221,8 +221,8 @@ app.post('/addAnswer', (req, res) => {
       res.status(201).send(response.data)
     })
     .catch((err) => {
-      console.log('params', parameters)
-      console.log('here>>>>>', req.query.question_id)
+      // console.log('params', parameters)
+      // console.log('here>>>>>', req.query.question_id)
       res.status(500).send(err)
     })
 });

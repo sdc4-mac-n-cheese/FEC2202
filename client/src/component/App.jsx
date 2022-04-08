@@ -12,7 +12,7 @@ class App extends React.Component {
     this.state = {
       //data:[],
       relatedProducts: [],
-      currentProduct: 65631,
+      currentProduct: 65633,
     };
     this.changeProduct = this.changeProduct.bind(this);
   }
@@ -37,7 +37,7 @@ class App extends React.Component {
         //console.log("related items res.data>>>>", res.data);
         let relatedProductsData = [];
         //for loop gather related products data
-        console.log(res.data);
+        // console.log(res.data);
         for (var i = 0; i < res.data.length; i++) {
           let product_id = res.data[i];
 
@@ -93,7 +93,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-      
+
         <ProductDetail
           data={this.state.data}
           currentProduct={this.state.currentProduct}
@@ -104,7 +104,7 @@ class App extends React.Component {
           changeProduct={this.changeProduct}
         />
         <Outfitcards
-       
+
           currentProduct={this.state.currentProduct}
         />
         <QA

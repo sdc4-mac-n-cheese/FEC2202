@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import Feed from './Feed.jsx';
-import WriteReview from './WriteReview.jsx';
 import RatingsCharacteristics from './RatingsCharacteristics.jsx';
-import ReviewsCSS from "../cssModules/Reviews.module.css";
+import PropTypes from 'prop-types';
+import ReviewsCSS from '../cssModules/Reviews/Reviews.module.css';
+
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -17,24 +18,39 @@ class Reviews extends React.Component {
       wouldRecommend: 0,
       helpfulness: 0,
       reviewsArr: [],
-      displayArr: [],
-      currentlyDisplaying: 0
+      displayFilters: false,
+      sortType: 'relevant'
     };
     this.getMetaData = this.getMetaData.bind(this);
     this.getReviewInfo = this.getReviewInfo.bind(this);
-    this.getTwoMore = this.getTwoMore.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.viewFilters = this.viewFilters.bind(this);
+    this.selectFilter = this.selectFilter.bind(this);
   }
 
   componentDidMount() {
     this.setState({
-      product_id: this.props.id
+      product_id: this.props.id,
     }, () => { this.getMetaData() })
     this.getReviewInfo();
     // this.getReviewsArr();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    // console.log(this.props.id, prevProps.id, this.state.product_id);
+    if (this.props.id !== prevProps.id) {
+      this.componentDidMount();
+    }
+
+    // console.log('current:',this.state.sortType, '\nprevious:',prevState.sortType);
+    if (this.state.sortType !== prevState.sortType) {
+      this.componentDidMount();
+    }
+
+  }
+  // ?page=1&count=200&sort=newest&product_id=65633
   getReviewInfo() {
-    axios.get(`reviews?page=1&count=300&sort=newest&product_id=${this.props.id}`)
+    axios.get(`reviews/?page=1&count=1000&sort=${this.state.sortType}&product_id=${this.props.id}`)
       .then((result) => {
         var temp = result.data;
 
@@ -112,27 +128,58 @@ class Reviews extends React.Component {
       })
   }
 
-  getTwoMore() {
-    console.log('in two more');
-    console.log('currently displaying', this.state.currentlyDisplaying);
-    console.log('current array display;', this.state.displayArr);
+  viewFilters(e) {
+    // console.log('in the viewFilter handler');
+    var toggler = !this.state.displayFilters;
+    // console.log(this.state.displayFilters, 'to', toggler);
+    this.setState({displayFilters: toggler})
+  }
 
-    // if()
+  selectFilter(e) {
+    console.log(e.target.value);
 
   }
 
   render() {
-    var loadingDiv;
-    if (this.state.reviewData.length === 0) {
-      loadingDiv = <div>Reviews are loading...</div>
+    let displayFilters;
+    if (this.state.displayFilters === true) {
+      displayFilters =
+        <div className={ReviewsCSS.show} >
+        <a href="#" onClick={() => {this.setState({sortType: "helpful", displayFilters: false})}}>Helpful</a>
+        <a href="#" onClick={() => {this.setState({sortType: "newest", displayFilters: false})}}>Newest</a>
+        <a href="#" onClick={() => {this.setState({sortType: "relevant", displayFilters: false})}}>Relevant</a>
+      </div>
+    }
+
+    let loadingDiv;
+    if (this.state.currentlyDisplaying === 0) {
+      loadingDiv =
+        <div>
+          Reviews are loading...
+        </div>
+    } else if (this.state.reviewData.length === 0) {
+      loadingDiv =
+        <Feed
+          reviewData={this.state.reviewData}
+          totalRatings={this.state.totalRatings}
+        />
     } else {
-      loadingDiv = <div>
+      loadingDiv =
+      <div>
+        <div className={ReviewsCSS.dropdown}>
+            <button onClick={this.viewFilters} className={ReviewsCSS.dropbtn}>Sort: {this.state.sortType}</button>
+          <div className={ReviewsCSS.dropdownContent}>
+          {displayFilters}
+        </div>
+      </div>
+
         <RatingsCharacteristics
-          ratingAvg={this.state.ratingAvg}
+          ratingAvg={Number(this.state.ratingAvg)}
           wouldRecommend={this.state.wouldRecommend}
           metaData={this.state.metaData}
           reviewsArr={this.state.reviewsArr}
         />
+
         <Feed
           reviewData={this.state.reviewData}
           totalRatings={this.state.totalRatings}
@@ -140,15 +187,15 @@ class Reviews extends React.Component {
       </div>
     }
     return (
-      <div>
+      <>
         {loadingDiv}
-        <button
-          className={ReviewsCSS.moreReviews}
-          onClick={this.getTwoMore}
-        >More Reviews</button>
-      </div>
+      </>
     )
   }
+}
+
+Reviews.propTypes = {
+  id: PropTypes.number
 }
 
 export default Reviews;

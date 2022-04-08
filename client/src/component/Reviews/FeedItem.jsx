@@ -1,6 +1,9 @@
 import React from 'react';
-import ReviewsCSS from '../cssModules/Reviews.module.css';
+import ReviewsCSS from '../cssModules/Reviews/Reviews.module.css';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import moment from 'moment';
+
 class FeedItem extends React.Component {
   constructor(props) {
     super(props);
@@ -76,9 +79,9 @@ class FeedItem extends React.Component {
 
     let conditionalMerchantResponse = <></>
     if (this.props.reviewData.response !== null && this.props.reviewData.response !== '') {
-      conditionalMerchantResponse = <div>Merchant Response: {this.props.reviewData.response}<br></br></div>
+      conditionalMerchantResponse = <p>Merchant Response: {this.props.reviewData.response}</p>
     } else {
-      conditionalMerchantResponse = <br></br>
+      conditionalMerchantResponse = <></>
     }
 
     let hasBeenReported;
@@ -97,17 +100,23 @@ class FeedItem extends React.Component {
 
     return (
 
-        <li>
-          {stars} {this.props.reviewData.reviewer_name}  {this.props.reviewData.date}
-        Purchaser Summary: {this.props.reviewData.summary}
-        Purchaser Review: {this.props.reviewData.body}
-          {conditionalMerchantResponse}
+      <li>
+        <p>{stars} {this.props.reviewData.reviewer_name}
+          <span>{moment(this.props.reviewData.date).format('MMM DD, YYYY')}
+          </span>
+        </p>
+        <p>Purchaser Summary: {this.props.reviewData.summary}</p>
+        <p>Purchaser Review: {this.props.reviewData.body}</p>
+        {conditionalMerchantResponse}
         <div className={ReviewsCSS.og}> {hasBeenHelpful} | {hasBeenReported}
-</div>
-          </li>
+        </div>
+      </li>
 
     )
   }
 }
 
+FeedItem.propTypes = {
+  reviewData: PropTypes.object,
+}
 export default FeedItem;

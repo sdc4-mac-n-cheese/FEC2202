@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 
 class RatingsCharacteristics extends React.Component {
   constructor(props) {
@@ -35,6 +37,13 @@ class RatingsCharacteristics extends React.Component {
     </>
     )
   }
+}
+
+RatingsCharacteristics.propTypes = {
+  metaData: PropTypes.array,
+  ratingAvg: PropTypes.number,
+  reviewsArr: PropTypes.array,
+  wouldRecommend: PropTypes.number
 }
 
 export default RatingsCharacteristics;

@@ -46,7 +46,7 @@ class AnswerModal extends React.Component {
       alert('answer posted!')
     })
     .catch((err) => {
-      console.log('ORRR HERE', this.props.question)
+      // console.log('ORRR HERE', this.props.question)
       console.error(err);
     })
   }

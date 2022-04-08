@@ -26,7 +26,7 @@ const Cart = (props) => {
 
     //set limit on quantity based on size
     let sizeQuantity = event.target.getAttribute('quantity');
-    console.log('SIZE QUANTITY', sizeQuantity)
+    // console.log('SIZE QUANTITY', sizeQuantity)
     setCountLimit(sizeQuantity > 15 ? 15 : sizeQuantity);
   }
 
