@@ -1,6 +1,7 @@
 import React from 'react';
 import ProductCSS from '../cssModules/QA.module.css';
 import axios from 'axios';
+// require('dotenv').config();
 
 class AnswerModal extends React.Component {
   constructor(props) {
@@ -34,6 +35,8 @@ class AnswerModal extends React.Component {
   }
 
   postAnswer() {
+
+    // let url = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp'
 
     axios.post(`/addAnswer?question_id=${this.props.question.question_id}`, {
       body: this.state.body,

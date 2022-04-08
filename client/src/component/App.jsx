@@ -10,14 +10,36 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      //data:[],
+      currentProduct: 65631,
+      currProductData: {},
+      currStyleData: [],
+      currStyle: {},
       relatedProducts: [],
-      currentProduct: 65633,
     };
     this.changeProduct = this.changeProduct.bind(this);
+    this.changeStyle = this.changeStyle.bind(this);
   }
 
   componentDidMount() {
+    //current product based off of current product_id
+    axios.get(`/product?product_id=${this.state.currentProduct}`)
+      .then(product => {
+        this.setState({
+          currProductData: product.data
+        });
+        return axios.get(`/productStyle?product_id=${this.state.currentProduct}`);
+      })
+      .then(styles => {
+        this.setState({
+          currStyleData: styles.data.results,
+          currStyle: styles.data.results[0]
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+
     // axios
     // .get("http://localhost:3000/products")
     // .then((res)=>{
@@ -48,11 +70,11 @@ class App extends React.Component {
               axios
                 .get("/productStyle", { params: { product_id: product_id } })
                 .then((styleres) => {
-             //     console.log("styleres>>>>", styleres.data);
+                  //     console.log("styleres>>>>", styleres.data);
                   //append the image information to the data
                   res.data.image =
                     styleres.data.results[0].photos[0].thumbnail_url;
-                //  console.log("image", res.data.image);
+                  //  console.log("image", res.data.image);
                   relatedProductsData.push(res.data);
                   this.setState({ relatedProducts: relatedProductsData });
                 })
@@ -65,10 +87,10 @@ class App extends React.Component {
               // relatedProductsData.push(res.data);
               //console.log("relatedproductsData>>>>",relatedProductsData)
               // this.setState({ relatedProducts: relatedProductsData });
-            //  console.log(
-            //    "staterelatedproducts>>>>",
-            //    this.state.relatedProducts
-            //  );
+              //  console.log(
+              //    "staterelatedproducts>>>>",
+              //    this.state.relatedProducts
+              //  );
             })
 
             .catch((err) => {
@@ -90,13 +112,21 @@ class App extends React.Component {
     this.componentDidMount();
   }
 
+  //sets currStyle passed from product detail component
+  changeStyle(style) {
+    this.setState({
+      currStyle: style
+    });
+  }
+
   render() {
+    // console.log('CURRENT STYLE', this.state.currStyle)
     return (
       <>
-
         <ProductDetail
-          data={this.state.data}
-          currentProduct={this.state.currentProduct}
+          currProductData={this.state.currProductData}
+          currStyleData={this.state.currStyleData}
+          changeStyle={this.changeStyle}
         />
         <Relatedcards
           data={this.state.relatedProducts}
