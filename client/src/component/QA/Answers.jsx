@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import ProductCSS from '../cssModules/QA.module.css';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 
 class Answers extends React.Component {
@@ -68,6 +69,13 @@ class Answers extends React.Component {
       </div>
     )
   }
+}
+
+Answers.propTypes = {
+  helpfulness: PropTypes.number,
+  answer: PropTypes.object,
+  styles: PropTypes.array,
+  updateQuestions: PropTypes.func
 }
 
 export default Answers;

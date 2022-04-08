@@ -204,7 +204,7 @@ app.post('/addQuestion', (req, res) => {
 
 app.post('/addAnswer', (req, res) => {
 
-  console.log('fired!!')
+  // console.log('fired!!')
   let parameters = {
 
     // product_id: req.body.product_id,
