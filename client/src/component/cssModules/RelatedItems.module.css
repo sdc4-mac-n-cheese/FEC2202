@@ -39,6 +39,7 @@ min-height: 357px;
   min-width: 305;
   max-width: 305px;
   object-fit: cover;
+
   /* text-align: center;
   align-items: center; justify-content: center; flex-direction: column; */
 }
@@ -55,12 +56,13 @@ min-height: 357px;
   position:relative;
 }
 .Modal_styles {
-    position:absolute;
-    left:500px;
-    top:500px;
-    height:500px;
-    width:500px;
-    z-Index: 1041;
+    position:fixed;
+    left:30%;
+    top: 40%;
+    /* height:500px;
+    width:500px; */
+    transform: 'translate(-50%, -50%)';
+    z-Index: 1000;
     background-color: white;
     border-radius: 5%;
     border: 2px;
@@ -75,7 +77,7 @@ min-height: 357px;
             right:0;
             bottom:0;
             background-color:rgba(0,0,0, .7);
-            z-Index:1041;
+            z-Index:1000;
             margin: 0px;
             padding:0px;
 

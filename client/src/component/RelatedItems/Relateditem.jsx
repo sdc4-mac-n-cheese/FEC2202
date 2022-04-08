@@ -31,7 +31,7 @@ class Relateditem extends React.Component {
         <h3>{this.props.item.category}</h3>
         <p>{this.props.item.description}</p>
         <h3>{this.props.item.default_price}</h3>
-        <img src={this.props.item.image} onClick={this.changeItem} className={RelateditemsCSS.relateditemimg}></img>
+        <img src={this.props.item.image || "https://whetstonefire.org/wp-content/uploads/2020/06/image-not-available.jpg"} onClick={this.changeItem} className={RelateditemsCSS.relateditemimg}></img>
         {/* has issue.cant show images*/}
         <div className={RelateditemsCSS.modalparent}>
         <Modal open={this.state.openModal} onClose={()=>{this.setState({openModal:false})}} compareditem={this.props.item} currentitemid={this.props.currentProduct}/>

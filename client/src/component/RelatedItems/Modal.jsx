@@ -44,18 +44,27 @@ import RelateditemsCSS from "../cssModules/RelatedItems.module.css";
 const Modal =function(props) {
   const [compareData, setCompareData] = useState([]);
   let composingdata = [];
+  let compareddata=[]
+  var newdataset=[]
+  let currentdata=[]
   //let currentitemdata = [];
 
   useEffect(() => {
-    console.log("modal props>>>>>>",props.compareditem)
+   // console.log("modal props>>>>>>",props.compareditem)
     var compareditemdata = props.compareditem.features;
     for (var i = 0; i < compareditemdata.length; i++) {
+      if(compareditemdata[i]["value"] === null){
+        compareditemdata.splice(i,1)
+      } else{
       compareditemdata[i]["compareditemvalue"] = compareditemdata[i]["value"];
       delete compareditemdata[i]["value"];
       compareditemdata[i].currentitemvalue="";
-      composingdata.push(compareditemdata[i])
-      setCompareData(composingdata)
+      compareddata.push(compareditemdata[i])
+        
+      //setCompareData(comparedata)
+     // composingdata=[]
     }
+  }
     //console.log("compareditemdata>>>>>>",compareditemdata)
     axios
       .get("/product", { params: { product_id: props.currentitemid } })
@@ -67,10 +76,80 @@ const Modal =function(props) {
           delete res.data.features[i]["value"];
           res.data.features[i].compareditemdata= ""
           composingdata.push(res.data.features[i]);
-          setCompareData(composingdata)
+           currentdata=composingdata
+         // setCompareData(currentdata)
+         
+
+//           var newdataset=[]
+// for (let i=0;i<currentitemdata.length;i++){
+//     for (let j=0;j<compareditemdata.length; j++){
+//         if(currentitemdata[i].feature ===compareditemdata[j].feature){
+//             compareditemdata[j].currentitemvalue=currentitemdata[i].currentitemvalue
+//         }
+//     }
+//     }
+// for (let k=0;k<compareditemdata.length;k++){
+//     if(compareditemdata[k].currentitemvalue===undefined){
+//         compareditemdata[k].currentitemvalue =""
+//     }  newdataset.push(compareditemdata[k])
+// }
+// // console.log("compareddata>>>>",compareddata)
+// // console.log("currentdata>>>",currentdata)
+
+// for (let i=0;i<compareditemdata.length;i++){
+//     for (let j=0; j<currentitemdata.length; j++){
+//         if (compareditemdata[i].feature===currentitemdata[j].feature){
+//           //  currentdata[j].compareditemvalue=compareddata[i].compareditemvalu
+//          currentitemdata.splice(j,1)
+            
+//         }
+//     }
+// }
+// for (let k=0;k<currentitemdata.length;k++){
+//     if(currentitemdata[k].compareditemvalue===undefined){
+//         currentitemdata[k].compareditemvalue=""
+        
+//     }
+//     newdataset.push(currentdata[k])
+// }
         //    console.log("composingdata>>>", composingdata);
         //    console.log("compareData>>>", compareData);
         }
+        for (let i=0;i<currentdata.length;i++){
+          for (let j=0;j<compareddata.length; j++){
+              if(currentdata[i].feature ===compareddata[j].feature){
+                  compareddata[j].currentitemvalue=currentdata[i].currentitemvalue
+              }
+          }
+          }
+      for (let k=0;k<compareddata.length;k++){
+          if(compareddata[k].currentitemvalue===undefined){
+              compareddata[k].currentitemvalue =""
+          }  newdataset.push(compareddata[k])
+          console.log("newdataset loging line 87>>>>",newdataset)
+      }
+      // console.log("compareddata>>>>",compareddata)
+      // console.log("currentdata>>>",currentdata)
+      
+      for (let i=0;i<compareddata.length;i++){
+          for (let j=0; j<currentdata.length; j++){
+              if (compareddata[i].feature===currentdata[j].feature){
+                  currentdata[j].compareditemvalue=compareddata[i].compareditemvalue
+                compareddata.splice(i,1)
+              }
+          }
+      }
+      for (let k=0;k<currentdata.length;k++){
+          if(currentdata[k].compareditemvalue===undefined){
+              currentdata[k].compareditemvalue=""
+          }
+          newdataset.push(currentdata[k])
+          console.log("newdataset>>>>>>>",newdataset)
+          setCompareData(newdataset)
+          console.log("compareData state >>>>",compareData)
+      }
+      
+
         //console.log("coms>>>",res.data)
       })
       .catch((err) => {

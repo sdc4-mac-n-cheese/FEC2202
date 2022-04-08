@@ -18,9 +18,16 @@ class App extends React.Component {
     };
     this.changeProduct = this.changeProduct.bind(this);
     this.changeStyle = this.changeStyle.bind(this);
+    this.domupdating=this.domupdating.bind(this)
+  }
+  
+  componentDidMount(){
+   // console.log("window.location>>>>>>>",window.location)
+    this.domupdating()
+    document.title="Best E-commerce Site"
   }
 
-  componentDidMount() {
+  domupdating() {
     //current product based off of current product_id
     axios.get(`/product?product_id=${this.state.currentProduct}`)
       .then(product => {
@@ -106,10 +113,11 @@ class App extends React.Component {
   }
 
   changeProduct(val) {
+    this.domupdating()
     this.setState({ currentProduct: val });
     // console.log('change product', val);
     // console.log('change product', this.state.currentProduct)
-    this.componentDidMount();
+    
   }
 
   //sets currStyle passed from product detail component
@@ -134,8 +142,9 @@ class App extends React.Component {
           changeProduct={this.changeProduct}
         />
         <Outfitcards
-
+          currStyle={this.state.currStyle}
           currentProduct={this.state.currentProduct}
+          currProductData={this.state.currProductData}
         />
         <QA
           id={this.state.currentProduct}
