@@ -6,6 +6,8 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
     "moduleNameMapper": {
       "\\.(css|less)$": "identity-obj-proxy"
     }
