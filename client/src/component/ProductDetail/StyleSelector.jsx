@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ProductCSS from '../cssModules/ProductDetail.module.css';
 
 const StyleSelector = (props) => {
-  //hard coded
   const currStyle = props.currStyle;
 
   return (

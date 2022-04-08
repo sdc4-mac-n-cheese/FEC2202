@@ -37,26 +37,31 @@ p {
   object-fit: cover;
 }
 
-/* .carousel button {
-  position: absolute;
-  z-index: 1;
-  top: 50%;
+.carousel button {
   transform: translateY(-50%);
-  background-color: white;
+  background-color: transparent;
   border: none;
-  border-radius: 50%;
   font-size: larger;
   font-weight: bold;
   color: #525252;
   cursor: pointer;
-} */
+}
 
 .leftBtn {
+  position: relative;
+  left: 115px;
+  bottom: 375px;
+}
 
+.leftBtn.hidden {
+  opacity: 0;
+  cursor: default;
 }
 
 .rightBtn {
-
+  position: relative;
+  left: 665px;
+  bottom: 375px;
 }
 
 .verticalView {
@@ -64,18 +69,27 @@ p {
   display: flex;
   flex-direction: column;
   z-index: 1;
-  /* height: 375px;
-  overflow: hidden; */
+  height: 375px;
+  overflow: hidden;
 }
 
 .verticalPhotos {
   width: 55px;
   height: 55px;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .verticalPhotos.verticalSelected {
   border-bottom: 3px solid #525252;
+}
+
+.verticalButton {
+  position: absolute;
+  top: 475px;
+  margin-left: 35px;
+  z-index: 1;
+  cursor: pointer;
 }
 
 /* product detail styles */

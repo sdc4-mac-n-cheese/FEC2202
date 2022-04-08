@@ -11,8 +11,8 @@ const ProductDetail = (props) => {
   // const [styleResults, setStyleResults] = useState([]);
   const [currStyle, setCurrStyle] = useState({});
 
-  let currProduct = props.currProductData;
-  let styleResults = props.currStyleData;
+  let currProduct = props.currProductData || {};
+  let styleResults = props.currStyleData || [];
 
   // useEffect(() => {
   //   //65631 is a placeholdr
@@ -31,7 +31,9 @@ const ProductDetail = (props) => {
 
   useEffect(() => {
     //set default style to the first style
-    setCurrStyle(styleResults[0]);
+    if (styleResults.length) {
+      setCurrStyle(styleResults[0]);
+    }
   }, [styleResults]);
 
   const selectStyle = function (id) {
@@ -57,7 +59,7 @@ const ProductDetail = (props) => {
   return (
     < div className={ProductCSS.main} >
       {/* 0 & 65631 are placeholders */}
-      {styleResults.length && currStyle && <Carousel currStyle={currStyle} />}
+      {Object.keys(currStyle).length && <Carousel currStyle={currStyle} />}
       {Object.keys(currProduct).length && styleResults.length && currStyle && <ProductInfo product={currProduct} currStyle={currStyle} styles={styleResults} onSelect={selectStyle} addCart={addCart} />}
     </div >
   );
