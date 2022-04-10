@@ -7,6 +7,7 @@
     padding: 30px;
 
   }
+
   .imageparent{
     height: 305px;
     width: 305px;
@@ -23,47 +24,137 @@
   .card {
     position:relative;
       width: 305px;
-    height: 357px;
-
-      background-color: #EBEBEB;
+    height: 375px;
+      background-color:transparent;
       border: 1px;
       border-radius: 5%;
       border-color: black;
-      margin-right: 20px;
+      margin-right: 30px;
       padding: 0px;
       transition: transform 450ms;
-      box-shadow: rgba(0,0,0,0.35) 0px 5px 15px;
+
     }
     .card:hover {
-        transform: scale(1.08);
+        transform: scale(1.05);
       }
     
       .outfitcardbutton {
-        width: 5px;
-        height: 5px;
-          /* border:transparent;
-        background:transparent;
-        display:flex;
+        /* width: 5px;
+        height: 5px; */
+        border:transparent;
+        background:transparent; 
+       /* display:flex;
         justify-content:flex-start; */
         position: absolute;
         left: 5px;
         top:5px;
-       
+       z-index: 1;
+       background-color:#ffffff36;
+       border-radius: 50%;
+
 
       }
-  
+  .addbutton{
+    position: relative;
+    left:40%;
+    top:30%;
+    background-color:#ffffff8a;
+    border: transparent;
+    z-index: 1;
+    border-radius: 50%;
+  }
+  .firstcard{
+    position:relative;
+    width: 305px;
+  height: 385px;
+    background-color:rgb(121, 118, 118, 0.1);
+    border: 1px;
+    border-radius: 5%;
+    border-color: black;
+    margin-right: 30px;
+    padding: 0px;
+    transition: transform 450ms;
+  }
+  .firstcard:hover {
+    transform: scale(1.05);
+  }
       .text{
-          position: absolute;
-          top: 40%;
+         position: absolute;
+          top: 60%;
           left:20%;
           right: 20%;
           bottom: 50%;
           text-align: center;
           margin:0px;
-          padding: 0px;
+          padding: 0px; 
+ 
+       
+
 
       }
       .card h2 p h3 {
         margin:0px;
         padding: 0px;
+        line-height: 0.7;
+      }
+
+      /* :root {
+        --star-size: 60px;
+        --star-color: #fff;
+        --star-background: #fc0;
+      }
+       */
+    /*  .Stars {
+        --percent: calc(var(--rating) / 5 * 100%);
+        display: inline-block;
+        font-size: var(--star-size);
+        line-height: 1;
+      }
+       .Stars::before {
+        content: "★★★★★";
+        letter-spacing: 3px;
+        background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      
+      .reviewdiv {
+        background: #eee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        --star-size: 60px;
+        --star-color: #fff;
+        --star-background: #fc0;
+      }
+       */
+      /* * {
+        position: relative;
+        box-sizing: border-box;
+      } */
+
+      .card h3{
+        margin-left: 0px;
+        padding-left: 0px;
+        margin:0px;
+      
+      }
+      .card p{
+      
+        margin-top: 8px;
+        margin-bottom: 0px;
+        padding-left: 0px;
+       
+        line-height:0.7;
+      }
+      .starreview{
+        background-color:transparent;
+        margin-left: 0px;
+      }
+      .title{
+        margin:20px,0,0,0;
+        padding: 0;
+        line-height: 0.7;
+
       }

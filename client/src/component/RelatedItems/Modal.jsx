@@ -42,7 +42,7 @@ import RelateditemsCSS from "../cssModules/RelatedItems.module.css";
 
 
 const Modal =function(props) {
-  const [compareData, setCompareData] = useState([]);
+  const [compareData, setCompareData] = useState(props.compareditem.features);
   let composingdata = [];
   let compareddata=[]
   var newdataset=[]
@@ -77,43 +77,7 @@ const Modal =function(props) {
           res.data.features[i].compareditemdata= ""
           composingdata.push(res.data.features[i]);
            currentdata=composingdata
-         // setCompareData(currentdata)
-         
-
-//           var newdataset=[]
-// for (let i=0;i<currentitemdata.length;i++){
-//     for (let j=0;j<compareditemdata.length; j++){
-//         if(currentitemdata[i].feature ===compareditemdata[j].feature){
-//             compareditemdata[j].currentitemvalue=currentitemdata[i].currentitemvalue
-//         }
-//     }
-//     }
-// for (let k=0;k<compareditemdata.length;k++){
-//     if(compareditemdata[k].currentitemvalue===undefined){
-//         compareditemdata[k].currentitemvalue =""
-//     }  newdataset.push(compareditemdata[k])
-// }
-// // console.log("compareddata>>>>",compareddata)
-// // console.log("currentdata>>>",currentdata)
-
-// for (let i=0;i<compareditemdata.length;i++){
-//     for (let j=0; j<currentitemdata.length; j++){
-//         if (compareditemdata[i].feature===currentitemdata[j].feature){
-//           //  currentdata[j].compareditemvalue=compareddata[i].compareditemvalu
-//          currentitemdata.splice(j,1)
-            
-//         }
-//     }
-// }
-// for (let k=0;k<currentitemdata.length;k++){
-//     if(currentitemdata[k].compareditemvalue===undefined){
-//         currentitemdata[k].compareditemvalue=""
-        
-//     }
-//     newdataset.push(currentdata[k])
-// }
-        //    console.log("composingdata>>>", composingdata);
-        //    console.log("compareData>>>", compareData);
+ 
         }
         for (let i=0;i<currentdata.length;i++){
           for (let j=0;j<compareddata.length; j++){
@@ -126,7 +90,7 @@ const Modal =function(props) {
           if(compareddata[k].currentitemvalue===undefined){
               compareddata[k].currentitemvalue =""
           }  newdataset.push(compareddata[k])
-          console.log("newdataset loging line 87>>>>",newdataset)
+         // console.log("newdataset loging line 87>>>>",newdataset)
       }
       // console.log("compareddata>>>>",compareddata)
       // console.log("currentdata>>>",currentdata)
@@ -135,7 +99,7 @@ const Modal =function(props) {
           for (let j=0; j<currentdata.length; j++){
               if (compareddata[i].feature===currentdata[j].feature){
                   currentdata[j].compareditemvalue=compareddata[i].compareditemvalue
-                compareddata.splice(i,1)
+                //compareddata.splice(i,1)
               }
           }
       }
@@ -144,9 +108,17 @@ const Modal =function(props) {
               currentdata[k].compareditemvalue=""
           }
           newdataset.push(currentdata[k])
-          console.log("newdataset>>>>>>>",newdataset)
-          setCompareData(newdataset)
-          console.log("compareData state >>>>",compareData)
+         // console.log("newdataset>>>>>>>",newdataset)
+         const uniqueFeatures=[]
+const unique=newdataset.filter(element=>{
+    const isDuplicate=uniqueFeatures.includes(element.feature);
+ if(!isDuplicate){
+     uniqueFeatures.push(element.feature);
+     return true;
+ }
+})
+          setCompareData(unique)
+         // console.log("compareData state >>>>",compareData)
       }
       
 
@@ -157,7 +129,7 @@ const Modal =function(props) {
       });
 
 
-  }, []);
+  },[props.currentitemid,props.compareditem]);
 
   // console.log("composingdata>>>>",composingdata)
   //   console.log("compareData>>>>", compareData);
@@ -165,10 +137,10 @@ const Modal =function(props) {
   if (!props.open) return null;
   return ReactDom.createPortal(
     <>
-      <div className={RelateditemsCSS.Overlay_style}></div>
+      <div className={RelateditemsCSS.Overlay_style} ></div>
       <div className={RelateditemsCSS.Modal_styles}>
         <button className={RelateditemsCSS.modalbutton} onClick={props.onClose}>
-          X
+        <i className="fa fa-times" aria-hidden="true"></i>
         </button>
         <div className={RelateditemsCSS.tablediv}>
           <div className={RelateditemsCSS.table}>

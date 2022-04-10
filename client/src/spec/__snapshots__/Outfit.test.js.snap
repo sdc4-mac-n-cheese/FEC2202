@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Outfit card test match snapshot 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="imageparent"
+  >
+    <button
+      className="outfitcardbutton"
+      onClick={[Function]}
+    >
+       
+      <img
+        src="./cross.png"
+      />
+    </button>
+    <img
+      className="image"
+      src="http://dasacounseling.weebly.com/uploads/5/6/1/4/56149545/2263864_orig.jpg"
+    />
+  </div>
+  <h3>
+    testing product
+  </h3>
+  <p>
+    test
+  </p>
+  <h2>
+    review star placeholder
+  </h2>
+  <h3>
+    123
+  </h3>
+</div>
+`;

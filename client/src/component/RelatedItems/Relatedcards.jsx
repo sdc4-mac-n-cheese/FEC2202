@@ -2,6 +2,7 @@ import React from "react";
 import Relateditem from "./Relateditem.jsx";
 import RelateditemsCSS from "../cssModules/RelatedItems.module.css";
 import PropTypes from 'prop-types';
+import Carousel from "./Carousel.jsx";
 //import axios from "axios";
 
 class Relatedcards extends React.Component {
@@ -30,12 +31,15 @@ class Relatedcards extends React.Component {
   render() {
     return (
       <>
-        <h1>Related products</h1>
+        <h1 className={RelateditemsCSS.title}>Related products</h1>
         <div className={RelateditemsCSS.container}>
+      <div 
+      style={{ maxWidth: 1200, marginLeft: 'auto', marginRight: 'auto', marginTop: 64 }}
+      >
+      <Carousel show={4} >
           {/* <button>left</button>
         <button>right</button> */}
           {this.props.data.map((item) => {
-            console.log("data from relatedcards file>>>>", this.props.data);
             return (
               <Relateditem
                 key={item.id}
@@ -45,6 +49,8 @@ class Relatedcards extends React.Component {
               />
             );
           })}
+          </Carousel>
+        </div>
         </div>
       </>
     );

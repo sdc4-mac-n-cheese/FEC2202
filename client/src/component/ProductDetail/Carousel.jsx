@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ProductCSS from '../cssModules/ProductDetail.module.css';
+import VerticalCarousel from './VerticalCarousel.jsx'
 
 const Carousel = (props) => {
   const styles = props.currStyle.photos;
@@ -17,19 +18,20 @@ const Carousel = (props) => {
 
   return (
     <div className={ProductCSS.carousel}>
-      <div className={ProductCSS.verticalView}>
+      {/* <div className={ProductCSS.verticalView}>
         {styles.map((photo, i) =>
           <img className={currIndex === i ? `${ProductCSS.verticalPhotos} ${ProductCSS.verticalSelected}` : ProductCSS.verticalPhotos} src={photo.url} alt='product style' key={i} />
         )}
-      </div>
-      <div className={ProductCSS.carouselView} style={{ transform: `translateX(-${currIndex * 100}%)` }}>
+      </div> */}
+      <VerticalCarousel styles={styles} currIndex={currIndex} setCurrIndex={setCurrIndex} />
+      <div className={ProductCSS.carouselView} style={{ transform: `translateX(-${currIndex * 101}%)` }}>
         {styles.map((photo, i) =>
           <div className={ProductCSS.carouselItem} key={i}>
             <img className={ProductCSS.spotlight} src={photo.url} alt='product style' />
           </div>
         )}
       </div>
-      <button className={ProductCSS.leftBtn} onClick={prev}>&lt;</button>
+      <button className={currIndex !== 0 ? ProductCSS.leftBtn : `${ProductCSS.leftBtn} ${ProductCSS.hidden}`} onClick={prev}>&lt;</button>
       <button className={ProductCSS.rightBtn} onClick={next}>&gt;</button>
     </div>
   );

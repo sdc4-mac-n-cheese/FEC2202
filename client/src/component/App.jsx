@@ -5,6 +5,7 @@ import Relatedcards from "./RelatedItems/Relatedcards.jsx";
 import QA from "./QA/QA.jsx";
 import Reviews from "./Reviews/Reviews.jsx";
 import axios from "axios";
+import {starReview} from "./functions.jsx"
 
 class App extends React.Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class App extends React.Component {
    // console.log("window.location>>>>>>>",window.location)
     this.domupdating()
     document.title="Best E-commerce Site"
+
   }
 
   domupdating() {
@@ -112,12 +114,29 @@ class App extends React.Component {
     //console.log("state related prodcut data>>>",this.state.relatedProducts)
   }
 
-  changeProduct(val) {
+  changeProduct(product_id) {
+    this.setState({ currentProduct: product_id });
     this.domupdating()
-    this.setState({ currentProduct: val });
-    // console.log('change product', val);
+    // console.log('change product-----------------', product_id);
     // console.log('change product', this.state.currentProduct)
-    
+    // this.componentDidMount();
+
+    axios.get(`/product?product_id=${product_id}`)
+      .then(product => {
+        this.setState({
+          currProductData: product.data
+        });
+        return axios.get(`/productStyle?product_id=${product_id}`);
+      })
+      .then(styles => {
+        this.setState({
+          currStyleData: styles.data.results,
+          currStyle: styles.data.results[0]
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   //sets currStyle passed from product detail component
