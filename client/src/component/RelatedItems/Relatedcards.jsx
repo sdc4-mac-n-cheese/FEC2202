@@ -31,6 +31,7 @@ class Relatedcards extends React.Component {
   render() {
     return (
       <>
+      <div style={{ "margin-bottom":"30px"}}>
         <h1 className={RelateditemsCSS.title}>Related products</h1>
         <div className={RelateditemsCSS.container}>
       <div 
@@ -50,6 +51,7 @@ class Relatedcards extends React.Component {
             );
           })}
           </Carousel>
+        </div>
         </div>
         </div>
       </>

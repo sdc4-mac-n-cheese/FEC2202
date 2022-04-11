@@ -5,7 +5,9 @@ import toJSON from 'enzyme-to-json';
 configure({ adapter: new Adapter() });
 import Outfitcard from '../component/Outfit/Outfitcard.jsx';
 import Outfitcards from '../component/Outfit/Outfitcards.jsx';
-
+import { unmountComponentAtNode } from "react-dom";
+import {act} from "react-dom/test-utils"
+import {jest} from '@jest/globals'
 
 describe ("Outfit card test",()=>{
 
@@ -26,5 +28,69 @@ describe ("Outfit card test",()=>{
         expect(toJSON(wrapper)).toMatchSnapshot()
     })
 
+    it("should have a botton with a cross",()=>{
+        let wrapper = shallow(<Outfitcard item={fakedata}/>);
+        const crossButton = wrapper.find('.outfitcardbutton')
+        expect(crossButton.length).toBe(1)
+    })
+test ("rending outfitcard without error",()=>{
+    let wrapper = shallow(<Outfitcard item={fakedata}/>);
+    const outfitComponent=wrapper.find("[enzyme-test='outfitcard']");
+    expect(outfitComponent.length).toBe(1)
+})
+test ("rending delete outfit card button",()=>{
+    let wrapper = shallow(<Outfitcard item={fakedata}/>);
+    const deletebutton=wrapper.find("[enzyme-test='deleteoutfitbutton']");
+    expect(deletebutton.length).toBe(1)
+})
 
+describe("", () => {
+    it("accepts product props", () => {
+      const wrapper = mount(<Outfitcard item={fakedata}/>);
+      expect(wrapper.props().item).toEqual(fakedata);
+    });
+})
+it("contains product name", () => {
+    const wrapper = mount(<Outfitcard item={fakedata}/>);
+    const value = wrapper.find("h3").text();
+    expect(value).toEqual("testing product");
+  });
+
+  it("contains product name", () => {
+    const wrapper = mount(<Outfitcard item={fakedata}/>);
+    const value = wrapper.find("p").text();
+    expect(value).toEqual("test");
+  });
+//   it("renders correctly with no error message", () => {
+//     const wrapper = mount();
+//     expect(wrapper.state("error")).toEqual(null);
+//   });
+test ("has classname",()=>{
+    const wrapper = shallow(<Outfitcard item={fakedata}/>);
+    expect(wrapper.find('img').hasClass('image')).toEqual(true);
+})
+
+
+let container = null;
+beforeEach(() => {
+  // setup a DOM element as a render target
+  container = document.createElement("div");
+  document.body.appendChild(container);
+});
+
+afterEach(() => {
+  // cleanup on exiting
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
+});
+
+
+it("Expects to run onClick function when button is pressed in the DOM", () => {
+    var collection=[]
+    const mockCallBackClick = jest.fn();
+    const wrapper = shallow(<Outfitcard item={fakedata}/>);
+    wrapper.find('button').simulate('click');
+    expect(mockCallBackClick).tohaveBeenCalled()
+});
 })

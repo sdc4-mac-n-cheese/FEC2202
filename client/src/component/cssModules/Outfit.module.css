@@ -64,6 +64,7 @@
     border-radius: 50%;
   }
   .firstcard{
+    flex-shrink: 0px;
     position:relative;
     width: 305px;
   height: 385px;

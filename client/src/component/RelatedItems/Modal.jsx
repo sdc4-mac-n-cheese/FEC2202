@@ -2,43 +2,6 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import ReactDom from "react-dom";
 import RelateditemsCSS from "../cssModules/RelatedItems.module.css";
-//import PropTypes from 'prop-types';
-
-// const Modal_styles ={
-//     position: "fixed",
-//     height:"500px",
-//     width:"500px",
-//     zIndex: 1041,
-//     backgroundColor: "#FFF"
-// }
-// const Overlay_style={
-//     position:"fixed",
-//     top:0,
-//     left:0,
-//     right:0,
-//     bottom:0,
-//     backgroundColor:"rgba(0,0,0, .7)",
-//     zIndex:1000
-
-// }
-
-// var fakedata = [
-//   {
-//     feature: "Lenses",
-//     currentvalue: "Ultrasheen",
-//   },
-//   {
-//     feature: "UV Protection",
-
-//     comparedvalue: "nice protection",
-//   },
-//   {
-//     feature: "Frames",
-//     currentvalue: "LightCompose",
-//     comparedvalue: "supersolid",
-//   },
-// ];
-
 
 
 const Modal =function(props) {
