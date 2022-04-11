@@ -1,6 +1,9 @@
 import React from 'react';
-import ReviewsCSS from '../cssModules/Reviews.module.css';
+import ReviewsCSS from '../cssModules/Reviews/Reviews.module.css';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import moment from 'moment';
+
 class FeedItem extends React.Component {
   constructor(props) {
     super(props);
@@ -32,18 +35,18 @@ class FeedItem extends React.Component {
           console.log('error');
         });
     } else {
-      console.log('already clicked helpful this visit');
+      // console.log('already clicked helpful this visit');
     }
   }
 
   putReport() {
-    console.log('in put report func');
+    // console.log('in put report func');
     this.setState({
       reportedClick: true
     })
     axios.put('/reviews/report', { review_id:this.props.reviewData.review_id})
       .then((result) => {
-        console.log('success');
+        // console.log('success');
       })
       .catch((err) => {
         console.log('error');
@@ -69,16 +72,21 @@ class FeedItem extends React.Component {
   //recommended, response, review_id, reviewer_name,
   //summary
   render() {
-    var stars = '';
+    var stars = ''
+    //sets full stars
     for (var i = 0; i < this.props.reviewData.rating; i++) {
-      stars += '*';
+      stars += '\u2605'
+    }
+    //if less than 5*, this will populate the rest with hollow stars
+    while (stars.length < 5) {
+      stars += '\u2606'
     }
 
     let conditionalMerchantResponse = <></>
     if (this.props.reviewData.response !== null && this.props.reviewData.response !== '') {
-      conditionalMerchantResponse = <div>Merchant Response: {this.props.reviewData.response}<br></br></div>
+      conditionalMerchantResponse = <p>Merchant Response: {this.props.reviewData.response}</p>
     } else {
-      conditionalMerchantResponse = <br></br>
+      conditionalMerchantResponse = <></>
     }
 
     let hasBeenReported;
@@ -95,19 +103,53 @@ class FeedItem extends React.Component {
       hasBeenHelpful = `Thanks for your input!`
     }
 
-    return (
+    var displayPhotos;
+    if (this.props.reviewData.photos.length !== 0) {
+      var tempHolder = [];
 
-        <li>
-          {stars} {this.props.reviewData.reviewer_name}  {this.props.reviewData.date}
-        Purchaser Summary: {this.props.reviewData.summary}
-        Purchaser Review: {this.props.reviewData.body}
-          {conditionalMerchantResponse}
+        // <img
+        //   className={ReviewsCSS.reviewImages}
+        //   alt="item review photo"
+        //   src={this.props.reviewData.photos[0].url}
+        // />;
+      for (let i = 0; i < this.props.reviewData.photos.length; i++) {
+        tempHolder.push(
+          <img
+          className={ReviewsCSS.reviewImages}
+          alt="item review photo"
+          src={this.props.reviewData.photos[i].url}
+        />)
+      }
+      displayPhotos = tempHolder;
+    }
+    if (displayPhotos) {
+      // console.log(displayPhotos.length);
+    }
+
+    return (
+      <li>
+        <p>{stars} {this.props.reviewData.reviewer_name}
+          <span>{moment(this.props.reviewData.date).format('MMM DD, YYYY')}
+          </span>
+        </p>
+        <p>Purchaser Summary: {this.props.reviewData.summary}</p>
+        <p>Purchaser Review: {this.props.reviewData.body}</p>
+        {conditionalMerchantResponse}
+
+
+        {/*Spce for photos and css for it*/}
+        <div>
+            {displayPhotos}
+        </div>
         <div className={ReviewsCSS.og}> {hasBeenHelpful} | {hasBeenReported}
-</div>
-          </li>
+        </div>
+      </li>
 
     )
   }
 }
 
+FeedItem.propTypes = {
+  reviewData: PropTypes.object,
+}
 export default FeedItem;

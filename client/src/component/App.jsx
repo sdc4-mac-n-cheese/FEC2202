@@ -60,7 +60,7 @@ class App extends React.Component {
         //console.log("related items res.data>>>>", res.data);
         let relatedProductsData = [];
         //for loop gather related products data
-        console.log(res.data);
+        // console.log(res.data);
         for (var i = 0; i < res.data.length; i++) {
           let product_id = res.data[i];
 

@@ -78,8 +78,8 @@ function Modal(props) {
 
   }, []);
 
-  console.log("composingdata>>>>",composingdata)
-    console.log("compareData>>>>", compareData);
+  // console.log("composingdata>>>>",composingdata)
+  //   console.log("compareData>>>>", compareData);
 
   if (!props.open) return null;
   return ReactDom.createPortal(

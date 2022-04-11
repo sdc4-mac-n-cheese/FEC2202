@@ -75,6 +75,7 @@ app.get('/relatedProduct', (req, res) => {
 app.post('/reviews', (req, res) => {
   let request = req.body;
   //send in FO object with data below and send var
+  console.log(req.body);
   let parameters = {
     product_id: request.product_id,
     rating: request.rating,
@@ -89,9 +90,11 @@ app.post('/reviews', (req, res) => {
 
   api.postData('reviews', parameters)
     .then(response => {
-      res.status(201).send(response);
+      console.log(response);
+      res.status(201).send();
     })
     .catch(err => {
+      console.log(err);
       res.status(500).send('error in POST review');
     })
 });
@@ -147,7 +150,7 @@ app.put('/reviews/helpful', (req, res) => {
 })
 
 app.put('/reviews/report', (req, res) => {
-  console.log('in report:', req);
+  // console.log('in report:', req);
   api.putData(`reviews/${req.body.review_id}/report`)
     .then((result) => {
       // console.log(result);
@@ -222,8 +225,8 @@ app.post('/addAnswer', (req, res) => {
       res.status(201).send(response.data)
     })
     .catch((err) => {
-      console.log('params', parameters)
-      console.log('here>>>>>', req.query.question_id)
+      // console.log('params', parameters)
+      // console.log('here>>>>>', req.query.question_id)
       res.status(500).send(err)
     })
 });
