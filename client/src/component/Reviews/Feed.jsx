@@ -3,6 +3,7 @@ import FeedItem from './FeedItem.jsx';
 import ReviewsCSS from "../cssModules/Reviews/Reviews.module.css";
 import PropTypes from 'prop-types';
 import Modal from './Modal.jsx';
+import FeedCSS from '../cssModules/Reviews/Feed.module.css';
 
 class Feed extends React.Component {
   constructor(props) {
@@ -65,10 +66,8 @@ class Feed extends React.Component {
       )
     } else {
       return (
-        <div>
-          <div>
-            Total Ratings: {this.props.totalRatings}
-          </div>
+        <div className={FeedCSS.feedBox}>
+          <div className={FeedCSS.reviewScroller}>
             <ul>
               {this.props.reviewData.slice(0, this.state.reviewCtr).map((data, i) => (
                 <FeedItem
@@ -77,6 +76,7 @@ class Feed extends React.Component {
                 />
               ))}
             </ul>
+          </div>
           {hideMoreReviewsButton}
           <button
             onClick={(e) => { this.showModal(); }}
@@ -85,6 +85,7 @@ class Feed extends React.Component {
           <Modal
             show={this.state.show}
             onClose={this.showModal}
+            id={this.props.id}
           >
             Message in Modal
           </Modal>
@@ -96,7 +97,8 @@ class Feed extends React.Component {
 
 Feed.propTypes = {
   totalRatings: PropTypes.number,
-  reviewData: PropTypes.array
+  reviewData: PropTypes.array,
+  id: PropTypes.number
 }
 
 export default Feed;

@@ -1,37 +1,50 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ModalCSS from '../cssModules/Reviews/Modal.module.css';
+import axios from 'axios';
 
 const SUMMARY_LIMITER = 60;
+var SUMMARY_FLAG = true;
 const USERNAME_LIMITER = 60;
+var USERNAME_FLAG = true;
 const EMAIL_LIMITER = 60;
+var EMAIL_FLAG = true;
 const BODY_MIN = 50;
 const BODY_MAX = 1000;
+var BODY_FLAG = true;
+const PHOTO_LIMITER = 2;
+
+const reviewRating = ['Poor', 'Fair', 'Average', 'Good', 'Great']
 
 class Modal extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
       rating: 1,
+      recommend: null,
       hover: 1,
-      'size': 1,
-      'width': 1,
-      'comfort': 1,
-      'quality': 1,
-      'length': 1,
-      'fit': 1,
+      'size': 0,
+      'width': 0,
+      'comfort': 0,
+      'quality': 0,
+      'length': 0,
+      'fit': 0,
       charArr: ['size', 'width', 'comfort', 'quality', 'length', 'fit'],
       summary: '',
       body: '',
+      photos: [],
       username: '',
       email: ''
     }
     this.onClose = this.onClose.bind(this);
     this.handleSummaryChange = this.handleSummaryChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
+    // this.handleImgChange = this.handleImgChange.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.fileSelectedHandler = this.fileSelectedHandler.bind(this);
   }
   onClose(e) {
     console.log('in on close modal');
@@ -64,6 +77,15 @@ class Modal extends React.Component {
     }
   }
 
+  fileSelectedHandler(e) {
+    if (this.state.photos.length < PHOTO_LIMITER) {
+      console.log(e.target.files[0]);
+    } else {
+      console.log(`${PHOTO_LIMITER} files  uploaded!`);
+    }
+
+  }
+
   handleUsernameChange(e) {
     if (this.state.username.length < USERNAME_LIMITER) {
       this.setState({
@@ -93,55 +115,95 @@ class Modal extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log('in handle submit!');
-    console.log(this.state.rating, this.state['size'], this.state['width'], this.state['comfort'], this.state['quality'], this.state['length'], this.state['fit'], '\n', this.state.summary, this.state.body, this.state.username, this.state.email);
+    console.log(this.state.photos);
+    //ERROR FIRST HANDLER OF POST REQUEST...
+    //CRITERIA NOT MET,
+    //MUST SATISFY ALL FLAGS
+    if (SUMMARY_FLAG || USERNAME_FLAG || EMAIL_FLAG || BODY_FLAG || this.state.recommend === null) {
+      console.log('please fill out form apporpriately');
+      console.log(this.props.id)
+      return;
+    } else {
+      //AXIOS POST REQUEST HERE WITH OBJECT CREATION
+      var postBodyParams = {
+        product_id: this.props.id,
+        rating: this.state.rating,
+        summary: this.state.summary,
+        body: this.state.body,
+        recommend: this.state.recommend,
+        name: this.state.username,
+        email: this.state.email,
+        photos: this.state.photos,
+        characteristics: {
+          "14": this.state['size'],
+          "15": this.state['width'],
+          "16": this.state['comfort'],
+          "17": this.state['quality'],
+          "18": this.state['length'],
+          "19": this.state['fit']
+        }
+      };
+      console.log()
 
+      axios({
+        method: 'post',
+        url: '/reviews',
+        data: postBodyParams
+      })
+        .then((result) => {
+          console.log('we made it boys');
+          this.onClose()
+        })
+        .catch((err) => {
+          console.log('oh, you thought...');
+          this.onClose();
+      })
+      // console.log(postBodyParams);
+    }
   }
+
   render() {
     if (!this.props.show) {
       return null;
     }
 
     let summaryLimitWarning = <></>;
-    let summaryFlag = true;
     //if summary flag is true, prevent submission, with message
     if (this.state.summary.length > SUMMARY_LIMITER) {
       summaryLimitWarning = <span><i>Please make character limit less than: {SUMMARY_LIMITER}, over by {this.state.summary.length - SUMMARY_LIMITER}</i></span>
-      summaryFlag = true;
+      SUMMARY_FLAG = true;
     } else {
-      summaryFlag = false;
+      SUMMARY_FLAG = false;
     }
 
     let bodyLimitWarning = <></>;
-    let bodyFlag = true;
     //if body flag is true, prevent submission, with message
     if (this.state.body.length < BODY_MIN) {
       bodyLimitWarning = <span><i>Minimum of {BODY_MIN} characters required, short by {BODY_MIN - this.state.body.length}</i></span>
-      bodyFlag = true;
+      BODY_FLAG = true;
     } else if (this.state.body.length > BODY_MAX) {
       bodyLimitWarning = <span><i>Maximum of {BODY_MAX} characters reached, over by {this.state.body.length - BODY_MAX}</i></span>
-      bodyFlag = true;
+      BODY_FLAG = true;
     } else {
-      bodyFlag = false;
+      BODY_FLAG = false;
     }
 
     let usernameLimitWarning = <></>;
-    let usernameFlag = true;
     //if summary flag is true, prevent submission, with message
     if (this.state.username.length > USERNAME_LIMITER) {
       usernameLimitWarning = <span><i>Please make character limit less than: {USERNAME_LIMITER}, over by {this.state.username.length - USERNAME_LIMITER}</i></span>
-      usernameFlag = true;
+      USERNAME_FLAG = true;
     } else {
-      usernameFlag = false;
+      USERNAME_FLAG = false;
     }
 
     let emailLimitWarning = <></>;
-    let emailFlag = true;
     //if summary flag is true, prevent submission, with message
     if (this.state.email.length > EMAIL_LIMITER) {
       emailLimitWarning = <span><i>Please make character limit less than: {EMAIL_LIMITER}, over by {this.state.email.length - EMAIL_LIMITER}</i></span>
-      emailFlag = true;
+      EMAIL_FLAG = true;
     } else {
-      emailFlag = false;
+      EMAIL_FLAG = false;
     }
 
 
@@ -171,7 +233,24 @@ class Modal extends React.Component {
                 <span className="star">&#9733;</span>
                 </button>
               );
-            })}
+            })}{reviewRating[this.state.rating - 1]}
+          </div>
+
+          {/*PRODUCT RECOMENDATION
+          ALLOWS USER TO ENTER A BOOLEAN
+          DEFAULT IT NULL*/}
+          <div>
+            <label>
+              Recommend this item:
+            </label>
+            <button
+              type="button"
+              onClick={() => { this.setState({ recommend: true }) }}
+            >&#128077;</button>
+            <button
+              type="button"
+              onClick={() => { this.setState({ recommend: false }) }}
+            >&#128078;</button>
           </div>
 
           {/*CHARACTERISTICS INPUT TABLE*/}
@@ -258,6 +337,10 @@ class Modal extends React.Component {
           TO ALLOW USER TO UPLOAD
           UP TO 5 PICTURES
           */}
+          <div>
+
+          </div>
+
 
           {/*USER NICKNAME
           60 CHARACTER LIMIT*/}
@@ -313,6 +396,7 @@ class Modal extends React.Component {
 Modal.propTypes = {
   show: PropTypes.bool.isRequired,
   children: PropTypes.string,
-  onClose: PropTypes.func.isRequired
+  onClose: PropTypes.func.isRequired,
+  id: PropTypes.number
 }
 export default Modal;

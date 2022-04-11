@@ -4,7 +4,7 @@ import Feed from './Feed.jsx';
 import RatingsCharacteristics from './RatingsCharacteristics.jsx';
 import PropTypes from 'prop-types';
 import ReviewsCSS from '../cssModules/Reviews/Reviews.module.css';
-
+import Characteristics from './Characteristics.jsx';
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -19,13 +19,15 @@ class Reviews extends React.Component {
       helpfulness: 0,
       reviewsArr: [],
       displayFilters: false,
-      sortType: 'relevant'
+      sortType: 'relevant',
+      currentRatingFilter: 0
     };
     this.getMetaData = this.getMetaData.bind(this);
     this.getReviewInfo = this.getReviewInfo.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.viewFilters = this.viewFilters.bind(this);
     this.selectFilter = this.selectFilter.bind(this);
+    this.changeRatingFilter = this.changeRatingFilter.bind(this);
   }
 
   componentDidMount() {
@@ -47,10 +49,12 @@ class Reviews extends React.Component {
       this.componentDidMount();
     }
 
+
+
   }
   // ?page=1&count=200&sort=newest&product_id=65633
   getReviewInfo() {
-    axios.get(`reviews/?page=1&count=1000&sort=${this.state.sortType}&product_id=${this.props.id}`)
+    axios.get(`reviews/?page=1&count=100000&sort=${this.state.sortType}&product_id=${this.props.id}`)
       .then((result) => {
         var temp = result.data;
 
@@ -67,7 +71,7 @@ class Reviews extends React.Component {
         tempAvg = tempRatings / ratingCtr;
         tempAvg = tempAvg.toFixed(1);
 
-        //setting the % would reccoment value to prop
+        //setting the % would recommend value to prop
         var wouldRecommend = 0;
         for (let i = 0; i < temp.length; i++) {
           if (temp[i].recommend === true) {
@@ -140,14 +144,32 @@ class Reviews extends React.Component {
 
   }
 
+  changeRatingFilter() {
+    console.log('in the change filter in main component');
+    this.setState({
+      currentRatingFilter: 0,
+      sortType: 'relevant'
+    })
+    this.getReviewInfo()
+  }
+
   render() {
     let displayFilters;
     if (this.state.displayFilters === true) {
       displayFilters =
         <div className={ReviewsCSS.show} >
-        <a href="#" onClick={() => {this.setState({sortType: "helpful", displayFilters: false})}}>Helpful</a>
-        <a href="#" onClick={() => {this.setState({sortType: "newest", displayFilters: false})}}>Newest</a>
-        <a href="#" onClick={() => {this.setState({sortType: "relevant", displayFilters: false})}}>Relevant</a>
+          <a
+            href="#"
+            onClick={(e) => { e.preventDefault(); this.setState({ sortType: "helpful", displayFilters: false }) }}
+          >Helpful</a>
+          <a
+            href="#"
+            onClick={(e) => { e.preventDefault(); this.setState({ sortType: "newest", displayFilters: false }) }}
+          >Newest</a>
+          <a
+            href="#"
+            onClick={(e) => { e.preventDefault(); this.setState({ sortType: "relevant", displayFilters: false }) }}
+          >Relevant</a>
       </div>
     }
 
@@ -157,7 +179,7 @@ class Reviews extends React.Component {
         <div>
           Reviews are loading...
         </div>
-    } else if (this.state.reviewData.length === 0) {
+    } else if ((this.state.reviewData.length === 0 || this.state.metaData.length === 0) ) {
       loadingDiv =
         <Feed
           reviewData={this.state.reviewData}
@@ -165,25 +187,58 @@ class Reviews extends React.Component {
         />
     } else {
       loadingDiv =
-      <div>
-        <div className={ReviewsCSS.dropdown}>
-            <button onClick={this.viewFilters} className={ReviewsCSS.dropbtn}>Sort: {this.state.sortType}</button>
-          <div className={ReviewsCSS.dropdownContent}>
-          {displayFilters}
+      <div className={ReviewsCSS.RC_FeedContainer}>
+      {/*This div will hold
+      the css for the feed
+      and star ratings, idealy
+      split into a 2:1*/}
+        <div >
+          <div className={ReviewsCSS.RC_Feed_Flex1}>
+            <RatingsCharacteristics
+              ratingAvg={Number(this.state.ratingAvg)}
+              wouldRecommend={this.state.wouldRecommend}
+              reviewsArr={this.state.reviewsArr}
+              totalRatings={this.state.totalRatings}
+              changeRatingFilter={this.changeRatingFilter}
+              />
+              <p><strong>About the product:</strong></p>
+            <div className={ReviewsCSS.characteristicsContainer}>
+              <Characteristics chars={this.state.metaData[0]}/>
+            </div>
+            </div>
+
         </div>
-      </div>
 
-        <RatingsCharacteristics
-          ratingAvg={Number(this.state.ratingAvg)}
-          wouldRecommend={this.state.wouldRecommend}
-          metaData={this.state.metaData}
-          reviewsArr={this.state.reviewsArr}
-        />
 
-        <Feed
-          reviewData={this.state.reviewData}
-          totalRatings={this.state.totalRatings}
-        />
+         <div className={ReviewsCSS.RC_Feed_Flex2}>
+          <div className={ReviewsCSS.dropDownFlex}>
+            <span>
+              <strong>
+                {this.state.totalRatings} reviews, sorted by
+              </strong>
+              <button
+                onClick={this.viewFilters}
+                className={ReviewsCSS.dropbtn}>{this.state.sortType} &#8595;
+              </button>
+              <button
+                className={ReviewsCSS.resetbtn}
+                onClick={() => { this.setState({ sortType: 'relevant', }) }}
+                type="button"
+              >Reset
+              </button>
+            </span>
+            <div
+              className={ReviewsCSS.dropdownContent}
+            >
+              {displayFilters}
+            </div>
+          </div>
+          <Feed
+            reviewData={this.state.reviewData}
+            totalRatings={this.state.totalRatings}
+            id={this.props.id}
+          />
+        </div>
       </div>
     }
     return (
