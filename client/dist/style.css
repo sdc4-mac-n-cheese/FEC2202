@@ -9,6 +9,11 @@ table, th, td {
 
   table {
     border-collapse: collapse;
-  
+
     border: 0px;
   }
+
+#portal {
+  margin: 0;
+  padding: 0;
+}

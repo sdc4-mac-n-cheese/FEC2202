@@ -83,10 +83,10 @@ class Reviews extends React.Component {
 
         //getting the star reviews array
         var tempReviewsArr = [0, 0, 0, 0, 0];
-    for (var i = 0; i < temp.length; i++) {
-      tempReviewsArr[temp[i].rating - 1]++
-    }
-    // console.log(tempReviewsArr);
+        for (var i = 0; i < temp.length; i++) {
+          tempReviewsArr[temp[i].rating - 1]++
+        }
+        // console.log(tempReviewsArr);
 
         //setting up initial render array
         var tempDisplayArr = [];
@@ -113,7 +113,7 @@ class Reviews extends React.Component {
       .catch((err) => {
         console.log(err);
       });
-}
+  }
 
   //gets meta and sets the reviews array
   getMetaData() {
@@ -242,9 +242,9 @@ class Reviews extends React.Component {
       </div>
     }
     return (
-      <>
+      <div className='scroll-target'>
         {loadingDiv}
-      </>
+      </div>
     )
   }
 }

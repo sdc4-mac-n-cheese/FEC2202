@@ -49,12 +49,16 @@ const Cart = (props) => {
     <div className={ProductCSS.cartOptions}>
       <h4>Sizes:</h4>
       <div className={ProductCSS.sizes} id='sizes' >
-        {quantities.map((sku, i) =>
-          <button onClick={(e) => {
+        {quantities.map((sku, i) => {
+          if (!sku[0] || !sku[1].size) {
+            return;
+          }
+
+          return <button onClick={(e) => {
             setSku(sku[0])
             selectSize(e)
           }} quantity={sku[1].quantity} key={i}>{sku[1].size}</button>
-        )}
+        })}
       </div>
 
       <h4>Quantity:</h4>
