@@ -74,4 +74,5 @@ ProductDetail.propTypes = {
   changeStyle: PropTypes.func
 }
 
+
 export default ProductDetail;
