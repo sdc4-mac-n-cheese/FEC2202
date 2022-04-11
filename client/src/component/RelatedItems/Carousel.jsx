@@ -35,8 +35,8 @@ function Carousel(props) {
 
   return (
     <>
-      <div className={RelateditemsCSS.carouselcontainer}>
-        <div className={RelateditemsCSS.carousel_wrapper}>
+      <div className={RelateditemsCSS.related_carouselcontainer}>
+        <div className={RelateditemsCSS.related_carousel_wrapper}>
           {currentIndex > 0 &&
             <button onClick={prev} className={RelateditemsCSS.left_arrow}>
               &lt;
@@ -45,7 +45,7 @@ function Carousel(props) {
 
           <div>
               <div
-                className={RelateditemsCSS.carousel_content}
+                className={RelateditemsCSS.related_carousel_content}
                 style={{ transform: `translateX(-${currentIndex * 25}%)` }}
               >
                 {children}

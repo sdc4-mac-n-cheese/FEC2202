@@ -1,5 +1,8 @@
 
-
+* {
+  padding: 5px;
+  margin: 5px;
+}
 .container {
   margin: 0px;
   display: flex;
@@ -32,14 +35,13 @@ position:relative;
 
 }
 .card h3{
-padding: 0;
+padding: 8px;
   margin:0px;
+  line-height: 0.2;
 }
 .card p{
-  margin-top: 8px;
+  margin-top: 0px;
   margin-Bottom: 0px; 
-
- 
   line-height:0.7;
 }
 
@@ -108,13 +110,13 @@ padding: 0;
 }
 
 
-.carouselcontainer {
+.related_carouselcontainer {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.carousel_wrapper {
+.related_carousel_wrapper {
   display: flex;
   width: 100%;
   position: relative;
@@ -122,7 +124,7 @@ padding: 0;
 
 
 
-.carousel_content {
+.related_carousel_content {
   display: flex;
  
   -ms-overflow-style: none; 
@@ -131,11 +133,11 @@ padding: 0;
 }
 
 
-.carousel_content::-webkit-scrollbar, .carousel-content::-webkit-scrollbar {
+.related_carousel_content::-webkit-scrollbar, .related_carousel-content::-webkit-scrollbar {
   display: none;
 }
 
-.carousel_content > *  {
+.related_carousel_content > *  {
   width: 100%;
   flex-shrink: 0;
   flex-grow: 1;
@@ -169,5 +171,16 @@ padding: 0;
 }
 .starreview{
   background-color:transparent;
-  margin-left: 0px;
+  margin: 0px;
+  padding:0px;
+  margin-left: 8px;
+}
+.starreview i{
+margin: 0px;
+padding: 0px;
+}
+span {
+  margin: 0;
+  padding-left: 0px;
+  line-height: 0.7;
 }

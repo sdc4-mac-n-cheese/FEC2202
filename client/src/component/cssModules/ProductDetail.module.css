@@ -10,7 +10,6 @@ p {
 .main {
   display: flex;
   margin: 0 3% 0 7%;
-background-color: red;
 }
 
 /* carousel styles */

@@ -57,7 +57,7 @@ function Outfitcard(props) {
         <img className={OutfitCSS.image} src={props.item.image}></img>
       </div>
       <p>{props.item.category}</p>
-      <h3>{props.item.name}</h3>
+      <h3 className={OutfitCSS.outfitname}>{props.item.name}</h3>
       {starReview(averagescore, OutfitCSS)}
 
       {/* <h2>review star placeholder</h2> */}
@@ -65,7 +65,7 @@ function Outfitcard(props) {
       {<div className={OutfitCSS.Stars} style={{"--rating": 2.3}} aria-label={"Rating of this product is 2.3 out of 5."}></div> }
       <div style={{"backgroud":"linear-gradient(90deg, #eee 30%, #fff 70%"}}>☆☆☆☆☆ </div>  
       </div>*/}
-      <span>
+      <span className={OutfitCSS.outfitprice}>
         <strong>${props.item.default_price}</strong>
       </span>
     </div>
