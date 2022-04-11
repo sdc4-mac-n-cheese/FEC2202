@@ -63,7 +63,7 @@ class QA extends React.Component {
       }
     })
       .then((questions) => {
-        console.log('component did mount .then', questions)
+        // console.log('component did mount .then', questions)
         this.setState({
           currentQuestions: questions.data.results
         })

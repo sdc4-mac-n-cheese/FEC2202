@@ -40,17 +40,17 @@ const [collection,setCollection]=useState(()=>{
   return initialValue || [];
 })
 
-console.log(localStorage)
+// console.log(localStorage)
 //populate the state from local storage
 //onclick, collect the prop data(item name, price, review )
 //to save it to the storage
 
 
 useEffect(()=>{
-  
+
   localStorage.setItem("collection",JSON.stringify(fakelocalstoragedata))
-  console.log("localStorage>>>>",localStorage)
-  console.log("collection>>>>",collection)
+  // console.log("localStorage>>>>",localStorage)
+  // console.log("collection>>>>",collection)
 },[collection])
 
 

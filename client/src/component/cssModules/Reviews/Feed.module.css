@@ -1,0 +1,18 @@
+.reviewScroller {
+
+  background-color: #eeeeee;
+  border: 1px solid #eeeeee;
+  border-radius: 4px 0 4px 0;
+  color: #000000;
+  font-size: 12px;
+  font-weight: bold;
+  left: -1px;
+  padding: 10px 7px 5px;
+  height:700px;
+  overflow-y:scroll;
+  overflow-x:hidden;
+}
+
+.feedBox {
+  height: 100%;
+}
