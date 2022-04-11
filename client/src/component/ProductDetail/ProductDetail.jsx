@@ -4,6 +4,7 @@ import axios from 'axios';
 import ProductCSS from '../cssModules/ProductDetail.module.css';
 import Carousel from './Carousel.jsx';
 import ProductInfo from './ProductInfo.jsx';
+import Marketing from './Marketing.jsx';
 
 const ProductDetail = (props) => {
   //product_id should be passed in through props
@@ -57,11 +58,13 @@ const ProductDetail = (props) => {
   }
 
   return (
-    < div className={ProductCSS.main} >
-      {/* 0 & 65631 are placeholders */}
-      {Object.keys(currStyle).length && <Carousel currStyle={currStyle} />}
-      {Object.keys(currProduct).length && styleResults.length && currStyle && <ProductInfo product={currProduct} currStyle={currStyle} styles={styleResults} onSelect={selectStyle} addCart={addCart} />}
-    </div >
+    <>
+      < div className={ProductCSS.main} >
+        {Object.keys(currStyle).length && <Carousel currStyle={currStyle} />}
+        {Object.keys(currProduct).length && styleResults.length && currStyle && <ProductInfo product={currProduct} currStyle={currStyle} styles={styleResults} onSelect={selectStyle} addCart={addCart} />}
+      </div >
+      {Object.keys(currProduct).length && <Marketing product={currProduct} />}
+    </>
   );
 }
 

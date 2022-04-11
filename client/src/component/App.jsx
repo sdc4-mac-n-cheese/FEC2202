@@ -1,4 +1,5 @@
 import React from "react";
+import NavBar from './NavBar.jsx';
 import ProductDetail from "./ProductDetail/ProductDetail.jsx";
 import Outfitcards from "./Outfit/Outfitcards.jsx";
 import Relatedcards from "./RelatedItems/Relatedcards.jsx";
@@ -140,6 +141,7 @@ class App extends React.Component {
     // console.log('CURRENT STYLE', this.state.currStyle)
     return (
       <>
+        <NavBar />
         <ProductDetail
           currProductData={this.state.currProductData}
           currStyleData={this.state.currStyleData}
