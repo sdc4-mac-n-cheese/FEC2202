@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 app.get('/products', (req, res) => {
   api.getData('products')
     .then(response => {
-     // console.log(response);
+      // console.log(response);
       res.status(200).send(response.data);
     })
     .catch(err => {
@@ -33,7 +33,7 @@ app.get('/product', (req, res) => {
   // console.log('here', req.query)
   api.getData(`products/${req.query.product_id}`)
     .then(response => {
-   //   console.log(response);
+      //   console.log(response);
       res.status(200).send(response.data);
     })
     .catch(err => {
@@ -45,7 +45,7 @@ app.get('/product', (req, res) => {
 app.get('/productStyle', (req, res) => {
   api.getData(`products/${req.query.product_id}/styles`)
     .then(response => {
-    //  console.log(response);
+      //  console.log(response);
       res.status(200).send(response.data);
     })
     .catch(err => {
@@ -278,18 +278,18 @@ app.get('/cart', (req, res) => {
     })
     .catch(err => {
       res.status(500).send(err);
-    })
+    });
 });
 
 //route to add a product to the cart
 app.post('/cart', (req, res) => {
-  api.postData('cart')
+  api.postData('cart', req.body)
     .then(response => {
-      res.status(201).send(response);
+      res.status(201);
     })
     .catch(err => {
       res.status(500).send(err);
-    })
+    });
 });
 
 //route to have interaction
@@ -297,11 +297,11 @@ app.post('/interaction', (req, res) => {
   //console.log("req.body>>>>>>",req.body)
   api.postData('interactions', req.body)
     .then(response => {
-     // console.log(response.data)
+      // console.log(response.data)
       res.status(201).send(response.data);
     })
     .catch(err => {
-    //  console.log(err)
+      //  console.log(err)
       res.status(500).send(err);
     })
 });
