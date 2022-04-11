@@ -3,12 +3,7 @@
 .container {
   margin: 0px;
   display: flex;
-  /* overflow-y: hidden;
-  overflow-x: scroll;
-  padding: 30px; */
-
-
-
+ 
 }
 
 .card {
@@ -20,10 +15,8 @@ position:relative;
   border: 1px;
   border-radius: 5%;
   border-color: black;
-   /* margin-right: 20px;  */
-  /* padding-right: 20px; */
   transition: transform 450ms;
-  /* box-shadow: rgba(0,0,0,0.35) 0px 5px 15px; */
+ 
 }
 
 .card:hover {
@@ -44,26 +37,15 @@ padding: 0;
 }
 .card p{
   margin-top: 8px;
-  margin-bottom: 0px;
+  margin-Bottom: 0px; 
 
  
   line-height:0.7;
 }
 
 .relateditembutton {
-  /* border: transparent;
-  background:#ffffff69;
-  border-radius: 50%;
-  display:flex;
-  justify-content:flex-end;
-  position: absolute;
-  left: 5px;
-  top:5px;
-  z-index: 1; */
   border:transparent;
   background:transparent; 
- /* display:flex;
-  justify-content:flex-start; */
   position: absolute;
   left: 5px;
   top:5px;
@@ -142,13 +124,13 @@ padding: 0;
 
 .carousel_content {
   display: flex;
-  /* transition: all 250ms linear; */
-  -ms-overflow-style: none;  /* hide scrollbar in IE and Edge */
-  scrollbar-width: none;  /* hide scrollbar in Firefox */
+ 
+  -ms-overflow-style: none; 
+  scrollbar-width: none;  
  gap: 20px;
 }
 
-/* hide scrollbar in webkit browser */
+
 .carousel_content::-webkit-scrollbar, .carousel-content::-webkit-scrollbar {
   display: none;
 }

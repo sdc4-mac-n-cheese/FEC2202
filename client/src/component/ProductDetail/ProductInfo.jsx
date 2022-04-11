@@ -8,15 +8,12 @@ import Cart from './Cart.jsx';
 const ProductInfo = (props) => {
   const product = props.product;
   const currStyle = props.currStyle;
-<<<<<<< HEAD
-=======
 
   const toReviews = () => {
     scroller.scrollTo('scroll-target', {
       smooth: true
     });
   }
->>>>>>> main
 
   return (
     <>

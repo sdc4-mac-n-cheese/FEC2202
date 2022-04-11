@@ -58,13 +58,6 @@ const ProductDetail = (props) => {
   }
 
   return (
-<<<<<<< HEAD
-    < div className={ProductCSS.main} >
-      {/* 0 & 65631 are placeholders */}
-      {Object.keys(currStyle).length && <Carousel currStyle={currStyle} />}
-      {Object.keys(currProduct).length && styleResults.length && currStyle && <ProductInfo product={currProduct} currStyle={currStyle} styles={styleResults} onSelect={selectStyle} addCart={addCart} />}
-    </div >
-=======
     <>
       < div className={ProductCSS.main} >
         {Object.keys(currStyle).length && <Carousel currStyle={currStyle} />}
@@ -72,7 +65,6 @@ const ProductDetail = (props) => {
       </div >
       {Object.keys(currProduct).length && <Marketing product={currProduct} />}
     </>
->>>>>>> main
   );
 }
 

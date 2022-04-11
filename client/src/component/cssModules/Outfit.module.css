@@ -1,6 +1,4 @@
 .container {
-    /* height: 300px;
-      width: 100%; */
     display: flex;
     overflow-y: hidden;
     overflow-x: scroll;
@@ -39,12 +37,9 @@
       }
     
       .outfitcardbutton {
-        /* width: 5px;
-        height: 5px; */
         border:transparent;
         background:transparent; 
-       /* display:flex;
-        justify-content:flex-start; */
+   
         position: absolute;
         left: 5px;
         top:5px;
@@ -99,41 +94,6 @@
         line-height: 0.7;
       }
 
-      /* :root {
-        --star-size: 60px;
-        --star-color: #fff;
-        --star-background: #fc0;
-      }
-       */
-    /*  .Stars {
-        --percent: calc(var(--rating) / 5 * 100%);
-        display: inline-block;
-        font-size: var(--star-size);
-        line-height: 1;
-      }
-       .Stars::before {
-        content: "★★★★★";
-        letter-spacing: 3px;
-        background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-      
-      .reviewdiv {
-        background: #eee;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        --star-size: 60px;
-        --star-color: #fff;
-        --star-background: #fc0;
-      }
-       */
-      /* * {
-        position: relative;
-        box-sizing: border-box;
-      } */
 
       .card h3{
         margin-left: 0px;
@@ -144,7 +104,7 @@
       .card p{
       
         margin-top: 8px;
-        margin-bottom: 0px;
+        margin-Bottom: 0px; 
         padding-left: 0px;
        
         line-height:0.7;

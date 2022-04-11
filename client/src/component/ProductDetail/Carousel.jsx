@@ -39,25 +39,6 @@ const Carousel = (props) => {
   Modal.setAppElement('#root');
 
   return (
-<<<<<<< HEAD
-    <div className={ProductCSS.carousel}>
-      {/* <div className={ProductCSS.verticalView}>
-        {styles.map((photo, i) =>
-          <img className={currIndex === i ? `${ProductCSS.verticalPhotos} ${ProductCSS.verticalSelected}` : ProductCSS.verticalPhotos} src={photo.url} alt='product style' key={i} />
-        )}
-      </div> */}
-      <VerticalCarousel styles={styles} currIndex={currIndex} setCurrIndex={setCurrIndex} />
-      <div className={ProductCSS.carouselView} style={{ transform: `translateX(-${currIndex * 101}%)` }}>
-        {styles.map((photo, i) =>
-          <div className={ProductCSS.carouselItem} key={i}>
-            <img className={ProductCSS.spotlight} src={photo.url} alt='product style' />
-          </div>
-        )}
-      </div>
-      <button className={currIndex !== 0 ? ProductCSS.leftBtn : `${ProductCSS.leftBtn} ${ProductCSS.hidden}`} onClick={prev}>&lt;</button>
-      <button className={ProductCSS.rightBtn} onClick={next}>&gt;</button>
-    </div>
-=======
     <>
       <div className={ProductCSS.carousel}>
         <VerticalCarousel styles={styles} currIndex={currIndex} setCurrIndex={setCurrIndex} />
@@ -86,7 +67,6 @@ const Carousel = (props) => {
         </div>
       </Modal>
     </>
->>>>>>> main
   );
 }
 

@@ -117,10 +117,7 @@ class App extends React.Component {
 
   changeProduct(product_id) {
     this.setState({ currentProduct: product_id });
-<<<<<<< HEAD
     this.domupdating()
-=======
->>>>>>> main
     // console.log('change product-----------------', product_id);
     // console.log('change product', this.state.currentProduct)
     // this.componentDidMount();

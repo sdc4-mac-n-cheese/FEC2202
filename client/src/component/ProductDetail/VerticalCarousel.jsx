@@ -3,27 +3,13 @@ import PropTypes from 'prop-types';
 import ProductCSS from '../cssModules/ProductDetail.module.css';
 
 const VerticalCarousel = (props) => {
-<<<<<<< HEAD
-=======
   const [startIndex, setStartIndex] = useState(0);
   // const [currVertIndex, setCurrVertIndex] = useState(props.currIndex)
 
->>>>>>> main
   useEffect(() => {
     props.setCurrIndex(0);
   }, [props.styles]);
 
-<<<<<<< HEAD
-  return (
-    <>
-      <div className={ProductCSS.verticalView}>
-        {props.styles.map((photo, i) =>
-          <img className={props.currIndex === i ? `${ProductCSS.verticalPhotos} ${ProductCSS.verticalSelected}` : ProductCSS.verticalPhotos} onClick={() => props.setCurrIndex(i)} src={photo.url} alt='product style' key={i} />
-        )}
-      </div>
-
-      <button className={ProductCSS.verticalButton}>v</button>
-=======
   const down = () => {
     setStartIndex(startIndex === props.styles.length - 5 ? 0 : startIndex + 1);
   }
@@ -65,7 +51,6 @@ const VerticalCarousel = (props) => {
           down();
         }}><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
       </div>
->>>>>>> main
     </>
   );
 }
