@@ -9,12 +9,13 @@ p {
 
 .main {
   display: flex;
-  margin: 0 5% 0 5%;
+  margin: 0 3% 0 7%;
 }
 
 /* carousel styles */
 .carousel {
   overflow: hidden;
+  z-index: 0;
 }
 
 .carouselView {
@@ -31,6 +32,49 @@ p {
   height: 500px;
 }
 
+.carouselItem i {
+  font-size: 20px;
+  color: #525252;
+  background-color: white;
+  position: relative;
+  bottom: 250px;
+  left: 500px;
+  cursor: pointer;
+}
+
+.carouselItem i:hover {
+  transform: scale(1.25);
+}
+
+.modalPhotoContainer {
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+}
+
+.modalPhotoContainer:hover img {
+  opacity: 0;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+}
+
+.modal img {
+  width: auto;
+  height: 90vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* .modal img:hover {
+  transform: scale(1.5);
+} */
+
 .spotlight {
   width: 500px;
   height: 700px;
@@ -38,7 +82,10 @@ p {
 }
 
 .carousel button {
+<<<<<<< HEAD
   transform: translateY(-50%);
+=======
+>>>>>>> main
   background-color: transparent;
   border: none;
   font-size: larger;
@@ -49,6 +96,7 @@ p {
 
 .leftBtn {
   position: relative;
+<<<<<<< HEAD
   left: 115px;
   bottom: 375px;
 }
@@ -56,12 +104,26 @@ p {
 .leftBtn.hidden {
   opacity: 0;
   cursor: default;
+=======
+  left: 135px;
+  bottom: 300px;
+>>>>>>> main
 }
 
 .rightBtn {
   position: relative;
+<<<<<<< HEAD
   left: 665px;
   bottom: 375px;
+=======
+  left: 685px;
+  bottom: 300px;
+}
+
+.hidden {
+  opacity: 0;
+  cursor: default;
+>>>>>>> main
 }
 
 .verticalView {
@@ -69,8 +131,11 @@ p {
   display: flex;
   flex-direction: column;
   z-index: 1;
+<<<<<<< HEAD
   height: 375px;
   overflow: hidden;
+=======
+>>>>>>> main
 }
 
 .verticalPhotos {
@@ -78,6 +143,15 @@ p {
   height: 55px;
   object-fit: cover;
   cursor: pointer;
+<<<<<<< HEAD
+=======
+  animation: fadein 2s;
+}
+
+@keyframes fadein {
+  from {opacity: 0;}
+  to {opacity: 1;}
+>>>>>>> main
 }
 
 .verticalPhotos.verticalSelected {
@@ -85,18 +159,39 @@ p {
 }
 
 .verticalButton {
+<<<<<<< HEAD
   position: absolute;
   top: 475px;
   margin-left: 35px;
+=======
+>>>>>>> main
   z-index: 1;
   cursor: pointer;
 }
 
+<<<<<<< HEAD
+=======
+.verticalButton.up {
+  margin: 0;
+  padding: 0;
+}
+
+.verticalButton.down {
+  margin-top: 0px;
+}
+
+>>>>>>> main
 /* product detail styles */
 .info {
   color: #525252;
   padding: 15px;
-  width: 500px;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.details {
+  padding-top: 0;
+  margin-top: 0;
 }
 
 .details p {
@@ -108,14 +203,47 @@ p {
   padding: 0;
 }
 
+.details a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.marketingContainer {
+  display: flex;
+  margin: 0 20% 50px 20%;
+}
+
+.marketingCopy {
+  width: 600px;
+  border: solid;
+  border-width: 0 2px 0 0;
+  border-color: #525252;
+}
+
+.marketingPoints {
+  width: 400px;
+  margin-left: 15px;
+}
+
+.marketingPoints p {
+  margin: 0;
+}
+
 /* style selector styles */
 .selectorContainer {
   display: flex;
   flex-wrap: wrap;
+  width: 400px;
 }
 
 .styleSelector {
   margin: 0;
+}
+
+.styleSelector i {
+  position: relative;
+  bottom: 10px;
+  right: 10px;
 }
 
 .styleSelector img {
@@ -156,6 +284,10 @@ p {
   font-weight: bold;
   padding: 15px;
   cursor: pointer;
+}
+
+.sizes {
+  width: 400px;
 }
 
 .sizes button {

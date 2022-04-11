@@ -1,4 +1,5 @@
 import React from "react";
+import NavBar from './NavBar.jsx';
 import ProductDetail from "./ProductDetail/ProductDetail.jsx";
 import Outfitcards from "./Outfit/Outfitcards.jsx";
 import Relatedcards from "./RelatedItems/Relatedcards.jsx";
@@ -116,7 +117,10 @@ class App extends React.Component {
 
   changeProduct(product_id) {
     this.setState({ currentProduct: product_id });
+<<<<<<< HEAD
     this.domupdating()
+=======
+>>>>>>> main
     // console.log('change product-----------------', product_id);
     // console.log('change product', this.state.currentProduct)
     // this.componentDidMount();
@@ -150,6 +154,7 @@ class App extends React.Component {
     // console.log('CURRENT STYLE', this.state.currStyle)
     return (
       <>
+        <NavBar />
         <ProductDetail
           currProductData={this.state.currProductData}
           currStyleData={this.state.currStyleData}
