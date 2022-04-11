@@ -221,6 +221,7 @@ app.post('/addAnswer', (req, res) => {
   // ?question_id=${req.query.question_id}`
   api.postData(`qa/questions/${req.query.question_id}/answers`, parameters)
     .then((response) => {
+      console.log(req.body)
       res.status(201).send(response.data)
     })
     .catch((err) => {
