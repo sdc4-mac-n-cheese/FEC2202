@@ -1,8 +1,8 @@
 .containerStyles {
   height: 25px;
   width: 80%;
-  background-color: #e0e0de;
-  border-radius: 50;
+  background-color: #e0e0de74;
+  border-radius: 20px;
   margin: 0%;
 }
 
@@ -12,7 +12,7 @@
   border-radius: inherit;
   text-align: left;
   margin-top: -1.8%;
-  margin-left: -1.8%;
+  margin-left: -1.5%;
 }
 
 .labelStyles {

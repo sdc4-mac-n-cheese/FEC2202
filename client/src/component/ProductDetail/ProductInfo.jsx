@@ -23,7 +23,7 @@ const ProductInfo = (props) => {
           <p>{product.category.toUpperCase()}</p>
           <h1>{product.name}</h1>
           <p>${product.default_price}</p>
-          <p><strong>STYLE  ></strong>{currStyle.name}</p>
+          <p><strong>STYLE. ></strong>{currStyle.name}</p>
         </div>
         <StyleSelector styles={props.styles} currStyle={currStyle} onSelect={props.onSelect} />
         <Cart currStyle={currStyle} addCart={props.addCart} />

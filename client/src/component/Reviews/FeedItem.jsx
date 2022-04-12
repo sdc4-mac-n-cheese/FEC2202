@@ -91,7 +91,7 @@ class FeedItem extends React.Component {
 
     let hasBeenReported;
     if (this.state.reportedClick === false) {
-      hasBeenReported = <button className={ReviewsCSS.buttons} onClick={this.putReport}>Report</button>
+      hasBeenReported = <button className={ReviewsCSS.buttonsA} onClick={this.putReport}>Report</button>
     } else {
       hasBeenReported = `Item Reported`
     }

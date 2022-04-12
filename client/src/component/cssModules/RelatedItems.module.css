@@ -1,68 +1,79 @@
+
 * {
   padding: 5px;
   margin: 5px;
 }
-
 .container {
-  /* height: 300px;
-    width: 100%; */
+  margin: 0px;
   display: flex;
-  overflow-y: hidden;
-  overflow-x: scroll;
-  padding: 30px;
-
-
-
+ 
 }
 
 .card {
+width: 100%;
 position:relative;
-  max-width: 500px;
-min-height: 500px;
- max-width: 500px;
- min-width: 500px;
-  background-color: #EBEBEB;
+ width:305px;
+ height: 375px;
+  background-color: white;
   border: 1px;
   border-radius: 5%;
   border-color: black;
-  margin-right: 20px;
   transition: transform 450ms;
-  box-shadow: rgba(0,0,0,0.35) 0px 5px 15px;
+ 
 }
 
 .card:hover {
-  transform: scale(1.08);
+  transform: scale(1.05);
 }
-.container img {
-  max-height: 200px;
-  max-width: 200px;
-  text-align: center;
-  align-items: center; justify-content: center; flex-direction: column;
-}
-.button {
+.relateditemimg {
+  border-radius: 5%;
+  height: 305px;
+  width: 305px;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
 
 }
+.card h3{
+padding: 8px;
+  margin:0px;
+  line-height: 0.2;
+}
+.card p{
+  margin-top: 0px;
+  margin-Bottom: 0px; 
+  line-height:0.7;
+}
+
 .relateditembutton {
-  background:transparent;
-  display:flex;
-  justify-content:flex-start;
+  border:transparent;
+  background:transparent; 
   position: absolute;
   left: 5px;
   top:5px;
-}
+ z-index: 1;
+ background-color:#ffffff36;
+ border-radius: 50%;
 
+} 
+
+.modalparent{
+  position:relative;
+}
 .Modal_styles {
-    position:absolute;
-    left:50%;
-    top:50%;
-    height:500px;
-    width:500px;
-    z-Index: 1041;
+    position:fixed;
+    left:500px;
+    top: 300px;
+   height:200px;
+    width:400px;
+    transform: 'translate(-50%, -50%)';
+    z-Index: 1000;
     background-color: white;
     border-radius: 5%;
     border: 2px;
     box-shadow:  rgba(0,0,0,0.35) 0px 5px 15px;
     text-align: center;
+    overflow-y: scroll;
 }
 
     .Overlay_style{
@@ -72,18 +83,22 @@ min-height: 500px;
             right:0;
             bottom:0;
             background-color:rgba(0,0,0, .7);
-            z-Index:1041;
+            z-Index:1000;
             margin: 0px;
             padding:0px;
 
          }
 
 .modalbutton{
+    background-color: #ffffff36;
+    border: transparent;
     position: absolute;
     left: 5px;
     top:5px;
+    
 }
 .tablediv{
+  margin: 10px;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -92,4 +107,80 @@ min-height: 500px;
     overflow-y: scroll;
     overflow-x: scroll;
 
+}
+
+
+.related_carouselcontainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.related_carousel_wrapper {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+
+
+.related_carousel_content {
+  display: flex;
+ 
+  -ms-overflow-style: none; 
+  scrollbar-width: none;  
+ gap: 20px;
+}
+
+
+.related_carousel_content::-webkit-scrollbar, .related_carousel-content::-webkit-scrollbar {
+  display: none;
+}
+
+.related_carousel_content > *  {
+  width: 100%;
+  flex-shrink: 0;
+  flex-grow: 1;
+  width: calc(100% / 4);
+}
+
+.left_arrow, .right_arrow {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  background-color: white;
+  border: 1px solid #ddd;
+}
+
+.left_arrow {
+  left: 24px;
+}
+
+.right_arrow {
+  right: 24px;
+}
+
+.title{
+  margin: 0;
+  padding: 0;
+  line-height: 0.7;
+}
+.starreview{
+  background-color:transparent;
+  margin: 0px;
+  padding:0px;
+  margin-left: 8px;
+}
+.starreview i{
+margin: 0px;
+padding: 0px;
+}
+span {
+  margin: 0;
+  padding-left: 0px;
+  line-height: 0.7;
 }

@@ -338,7 +338,10 @@ class Modal extends React.Component {
           UP TO 5 PICTURES
           */}
           <div>
-
+            <label>
+              Upload photo &#40;s&#41;&#58;
+            </label>
+            <input type="file"/>
           </div>
 
 
