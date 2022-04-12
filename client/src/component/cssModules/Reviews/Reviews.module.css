@@ -10,7 +10,7 @@
   left: -20%;
 }
 
-button .moreReviews {
+.moreReviews button {
   position: absolute;
   bottom: 0px;
 }
@@ -66,21 +66,23 @@ CSS for the drop down bar
 
 /*formatting for review photos*/
 .reviewImages {
-  height: 20%;
-  width: 20%;
+  height: 18%;
+  width: 18%;
+  -webkit-filter: brightness(75%);
   object-fit: contain;
   border: 5px solid rgb(116, 129, 125);
  }
 
  .reviewImages:hover {
   transform: scale(1.3);
-  -webkit-filter: brightness(70%);
-  -webkit-transition: all .25s ease;
-  -moz-transition: all .25s ease;
-  -o-transition: all .25s ease;
-  -ms-transition: all .25s ease;
-  transition: all .25s ease;
+  -webkit-filter: brightness(110%);
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  transition: all .5s ease;
   background-color: rgb(116, 129, 125);
+
  }
  .dropDownFlex {
    display: flex;
