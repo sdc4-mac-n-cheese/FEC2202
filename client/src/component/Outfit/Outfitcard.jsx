@@ -9,6 +9,7 @@ function Outfitcard(props) {
   //const [starreview, setStarreivew]=useState(<div></div>)
 
   useEffect(() => {
+    let isMounted = true;
     axios
       .get("/reviews/meta", { params: { product_id: props.item.id } })
       .then((res) => {
@@ -30,6 +31,7 @@ function Outfitcard(props) {
       .catch((err) => {
         console.log(err);
       });
+      return () => {isMounted = false};
   }, []);
   //console.log("averagescore>>>>",averagescore)
   const handledelete = () => {
@@ -42,6 +44,7 @@ function Outfitcard(props) {
     //console.log("after filter collection",newcollection)
     localStorage.setItem("collection", JSON.stringify(newcollection));
     props.handleUpdate();
+    
   };
 
   return (

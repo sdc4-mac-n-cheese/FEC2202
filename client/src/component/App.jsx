@@ -12,6 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      //> :)
       currentProduct: 65631,
       currProductData: {},
       currStyleData: [],
@@ -23,14 +24,33 @@ class App extends React.Component {
     this.domupdating=this.domupdating.bind(this)
   }
   
-  componentDidMount(){
-   // console.log("window.location>>>>>>>",window.location)
-    this.domupdating()
-    document.title="Best E-commerce Site"
+  // componentDidMount(){
+  //  // console.log("window.location>>>>>>>",window.location)
+  //   this.domupdating()
+  //   document.title="Best E-commerce Site"
 
-  }
+  // }
 
-  domupdating() {
+  // domupdating() {
+  //   //current product based off of current product_id
+  //   axios.get(`/product?product_id=${this.state.currentProduct}`)
+  //     .then(product => {
+  //       this.setState({
+  //         currProductData: product.data
+  //       });
+  //       return axios.get(`/productStyle?product_id=${this.state.currentProduct}`);
+  //     })
+  //     .then(styles => {
+  //       this.setState({
+  //         currStyleData: styles.data.results,
+  //         currStyle: styles.data.results[0]
+  //       });
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  componentDidMount() {
+
     //current product based off of current product_id
     axios.get(`/product?product_id=${this.state.currentProduct}`)
       .then(product => {
@@ -48,8 +68,9 @@ class App extends React.Component {
       .catch(err => {
         console.log(err);
       });
-
-
+this.domupdating()
+     
+    }
     // axios
     // .get("http://localhost:3000/products")
     // .then((res)=>{
@@ -59,12 +80,12 @@ class App extends React.Component {
 
     //---------------------->
     //another axios call to get all related data info
+    domupdating() {
     axios
       //hardcoded id number. need to be fixed
       .get("/relatedProduct", {
         params: { product_id: this.state.currentProduct },
       })
-
       .then((res) => {
         //console.log("related items res.data>>>>", res.data);
         let relatedProductsData = [];
@@ -113,8 +134,8 @@ class App extends React.Component {
         console.log(err);
       });
     //console.log("state related prodcut data>>>",this.state.relatedProducts)
-  }
-
+  
+}
   changeProduct(product_id) {
     this.setState({ currentProduct: product_id });
     this.domupdating()
