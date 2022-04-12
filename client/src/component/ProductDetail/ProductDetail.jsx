@@ -72,6 +72,8 @@ ProductDetail.propTypes = {
   currProductData: PropTypes.object,
   currStyleData: PropTypes.array,
   changeStyle: PropTypes.func
+  //test comment
 }
+
 
 export default ProductDetail;

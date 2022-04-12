@@ -11,7 +11,8 @@ class Answers extends React.Component {
     this.state = {
 
       helpfulCount: this.props.answer.helpfulness,
-      // report: false
+      helpful: false,
+      report: 'Report'
     }
 
     this.helpfulAnswer = this.helpfulAnswer.bind(this);
@@ -22,8 +23,11 @@ class Answers extends React.Component {
     event.preventDefault();
     axios.put(`/reportAnswer?answer_id=${this.props.answer.id}`)
     .then(() => {
-      this.props.updateQuestions();
-      alert('answer has been reported!')
+      // this.props.updateQuestions();
+      // alert('answer has been reported!')
+      this.setState({
+        report: 'Reported'
+       })
     })
     .catch((err) => {
       console.error(err);
@@ -32,16 +36,22 @@ class Answers extends React.Component {
 
   helpfulAnswer(event) {
     event.preventDefault();
-    axios.put(`/helpfulAnswer?answer_id=${this.props.answer.id}`)
-      .then(this.setState({
-        helpfulCount: this.state.helpfulCount++
-      }),
-        this.props.updateQuestions()
-      )
-      .catch((err) => {
-        console.error(err);
-        //console.log(deleteME);
-      })
+    if (this.state.helpful === true) {
+      alert('You already said it was helpful!')
+    } else {
+
+      axios.put(`/helpfulAnswer?answer_id=${this.props.answer.id}`)
+        .then(this.setState({
+          helpfulCount: this.state.helpfulCount + 1,
+          helpful: true
+        }),
+          // this.props.updateQuestions()
+        )
+        .catch((err) => {
+          console.error(err);
+          //console.log(deleteME);
+        })
+    }
   }
 
   render() {
@@ -54,16 +64,17 @@ class Answers extends React.Component {
             <span> {this.props.answer.body}</span>
           </div>
           <div>
-            <span>  by {this.props.answer.answerer_name}</span>
+            <span>  By {this.props.answer.answerer_name}</span>
             <span>{moment(this.props.answer.date).format('MMM DD, YYYY')}</span>
             <a
               className={ProductCSS.reportAnswer}
               onClick={this.reportAnswer}
-            >report</a>
+            >{this.state.report}</a>
             <a
               className={ProductCSS.helpfulAnswer}
-              onClick={this.helpfulAnswer}
-            >helpful? yes ({this.props.answer.helpfulness})</a>
+              onClick={()=>this.helpfulAnswer}
+              id={'increment-btn'}
+            >Helpful? Yes ({this.state.helpfulCount})</a>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Question from './Question.jsx';
+import QuestionModal from './QuestionModal.jsx';
 import ProductCSS from '../cssModules/QA.module.css';
 // import Answers from './Answers.jsx';
 
@@ -10,22 +11,29 @@ class QuestionList extends React.Component {
 
       searchQuery: '',
       filteredQuestions: [],
-      count: 4
+      count: 2,
+      isOpen: false
     }
 
     this.handleSearch = this.handleSearch.bind(this);
     this.showMore = this.showMore.bind(this);
+    this.openQuestionModal = this.openQuestionModal.bind(this);
+  }
+
+  openQuestionModal(bool) {
+
+    this.setState({ isOpen: bool })
   }
 
   componentDidUpdate(prevProps) {
 
-    if(this.props.currentQuestions !== prevProps.currentQuestions)
-    this.setState({ count: 4 })
+    if (this.props.currentQuestions !== prevProps.currentQuestions)
+      this.setState({ count: 2 })
   }
 
   showMore() {
 
-    this.setState({ count: this.state.count + 4 })
+    this.setState({ count: this.state.count + 2 })
   }
 
   handleSearch() {
@@ -40,38 +48,43 @@ class QuestionList extends React.Component {
       return question.question_body.toLowerCase().includes(this.state.searchQuery.toLowerCase())
     })
 
-    return (
+    if (this.props.currentQuestions.length <= 2 || this.state.count >= this.props.currentQuestions.length) {
 
+      return (
 
-      <div>
-        <span className={ProductCSS.main}>Questions and Answers</span>
-        <br/>
-        <input
-        className={ProductCSS.searchBar}
-        type='text'
-        placeholder='have a question? search for answers...'
-        onChange={this.handleSearch}
-        />
+        <div>
+          <span className={ProductCSS.main}>Questions and Answers</span>
+          <br />
+          <input
+            className={ProductCSS.searchBar}
+            type='text'
+            placeholder='have a question? search for answers...'
+            onChange={this.handleSearch}
+          />
 
-        {this.state.searchQuery.length >= 3 ? (
+          {this.state.searchQuery.length >= 3 ? (
 
-          filteredQuestions.map((question) => (
-            <>
-              <Question
-                question={question}
-                key={question.question_id}
-                updateQuestions={this.props.updateQuestions}
-              />
-            </>
-
-          ))
-          ) : (
-            this.props.currentQuestions.slice(0, this.state.count).map((question) => (
+            filteredQuestions.map((question) => (
               <>
+                <br />
                 <Question
                   question={question}
                   key={question.question_id}
                   updateQuestions={this.props.updateQuestions}
+                  currentProduct={this.props.currentProduct}
+                />
+              </>
+
+            ))
+          ) : (
+            this.props.currentQuestions.slice(0, this.state.count).map((question) => (
+              <>
+                <br />
+                <Question
+                  question={question}
+                  key={question.question_id}
+                  updateQuestions={this.props.updateQuestions}
+                  currentProduct={this.props.currentProduct}
                 />
               </>
 
@@ -79,12 +92,81 @@ class QuestionList extends React.Component {
             ))
           )}
 
-<a onClick={this.showMore}>More Answered Questions</a>
-<a>Add A Question +</a>
+          <QuestionModal
+            open={this.state.isOpen}
+            onClose={() => this.openQuestionModal(false)}
+            currentProduct={this.props.currentProduct}
+            updateQuestions={this.props.updateQuestions}
+            newQuestions={this.props.newQuestions}
+          ></QuestionModal>
+          <br />
 
-      </div>
-    )
+          {/* <a onClick={this.showMore}>More Answered Questions</a> */}
+          <a className={ProductCSS.addLoad} onClick={() => this.openQuestionModal(true)} >Add A Question +</a>
+        </div>
+      )
+    } else {
+
+      return (
+
+
+        <div>
+          <span className={ProductCSS.main}>Questions and Answers</span>
+          <br />
+          <input
+            className={ProductCSS.searchBar}
+            type='text'
+            placeholder='have a question? search for answers...'
+            onChange={this.handleSearch}
+          />
+
+          {this.state.searchQuery.length >= 3 ? (
+
+            filteredQuestions.map((question) => (
+              <>
+                <br />
+                <Question
+                  question={question}
+                  key={question.question_id}
+                  updateQuestions={this.props.updateQuestions}
+                  currentProduct={this.props.currentProduct}
+                />
+              </>
+
+            ))
+          ) : (
+            this.props.currentQuestions.slice(0, this.state.count).map((question) => (
+              <>
+                <br />
+                <Question
+                  question={question}
+                  key={question.question_id}
+                  updateQuestions={this.props.updateQuestions}
+                  currentProduct={this.props.currentProduct}
+                />
+              </>
+
+
+            ))
+          )}
+
+          <QuestionModal
+            open={this.state.isOpen}
+            onClose={() => this.openQuestionModal(false)}
+            currentProduct={this.props.currentProduct}
+            updateQuestions={this.props.updateQuestions}
+            newQuestions={this.props.newQuestions}
+          ></QuestionModal>
+          <br />
+          <a className={ProductCSS.addLoad} onClick={this.showMore}>Load More Questions</a>
+          <a className={ProductCSS.addLoad} onClick={() => this.openQuestionModal(true)}>Add A Question +</a>
+
+        </div>
+      )
+    }
+
   }
+
 }
 
 export default QuestionList;

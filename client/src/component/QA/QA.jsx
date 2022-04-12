@@ -16,10 +16,19 @@ class QA extends React.Component {
 
     // this.getQuestions = this.getQuestions.bind(this);
     this.updateQuestions = this.updateQuestions.bind(this);
+    this.newQuestions = this.newQuestions.bind(this);
+  }
+
+  newQuestions(questions) {
+
+    this.setState({
+      currentQuestions: questions
+     })
   }
 
   updateQuestions() {
     // console.log('inside updateQuestions', this.props.id)
+    // event.preventDefault();
     axios.get('/getQuestions', {
       params: {
         product_id: this.props.id,
@@ -53,7 +62,7 @@ class QA extends React.Component {
     // console.log('component did mount state', this.state.currentQuestions)
 
     // this.setState({ currentProduct: this.props.id })
-
+  //  event.preventDefault();
     axios.get('/getQuestions', {
       params: {
         product_id: this.props.id,
@@ -63,7 +72,7 @@ class QA extends React.Component {
       }
     })
       .then((questions) => {
-        console.log('component did mount .then', questions)
+        // console.log('component did mount .then', questions)
         this.setState({
           currentQuestions: questions.data.results
         })
@@ -89,8 +98,9 @@ class QA extends React.Component {
         <QuestionList
           className={ProductCSS.main}
           currentQuestions={this.state.currentQuestions}
-          currentProduct={this.state.currentProduct}
+          currentProduct={this.props.id}
           updateQuestions={this.updateQuestions}
+          newQuestions={this.newQuestions}
         />
       </div>
 

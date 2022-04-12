@@ -56,6 +56,12 @@ class Relatedcards extends React.Component {
         </div>
         </div>
         </div>
+        {/* {this.props.data.map((item) => {
+          // console.log("data from relatedcards file>>>>",this.props.data)
+           return <Relateditem key={item.id} item={item} changeProduct={this.props.changeProduct}
+           currentProduct={this.props.currentProduct}/>;
+        })}
+      </div> */}
       </>
     );
   }
