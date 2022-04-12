@@ -52,6 +52,12 @@ const Carousel = (props) => {
         </div>
         <button className={currIndex !== 0 ? ProductCSS.leftBtn : `${ProductCSS.leftBtn} ${ProductCSS.hidden}`} onClick={prev}>&lt;</button>
         <button className={ProductCSS.rightBtn} onClick={next}>&gt;</button>
+
+        <div className={ProductCSS.social}>
+          <i className="fa fa-facebook-square" aria-hidden="true"></i>
+          <i className="fa fa-twitter-square" aria-hidden="true"></i>
+          <i className="fa fa-pinterest-square" aria-hidden="true"></i>
+        </div>
       </div>
 
       <Modal
