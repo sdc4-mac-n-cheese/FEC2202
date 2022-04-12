@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Outfit card test match snapshot 1`] = `
+<div
+  className="card"
+  enzyme-test="outfitcard"
+>
+  <div
+    className="imageparent"
+  >
+    <button
+      className="outfitcardbutton"
+      onClick={[Function]}
+    >
+      <i
+        aria-hidden="true"
+        className="fa fa-times fa-2x"
+      />
+    </button>
+    <img
+      className="image"
+      src="http://dasacounseling.weebly.com/uploads/5/6/1/4/56149545/2263864_orig.jpg"
+    />
+  </div>
+  <p>
+    test
+  </p>
+  <h3>
+    testing product
+  </h3>
+  <div
+    className="starreview"
+  >
+    <i
+      aria-hidden="true"
+      className="fa fa-star-o"
+    />
+    <i
+      aria-hidden="true"
+      className="fa fa-star-o"
+    />
+    <i
+      aria-hidden="true"
+      className="fa fa-star-o"
+    />
+    <i
+      aria-hidden="true"
+      className="fa fa-star-o"
+    />
+    <i
+      aria-hidden="true"
+      className="fa fa-star-o"
+    />
+  </div>
+  <span>
+    <strong>
+      $
+      123
+    </strong>
+  </span>
+</div>
+`;

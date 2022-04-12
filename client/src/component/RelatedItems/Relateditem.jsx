@@ -1,39 +1,77 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import RelateditemsCSS from "../cssModules/RelatedItems.module.css";
 import Modal from "./Modal.jsx";
+import PropTypes from 'prop-types';
+import { starReview } from '../functions.jsx';
+import axios from "axios";
 
-class Relateditem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        openModal:false
-    };
-    this.changeItem = this.changeItem.bind(this);
-  }
-  changeItem(e) {
+function Relateditem(props)  {
+  const[openModal,setOpenModal]=useState(false)
+
+const [averagescore,setAveragescore]=useState(0)
+  //const [starreview, setStarreivew]=useState(<div></div>)  
+  
+  useEffect(()=>{
+    axios
+      .get('/reviews/meta',{params: { product_id:props.item.id}})
+      .then((res)=>{
+        let average=0
+        if(!res.data.ratings){
+          setAveragescore(0)
+        } else {
+          let counter=0
+          let sumscore=0
+          for (const[star,num] of Object.entries(res.data.ratings)){
+              counter+=Number(num)
+              sumscore+=Number(star)* Number(num)
+          }
+          //console.log("counter,sumscore",counter,sumscore)
+       average=sumscore/counter
+       setAveragescore(average)
+        }
+  
+      })
+      .catch(err=>{console.log(err)})
+  },[props.item.id])
+
+  const changeItem=(e)=>{
     e.preventDefault()
-    this.props.changeProduct(this.props.item.id);
+    props.changeProduct(props.item.id);
     // console.log('THE id', this.props.item.id)
-
   }
-
-  render() {
+  
     // console.log("item", this.props.item);
     // console.log("image>>>>", this.props.item.image);
     return (
-      <div className={RelateditemsCSS.card}>
-        <button className={RelateditemsCSS.relateditembutton} onClick={()=>{this.setState({openModal:true})}}>&#9733;</button>
+      <div 
+       className={RelateditemsCSS.card}
+      >
+         <img src={props.item.image || "https://whetstonefire.org/wp-content/uploads/2020/06/image-not-available.jpg"} onClick={changeItem} className={RelateditemsCSS.relateditemimg}></img>
+        <button 
+        className={RelateditemsCSS.relateditembutton}
+         onClick={()=>{setOpenModal(true)}}><i className="fa fa-gratipay fa-2x" aria-hidden="true"></i></button>
         <br/>
-        <h2 onClick={this.changeItem}>{this.props.item.name} </h2>
-        <h3>{this.props.item.category}</h3>
-        <p>{this.props.item.description}</p>
-        <h3>{this.props.item.default_price}</h3>
-        <img src={this.props.item.image} onClick={this.changeItem}></img>
+        <p>{props.item.category}<br/></p>
+        <h3 onClick={changeItem}>{props.item.name} </h3>
+        {starReview(averagescore,RelateditemsCSS)}
+        <span><strong>${props.item.default_price}</strong></span>
+        {/* <p>{this.props.item.description}</p> */}
         {/* has issue.cant show images*/}
-        <Modal open={this.state.openModal} onClose={()=>{this.setState({openModal:false})}} compareditem={this.props.item} currentitemid={this.props.currentProduct}/>
+        <div className={RelateditemsCSS.modalparent}>
+        <Modal open={openModal} onClose={()=>{setOpenModal(false)}} compareditem={props.item} currentitemid={props.currentProduct}/>
+        </div>
       </div>
     );
   }
+
+
+Relateditem.propTypes = {
+  name: PropTypes.string,
+  productId: PropTypes.number,
+  item: PropTypes.object,
+  changeProduct: PropTypes.func,
+  currentProduct: PropTypes.number
+
 }
 
 export default Relateditem;

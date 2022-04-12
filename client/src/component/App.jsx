@@ -6,11 +6,13 @@ import Relatedcards from "./RelatedItems/Relatedcards.jsx";
 import QA from "./QA/QA.jsx";
 import Reviews from "./Reviews/Reviews.jsx";
 import axios from "axios";
+import {starReview} from "./functions.jsx"
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      //> :)
       currentProduct: 65631,
       currProductData: {},
       currStyleData: [],
@@ -19,9 +21,36 @@ class App extends React.Component {
     };
     this.changeProduct = this.changeProduct.bind(this);
     this.changeStyle = this.changeStyle.bind(this);
+    this.domupdating=this.domupdating.bind(this)
   }
+  
+  // componentDidMount(){
+  //  // console.log("window.location>>>>>>>",window.location)
+  //   this.domupdating()
+  //   document.title="Best E-commerce Site"
 
+  // }
+
+  // domupdating() {
+  //   //current product based off of current product_id
+  //   axios.get(`/product?product_id=${this.state.currentProduct}`)
+  //     .then(product => {
+  //       this.setState({
+  //         currProductData: product.data
+  //       });
+  //       return axios.get(`/productStyle?product_id=${this.state.currentProduct}`);
+  //     })
+  //     .then(styles => {
+  //       this.setState({
+  //         currStyleData: styles.data.results,
+  //         currStyle: styles.data.results[0]
+  //       });
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
   componentDidMount() {
+
     //current product based off of current product_id
     axios.get(`/product?product_id=${this.state.currentProduct}`)
       .then(product => {
@@ -39,8 +68,9 @@ class App extends React.Component {
       .catch(err => {
         console.log(err);
       });
-
-
+this.domupdating()
+     
+    }
     // axios
     // .get("http://localhost:3000/products")
     // .then((res)=>{
@@ -50,12 +80,12 @@ class App extends React.Component {
 
     //---------------------->
     //another axios call to get all related data info
+    domupdating() {
     axios
       //hardcoded id number. need to be fixed
       .get("/relatedProduct", {
         params: { product_id: this.state.currentProduct },
       })
-
       .then((res) => {
         //console.log("related items res.data>>>>", res.data);
         let relatedProductsData = [];
@@ -104,10 +134,11 @@ class App extends React.Component {
         console.log(err);
       });
     //console.log("state related prodcut data>>>",this.state.relatedProducts)
-  }
-
+  
+}
   changeProduct(product_id) {
     this.setState({ currentProduct: product_id });
+    this.domupdating()
     // console.log('change product-----------------', product_id);
     // console.log('change product', this.state.currentProduct)
     // this.componentDidMount();
@@ -153,8 +184,9 @@ class App extends React.Component {
           changeProduct={this.changeProduct}
         />
         <Outfitcards
-
+          currStyle={this.state.currStyle}
           currentProduct={this.state.currentProduct}
+          currProductData={this.state.currProductData}
         />
         <QA
           id={this.state.currentProduct}
