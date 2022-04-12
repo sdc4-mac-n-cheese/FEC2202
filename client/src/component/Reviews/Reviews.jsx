@@ -201,7 +201,7 @@ class Reviews extends React.Component {
               totalRatings={this.state.totalRatings}
               changeRatingFilter={this.changeRatingFilter}
               />
-              <p><strong>About the product:</strong></p>
+              <p><strong className={ReviewsCSS.characteristicHeader}>About the product:</strong></p>
             <div className={ReviewsCSS.characteristicsContainer}>
               <Characteristics chars={this.state.metaData[0]}/>
             </div>
