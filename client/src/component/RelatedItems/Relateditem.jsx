@@ -37,6 +37,7 @@ const [averagescore,setAveragescore]=useState(0)
   const changeItem=(e)=>{
     e.preventDefault()
     props.changeProduct(props.item.id);
+    props.changeinRelated(props.item.id)
     // console.log('THE id', this.props.item.id)
   }
   
@@ -44,7 +45,8 @@ const [averagescore,setAveragescore]=useState(0)
     // console.log("image>>>>", this.props.item.image);
     return (
       <div 
-       className={RelateditemsCSS.card}
+       className={RelateditemsCSS.card} 
+      //  style={{width: '100%'}}
       >
          <img src={props.item.image || "https://whetstonefire.org/wp-content/uploads/2020/06/image-not-available.jpg"} onClick={changeItem} className={RelateditemsCSS.relateditemimg}></img>
         <button 
