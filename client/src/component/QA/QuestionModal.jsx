@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductCSS from '../cssModules/QA.module.css';
 import axios from 'axios';
-// require('dotenv').config();
+import PropTypes from 'prop-types';
 
 const OVERLAY_STYLES = {
 
@@ -21,7 +21,7 @@ const MODAL_STYLES = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   backgroundColor: '#FFF',
-  padding:'50px',
+  padding: '50px',
   borderRadius: '20px',
   zIndex: 1000
 }
@@ -47,13 +47,7 @@ class QuestionModal extends React.Component {
     this.handleBody = this.handleBody.bind(this);
     this.handleName = this.handleName.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
-    this.newQuestions = this.newQuestions.bind(this);
     // this.handlePhotos = this.handleBody.bind(this);
-  }
-
-  newQuestions(questions) {
-
-    this.props.newQuestions();
   }
 
   handleBody() {
@@ -71,15 +65,7 @@ class QuestionModal extends React.Component {
 
   postQuestion(event) {
 
-    // let url = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp'
     event.preventDefault();
-    // if (this.state.body.length < 1 || this.state.body.length > 1000) {
-    //   alert('')
-    // } else if (this.state.name.length < 1 || this.state.name.length > 60) {
-    //   alert('')
-    // } else if (this.state.email) {
-    //   alert('')
-    // }
 
     axios.post('/addQuestion', {
       body: this.state.body,
@@ -90,10 +76,9 @@ class QuestionModal extends React.Component {
       .then(() => {
         this.props.updateQuestions();
         this.props.onClose();
-        // alert('question posted!')
+        alert('question posted!')
       })
       .catch((err) => {
-        // console.log('ORRR HERE', this.props.question)
         alert('You must enter the following: \n\n Name: Must be between 1-60 characters \n Example email: fakeEmail@gmail.com \n Question: must be between 1-1000 characters')
         console.error(err);
       })
@@ -102,44 +87,49 @@ class QuestionModal extends React.Component {
   render() {
 
     if (!this.props.open) return null;
+
     return (
 
       <>
         <div />
         <div style={OVERLAY_STYLES}>
           <form style={MODAL_STYLES}>
-          <span className={ProductCSS.exit} onClick={this.props.onClose}>X</span>
+            <span className={ProductCSS.exit} onClick={this.props.onClose}>{<i className="fa fa-times fa-2x" aria-hidden="true"></i>}</span>
             <input
-            type='text'
-            placeholder='Your nickname *'
-            onChange={this.handleName}
-            className={ProductCSS.formInput}
+              type='text'
+              placeholder='Your nickname *'
+              onChange={this.handleName}
+              className={ProductCSS.formInput}
             />
             <input
-            type='text'
-            placeholder='Your email *'
-            onChange={this.handleEmail}
-            className={ProductCSS.formInput}
+              type='text'
+              placeholder='Your email *'
+              onChange={this.handleEmail}
+              className={ProductCSS.formInput}
             />
             <textarea
-            style={QUESTION_STYLE}
-            type='text'
-            placeholder='Your question *'
-            onChange={this.handleBody}
-            className={ProductCSS.formInput}
+              style={QUESTION_STYLE}
+              type='text'
+              placeholder='Your question *'
+              onChange={this.handleBody}
+              className={ProductCSS.formInput}
             />
-
-          <button onClick={this.postQuestion} className={ProductCSS.close}>
-            Submit Question
-          </button>
+            <span onClick={this.postQuestion} className={ProductCSS.close}>
+              Submit Question
+            </span>
           </form>
-          {this.props.children}
         </div>
       </>
     )
   }
 }
 
+QuestionModal.propTypes = {
 
+  onClose: PropTypes.func,
+  updateQuestions: PropTypes.func,
+  currentProduct: PropTypes.number,
+  open: PropTypes.func
+}
 
 export default QuestionModal;
