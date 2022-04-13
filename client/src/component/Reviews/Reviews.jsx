@@ -20,7 +20,8 @@ class Reviews extends React.Component {
       reviewsArr: [],
       displayFilters: false,
       sortType: 'relevant',
-      currentRatingFilter: 0
+      currentRatingFilter: 0,
+      helpfulRatings: []
     };
     this.getMetaData = this.getMetaData.bind(this);
     this.getReviewInfo = this.getReviewInfo.bind(this);
@@ -33,14 +34,19 @@ class Reviews extends React.Component {
   componentDidMount() {
     this.setState({
       product_id: this.props.id,
-    }, () => { this.getMetaData() })
-    this.getReviewInfo();
+    },
+      () => {
+        this.getMetaData();
+        this.getReviewInfo();
+      })
+
     // this.getReviewsArr();
   }
 
   componentDidUpdate(prevProps, prevState) {
     // console.log(this.props.id, prevProps.id, this.state.product_id);
     if (this.props.id !== prevProps.id) {
+      console.log(this.props.id, prevProps.id);
       this.componentDidMount();
     }
 
@@ -62,15 +68,23 @@ class Reviews extends React.Component {
         var tempRatings = 0;
         var tempAvg = 0;
         var ratingCtr = 0;
-
+        var temphelpfulRatings = [];
         //to get tempRatings/TempAvg/TotalRatings
         for (let i = 0; i < temp.length; i++) {
           ratingCtr++;
           tempRatings += temp[i].rating;
+          temphelpfulRatings.push(temp[i].helpfulness)
         }
+
+        // console.log(temp);
+        // for (let i = 0; i < temphelpfulRatings.length; i++) {
+        //   temp[i].helpfulness = temphelpfulRatings[i];
+        // }
+        // console.log(temp);
+
         tempAvg = tempRatings / ratingCtr;
         tempAvg = tempAvg.toFixed(1);
-
+        // console.log(temphelpfulRatings);
         //setting the % would recommend value to prop
         var wouldRecommend = 0;
         for (let i = 0; i < temp.length; i++) {
@@ -78,7 +92,9 @@ class Reviews extends React.Component {
             wouldRecommend++;
           }
           tempHelpfulness += temp[i].helpfulness;
+
         }
+
         var recPct = 100 * (wouldRecommend / ratingCtr).toFixed(2);
 
         //getting the star reviews array
@@ -107,7 +123,8 @@ class Reviews extends React.Component {
           helpfulness: tempHelpfulness,
           reviewsArr: tempReviewsArr,
           displayArr: tempDisplayArr,
-          currentlyDisplaying: tempDisplay
+          currentlyDisplaying: tempDisplay,
+          helpfulRatings: temphelpfulRatings
         })
       })
       .catch((err) => {
@@ -149,8 +166,7 @@ class Reviews extends React.Component {
     this.setState({
       currentRatingFilter: 0,
       sortType: 'relevant'
-    })
-    this.getReviewInfo()
+    }, () => {this.getReviewInfo()})
   }
 
   render() {
@@ -199,7 +215,8 @@ class Reviews extends React.Component {
               wouldRecommend={this.state.wouldRecommend}
               reviewsArr={this.state.reviewsArr}
               totalRatings={this.state.totalRatings}
-              changeRatingFilter={this.changeRatingFilter}
+                changeRatingFilter={this.changeRatingFilter}
+                id={this.props.id}
               />
               <p><strong className={ReviewsCSS.characteristicHeader}>About the product:</strong></p>
             <div className={ReviewsCSS.characteristicsContainer}>
@@ -218,10 +235,10 @@ class Reviews extends React.Component {
               </strong>
               <button
                 onClick={this.viewFilters}
-                className={ReviewsCSS.dropbtn}>{this.state.sortType} &#8595;
+                className={ReviewsCSS.buttonsA}>{this.state.sortType} &#8595;
               </button>
               <button
-                className={ReviewsCSS.resetbtn}
+                className={ReviewsCSS.buttonsA}
                 onClick={() => { this.setState({ sortType: 'relevant', }) }}
                 type="button"
               >Reset
@@ -237,6 +254,7 @@ class Reviews extends React.Component {
             reviewData={this.state.reviewData}
             totalRatings={this.state.totalRatings}
             id={this.props.id}
+            helpfulRatings={this.state.helpfulRatings}
           />
         </div>
       </div>

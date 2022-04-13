@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ModalCSS from '../cssModules/Reviews/Modal.module.css';
+import ReviewsCSS from '../cssModules/Reviews/Reviews.module.css';
 import axios from 'axios';
 
 const SUMMARY_LIMITER = 60;
@@ -12,7 +13,7 @@ var EMAIL_FLAG = true;
 const BODY_MIN = 50;
 const BODY_MAX = 1000;
 var BODY_FLAG = true;
-const PHOTO_LIMITER = 2;
+const PHOTO_LIMITER = 5;
 
 const reviewRating = ['Poor', 'Fair', 'Average', 'Good', 'Great']
 
@@ -33,6 +34,11 @@ class Modal extends React.Component {
       charArr: ['size', 'width', 'comfort', 'quality', 'length', 'fit'],
       summary: '',
       body: '',
+      im1: '',
+      img2: '',
+      img3: '',
+      img4: '',
+      img5: '',
       photos: [],
       username: '',
       email: ''
@@ -40,11 +46,10 @@ class Modal extends React.Component {
     this.onClose = this.onClose.bind(this);
     this.handleSummaryChange = this.handleSummaryChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
-    // this.handleImgChange = this.handleImgChange.bind(this);
+    this.handleImgChange = this.handleImgChange.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.fileSelectedHandler = this.fileSelectedHandler.bind(this);
   }
   onClose(e) {
     console.log('in on close modal');
@@ -77,13 +82,11 @@ class Modal extends React.Component {
     }
   }
 
-  fileSelectedHandler(e) {
-    if (this.state.photos.length < PHOTO_LIMITER) {
-      console.log(e.target.files[0]);
-    } else {
-      console.log(`${PHOTO_LIMITER} files  uploaded!`);
-    }
-
+  handleImgChange(e) {
+    // console.log(e.target.name);
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
   handleUsernameChange(e) {
@@ -125,6 +128,25 @@ class Modal extends React.Component {
       return;
     } else {
       //AXIOS POST REQUEST HERE WITH OBJECT CREATION
+
+      // console.log(this.state.img1, this.state.img2, this.state.img3, this.state.img4, this.state.img5);
+      var tempPhotos = [];
+      if (this.state.img1.includes(".jpg") || this.state.img1.includes(".jpeg")) {
+        tempPhotos.push(this.state.img1);
+      }
+      if (this.state.img2.includes(".jpg") || this.state.img2.includes(".jpeg")) {
+        tempPhotos.push(this.state.img2);
+      }
+      if (this.state.img3.includes(".jpg") || this.state.img3.includes(".jpeg")) {
+        tempPhotos.push(this.state.img3);
+      }
+      if (this.state.img4.includes(".jpg") || this.state.img4.includes(".jpeg")) {
+        tempPhotos.push(this.state.img4);
+      }
+      if (this.state.img5.includes(".jpg") || this.state.img5.includes(".jpeg")) {
+        tempPhotos.push(this.state.img5);
+      }
+      console.log(tempPhotos);
       var postBodyParams = {
         product_id: this.props.id,
         rating: this.state.rating,
@@ -133,7 +155,7 @@ class Modal extends React.Component {
         recommend: this.state.recommend,
         name: this.state.username,
         email: this.state.email,
-        photos: this.state.photos,
+        photos: tempPhotos,
         characteristics: {
           "14": this.state['size'],
           "15": this.state['width'],
@@ -209,15 +231,21 @@ class Modal extends React.Component {
 
 
     return(
-      <div>
+      <div className={ModalCSS.modalForm}>
         <div>{this.props.children}</div>
 
         {/*START OF FORM
         TO POST NEW REVIEW
         */}
         <form onSubmit={this.handleSubmit}>
+          <p>
+            Leave a review for the item&#58;
+          </p>
 
-        {/*STAR REVIEW CHART*/}
+          {/*STAR REVIEW CHART*/}
+          <p>
+            I rate this product&#58;
+          </p>
           <div className={ModalCSS.starRating}>
             {[...Array(5)].map((star, index) => {
               index += 1;
@@ -240,9 +268,9 @@ class Modal extends React.Component {
           ALLOWS USER TO ENTER A BOOLEAN
           DEFAULT IT NULL*/}
           <div>
-            <label>
+            <label><p>
               Recommend this item:
-            </label>
+              </p></label>
             <button
               type="button"
               onClick={() => { this.setState({ recommend: true }) }}
@@ -259,7 +287,7 @@ class Modal extends React.Component {
               return (
                 <p
                   key={index}
-                >{characteristic}
+                >{characteristic}&#58;
                   <button
                     type="button"
                     className={index <= this.state[characteristic] ? ModalCSS.on : ModalCSS.off}
@@ -300,9 +328,9 @@ class Modal extends React.Component {
              60 CHARACTER LIMIT
           */}
           <div>
-            <label>
-              Review Summary:
-            </label>
+            <label><p>
+              Review Summary&#58;
+              </p></label>
             <textarea
               type="text"
               placeholder="leave a summary..."
@@ -319,9 +347,9 @@ class Modal extends React.Component {
             USER MAY UPLOAD 5 PHOTOS
           */}
           <div>
-            <label>
-              Review Body:
-            </label>
+            <label><p>
+              Review Body&#58;
+              </p></label>
             <textarea
               type="text"
               placeholder="review the product..."
@@ -338,10 +366,36 @@ class Modal extends React.Component {
           UP TO 5 PICTURES
           */}
           <div>
-            <label>
               Upload photo &#40;s&#41;&#58;
-            </label>
-            <input type="file"/>
+            <input
+              type="text"
+              name="img1"
+              onChange={this.handleImgChange}
+              />
+              Upload photo &#40;s&#41;&#58;
+            <input
+              type="text"
+              name="img2"
+              onChange={this.handleImgChange}
+              />
+              Upload photo &#40;s&#41;&#58;
+            <input
+              type="text"
+              name="img3"
+              onChange={this.handleImgChange}
+              />
+              Upload photo &#40;s&#41;&#58;
+            <input
+              type="text"
+              name="img4"
+              onChange={this.handleImgChange}
+              />
+              Upload photo &#40;s&#41;&#58;
+            <input
+              type="text"
+              name="img5"
+              onChange={this.handleImgChange}
+              />
           </div>
 
 
@@ -349,7 +403,7 @@ class Modal extends React.Component {
           60 CHARACTER LIMIT*/}
           <div>
             <label>
-               Username:
+               Username&#58;
             </label>
             <input
               type="text"
@@ -366,7 +420,7 @@ class Modal extends React.Component {
           */}
           <div>
             <label>
-               e-mail:
+               e-mail&#58;
             </label>
             <input
               type="email"
@@ -382,11 +436,14 @@ class Modal extends React.Component {
           {/*SUBMIT BUTTON*/}
           <div>
             <button
+              className={ReviewsCSS.buttonsA}
               onClick={(e) => { this.onClose(e); }}
               >
               Close
             </button>
-            <button>Submit review</button>
+            <button
+              className={ReviewsCSS.buttonsA}>Submit review
+            </button>
           </div>
 
           {/*END OF MODAL FORM*/}

@@ -11,7 +11,7 @@
   height: 100%;
   border-radius: inherit;
   text-align: left;
-  margin-top: -1.8%;
+  margin-top: -2%;
   margin-left: -1.5%;
 }
 
@@ -20,8 +20,15 @@
   padding: 0%;
   color: white;
   font-weight: bold;
+  margin-bottom: 40px;
 }
 
 .starAlign {
-  margin-left: -5%;
+  margin-left: 0%;
+  position: relative;
+}
+
+.fontType {
+  font-weight: bold;
+  font-size: large;
 }

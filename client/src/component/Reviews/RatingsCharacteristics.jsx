@@ -8,29 +8,35 @@ class RatingsCharacteristics extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviewsArr: [],
-      reviews: 0,
-      mostVotes: 0,
     };
-    this.getReviews = this.getReviews.bind(this);
+    // this.getReviews = this.getReviews.bind(this);
+    // this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   componentDidMount() {
     this.setState({
-      reviewsArr: this.props.reviewsArr.reverse()},
-      () => { this.getReviews() });
+      reviewsArr: this.props.reviewsArr})
+      // () => { this.getReviews() });
   }
 
-  getReviews() {
-    var tempReviews = 0;
-    for (let i = 0; i < this.props.reviewsArr.length; i++) {
-      tempReviews += (this.props.reviewsArr[i]);
-    }
-    // console.log(tempReviews);
-    this.setState({
-      reviews: tempReviews
-    })
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.props.id !== prevProps.id) {
+  //     console.log('the props are not equal')
+  //     this.componentDidMount();
+  //   }
+  // }
+
+  // getReviews() {
+  //   var tempReviews = 0;
+  //   for (let i = 0; i < this.props.reviewsArr.length; i++) {
+  //     tempReviews += (this.props.reviewsArr[i]);
+  //   }
+  //   // console.log(tempReviews);
+  //   this.setState({
+  //     reviews: tempReviews
+
+  //   })
+  // }
   render() {
     var stars = [
       '\u2605\u2605\u2605\u2605\u2605',
@@ -45,31 +51,32 @@ class RatingsCharacteristics extends React.Component {
 
     let rate = this.props.ratingAvg;
       let starsss = '';
-      for (let i = 0; rate > .8; rate -= 1) {
+      for (let i = 0; rate > .6; rate -= 1) {
         starsss += '\u2605';
       }
-    // if (rate < .75 || rate > .25) {
-    //   starsss += `\u2BE8`;
-    //   }
-    // console.log('star',starsss);
+      for (let i = starsss.length; i < 5; i++)
+      {
+      starsss += '\u2606'
+      }
+
     return (
       <>
       {/*MAPPING BARS TO
          THEIR RATINGS*/}
-          <p>RATINGS &#38; REVIEWS</p>
+          <p className={ProgressBarCSS.fontType}>RATINGS &#38; REVIEWS</p>
         <h3>{this.props.ratingAvg} {starsss}</h3>
           <p>{this.props.wouldRecommend.toFixed(0)}&#37; of reviews recommend this product</p>
 
           {/*Div will add outline to the
           ratings box for viewing clarity*/}
       <div className={ReviewsCSS.ratingBoxOutline}>
-        {this.state.reviewsArr.map((item, idx) => (
+        {this.props.reviewsArr.map((item, idx, arr) => (
           <span>
             <span className={ProgressBarCSS.starAlign}>{stars[idx]}</span>
             <ProgressBar
               stars={5-idx}
               bgcolor="#50C878"
-              completed={(item / this.props.totalRatings * 100).toFixed(0)}
+              completed={(arr[4 - idx] / this.props.totalRatings * 100).toFixed(0)}
             />
           </span>
         ))}

@@ -8,15 +8,11 @@
   font-weight: bold;
   left: -1px;
   padding: 10px 7px 5px;
-<<<<<<< HEAD
-  height:500px;
-=======
   height:600px;
   width: flex;
   box-shadow:  30%;
   border-radius: 2.5%;
   box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
->>>>>>> main
   overflow-y:scroll;
   overflow-x:hidden;
   display: inline-flexbox;
@@ -24,4 +20,8 @@
 
 .feedBox {
   height: 100%;
+}
+
+.ulMods {
+  list-style-type: none;
 }
