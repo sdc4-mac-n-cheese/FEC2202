@@ -6,6 +6,7 @@ import VerticalCarousel from './VerticalCarousel.jsx'
 
 const Carousel = (props) => {
   const styles = props.currStyle.photos;
+  console.log(styles);
 
   const [currIndex, setCurrIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +47,8 @@ const Carousel = (props) => {
           {styles.map((photo, i) =>
             <div className={ProductCSS.carouselItem} key={i}>
               <i className="fa fa-arrows-alt" aria-hidden="true" onClick={() => open(photo.url)}></i>
-              <img className={ProductCSS.spotlight} src={photo.url} alt='product style' />
+              {photo.url && <img className={ProductCSS.spotlight} src={photo.url} alt='product style' />}
+              {!photo.url && <img className={ProductCSS.spotlight} src='https://whetstonefire.org/wp-content/uploads/2020/06/image-not-available.jpg' style={{ width: '300px', height: 'auto' }} alt='product style' />}
             </div>
           )}
         </div>

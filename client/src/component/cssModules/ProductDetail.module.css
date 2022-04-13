@@ -13,6 +13,10 @@ p {
   margin: 0 3% 0 7%;
 }
 
+.main button:hover {
+  background-color:rgb(121, 118, 118, 0.1);
+}
+
 /* carousel styles */
 .carousel {
   overflow: hidden;
@@ -41,6 +45,7 @@ p {
   bottom: 250px;
   left: 500px;
   cursor: pointer;
+  border-radius: 10px;
 }
 
 .carouselItem i:hover {
@@ -72,10 +77,6 @@ p {
   padding: 0;
 }
 
-/* .modal img:hover {
-  transform: scale(1.5);
-} */
-
 .spotlight {
   width: 500px;
   height: 700px;
@@ -93,19 +94,23 @@ p {
 
 .leftBtn {
   position: relative;
+  height: 40px;
+  width: 30px;
   left: 135px;
   bottom: 300px;
 }
 
 .rightBtn {
   position: relative;
+  height: 40px;
+  width: 30px;
   left: 685px;
   bottom: 300px;
 }
 
 .hidden {
   opacity: 0;
-  cursor: default;
+  cursor: default !important;
 }
 
 .verticalView {
@@ -138,7 +143,9 @@ p {
 }
 
 .verticalButton.up {
-  margin: 0;
+  height: 49px;
+  width: 65px;
+  margin-bottom: 0;
   padding: 0;
 }
 
@@ -149,6 +156,7 @@ p {
 /* social media under carousel */
 .social {
   margin-top: 75px;
+  margin-left: 35px;
   text-align: center;
 }
 
@@ -187,6 +195,16 @@ p {
 .details a {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.reviews {
+  display: inline-block;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.reviews div {
+  margin-left: 0;
 }
 
 .marketingContainer {
@@ -246,6 +264,7 @@ p {
   border-radius: 50%;
   border-style: solid;
   border-width: 2px;
+  padding: 5px;
   width: 15px;
   height: 15px;
 }
@@ -275,6 +294,7 @@ p {
   width: 80px;
   text-align: center;
   font-weight: lighter;
+  border-radius: 5px;
 }
 
 .btnSelected {
@@ -292,6 +312,7 @@ p {
   height: 35px;
   text-align: center;
   padding: 0;
+  border-radius: 5px;
 }
 
 .quantity p {
@@ -302,6 +323,7 @@ p {
 
 .add {
   width: 250px;
+  border-radius: 5px !important;
 }
 
 .add span {
@@ -313,6 +335,7 @@ p {
   margin-left: 15px;
   padding: 0;
   text-align: center;
+  border-radius: 5px !important;
 }
 
 .favorite i {
@@ -321,3 +344,10 @@ p {
   font-weight: bold;
   font-size: large;
 }
+
+/* responsive style */
+/* @media only screen and (max-width: 1552px) {
+  .carouselView {
+    width: 100%;
+  }
+} */
