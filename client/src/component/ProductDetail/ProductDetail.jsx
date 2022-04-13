@@ -15,21 +15,6 @@ const ProductDetail = (props) => {
   let currProduct = props.currProductData || {};
   let styleResults = props.currStyleData || [];
 
-  // useEffect(() => {
-  //   //65631 is a placeholdr
-  //   axios.get(`/product?product_id=${65631}`)
-  //     .then(product => {
-  //       setCurrProduct(product.data);
-  //       return axios.get(`/productStyle?product_id=${65631}`);
-  //     })
-  //     .then(styles => {
-  //       setStyleResults(styles.data.results);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // }, [currProduct.id]);
-
   useEffect(() => {
     //set default style to the first style
     if (styleResults.length) {
@@ -48,7 +33,6 @@ const ProductDetail = (props) => {
   }
 
   const addCart = function (sku) {
-    console.log('here', sku)
     axios.post('/cart', {
       sku_id: sku
     })

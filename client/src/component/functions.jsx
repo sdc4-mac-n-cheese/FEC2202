@@ -23,7 +23,7 @@ import React from "react";
 //        average=sumscore/counter
 //        /*set your state with this average virable. eg--->setAveragescore(average)*/
 //         }
-  
+
 //       })
 //       .catch(err=>{console.log(err)})
 //   },[])
@@ -45,67 +45,68 @@ import React from "react";
 //first arg:idNum is the product Number that you need to generate star reviews on
 //second arg: cssSheetName. Style the stars with your csssheet(margin, padding...)  eg:---> RelatedItemsCSS
 //(optional)third arg: the size of the stars that you want. I used the normal size, so didnt supply this arg (sizes can be " fa-lg" or" fa-2x"--- " fa-5x")
-  
-export function starReview(averagescore, cssSheetName,size){
-    
+
+export function starReview(averagescore, cssSheetName, size) {
+
     //console.log("counter,sumscore",counter,sumscore)
 
-        if (averagescore===5){
-            return (<div className={cssSheetName.starreview}>
-                <i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star" aria-hidden="true"/>
-                </div>
-            )} else if (averagescore>4.5){
-                return (<div className={cssSheetName.starreview}>
-                     <i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star-half-o" aria-hidden="true"/>
-                    </div>)
-            } else if(averagescore>4){
-                return (<div className={cssSheetName.starreview}>
-                    <i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/>
-                    </div>)
-            } else if(averagescore>3.5){
-                return (
-                    (<div className={cssSheetName.starreview}>
-                        <i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star-half-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/>
-                        </div>)
-                )
-            } else if (averagescore>3){
-                return (
-                    (<div className={cssSheetName.starreview}>
-                        <i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/>
-                        </div>)
-                )
-            } else if (averagescore>2.5){
-                return (
-                    <div className={cssSheetName.starreview}>
-                        <i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star-half-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/>
-                        </div>)
-            } else if (averagescore>2){
-                return (
-                    <div className={cssSheetName.starreview}>
-                        <i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/>
-                        </div>)
-            } else if (averagescore>1.5){
-                return (
-                    <div className={cssSheetName.starreview}>
-                        <i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star-half-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/>
-                        </div>)
-            } else if (averagescore >1){
-                return (
-                    <div className={cssSheetName.starreview}>
-                        <i className="fa fa-star" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/>
-                        </div>)
-            } else if (averagescore>0.5){
-                return (
-                    <div className={cssSheetName.starreview}>
-                        <i className="fa fa-star-half-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/>
-                        </div>)
-            } else {
-                return (
-                    <div className={cssSheetName.starreview}>
-                        <i className="fa fa-star-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/><i className="fa fa-star-o" aria-hidden="true"/>
-                        </div>)
-            } 
-    
+    if (averagescore === 5) {
+        return (<div className={cssSheetName.starreview}>
+            <i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" />
+        </div>
+        )
+    } else if (averagescore > 4.5) {
+        return (<div className={cssSheetName.starreview}>
+            <i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star-half-o" aria-hidden="true" />
+        </div>)
+    } else if (averagescore > 4) {
+        return (<div className={cssSheetName.starreview}>
+            <i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" />
+        </div>)
+    } else if (averagescore > 3.5) {
+        return (
+            (<div className={cssSheetName.starreview}>
+                <i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star-half-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" />
+            </div>)
+        )
+    } else if (averagescore > 3) {
+        return (
+            (<div className={cssSheetName.starreview}>
+                <i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" />
+            </div>)
+        )
+    } else if (averagescore > 2.5) {
+        return (
+            <div className={cssSheetName.starreview}>
+                <i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star-half-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" />
+            </div>)
+    } else if (averagescore > 2) {
+        return (
+            <div className={cssSheetName.starreview}>
+                <i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" />
+            </div>)
+    } else if (averagescore > 1.5) {
+        return (
+            <div className={cssSheetName.starreview}>
+                <i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star-half-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" />
+            </div>)
+    } else if (averagescore > 1) {
+        return (
+            <div className={cssSheetName.starreview}>
+                <i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" />
+            </div>)
+    } else if (averagescore > 0.5) {
+        return (
+            <div className={cssSheetName.starreview}>
+                <i className="fa fa-star-half-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" />
+            </div>)
+    } else {
+        return (
+            <div className={cssSheetName.starreview}>
+                <i className="fa fa-star-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" />
+            </div>)
+    }
+
 
 
 }

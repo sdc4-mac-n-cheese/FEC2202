@@ -52,7 +52,6 @@ class Modal extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   onClose(e) {
-    console.log('in on close modal');
     this.props.onClose && this.props.onClose(e);
   }
 
@@ -60,12 +59,12 @@ class Modal extends React.Component {
     if (this.state.summary.length < SUMMARY_LIMITER) {
       this.setState({
         summary: e.target.value,
-      }, () => { console.log(this.state.summary); });
+      });
     } else {
 
       this.setState({
         summary: e.target.value,
-      }, () => { console.log(this.state.summary); });
+      });
     }
   }
 
@@ -73,12 +72,12 @@ class Modal extends React.Component {
     if (this.state.body.length < BODY_MAX) {
       this.setState({
         body: e.target.value
-      }, () => { console.log(this.state.body); });
+      });
     } else {
 
       this.setState({
         body: e.target.value
-      }, () => { console.log(this.state.body); });
+      });
     }
   }
 
@@ -93,12 +92,12 @@ class Modal extends React.Component {
     if (this.state.username.length < USERNAME_LIMITER) {
       this.setState({
         username: e.target.value,
-      }, () => { console.log(this.state.username); });
+      });
     } else {
 
       this.setState({
         username: e.target.value,
-      }, () => { console.log(this.state.username); });
+      });
     }
   }
 
@@ -106,25 +105,21 @@ class Modal extends React.Component {
     if (this.state.email.length < EMAIL_LIMITER) {
       this.setState({
         email: e.target.value,
-      }, () => { console.log(this.state.email); });
+      });
     } else {
 
       this.setState({
         email: e.target.value,
-      }, () => { console.log(this.state.email); });
+      });
     }
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('in handle submit!');
-    console.log(this.state.photos);
     //ERROR FIRST HANDLER OF POST REQUEST...
     //CRITERIA NOT MET,
     //MUST SATISFY ALL FLAGS
     if (SUMMARY_FLAG || USERNAME_FLAG || EMAIL_FLAG || BODY_FLAG || this.state.recommend === null) {
-      console.log('please fill out form apporpriately');
-      console.log(this.props.id)
       return;
     } else {
       //AXIOS POST REQUEST HERE WITH OBJECT CREATION
@@ -146,7 +141,7 @@ class Modal extends React.Component {
       if (this.state.img5.includes(".jpg") || this.state.img5.includes(".jpeg")) {
         tempPhotos.push(this.state.img5);
       }
-      console.log(tempPhotos);
+
       var postBodyParams = {
         product_id: this.props.id,
         rating: this.state.rating,
@@ -165,7 +160,7 @@ class Modal extends React.Component {
           "19": this.state['fit']
         }
       };
-      console.log()
+
 
       axios({
         method: 'post',
@@ -173,14 +168,11 @@ class Modal extends React.Component {
         data: postBodyParams
       })
         .then((result) => {
-          console.log('we made it boys');
           this.onClose()
         })
         .catch((err) => {
-          console.log('oh, you thought...');
           this.onClose();
-      })
-      // console.log(postBodyParams);
+        })
     }
   }
 
@@ -230,7 +222,7 @@ class Modal extends React.Component {
 
 
 
-    return(
+    return (
       <div className={ModalCSS.modalForm}>
         <div>{this.props.children}</div>
 
@@ -255,10 +247,10 @@ class Modal extends React.Component {
                   key={index}
                   className={index <= this.state.rating ? ModalCSS.on : ModalCSS.off}
                   onClick={() => { this.setState({ rating: index }) }}
-                  onMouseEnter={() => { this.setState({hover: index})}}
-                  onMouseLeave={() => { this.setState({hover: this.state.rating})}}
+                  onMouseEnter={() => { this.setState({ hover: index }) }}
+                  onMouseLeave={() => { this.setState({ hover: this.state.rating }) }}
                 >
-                <span className="star">&#9733;</span>
+                  <span className="star">&#9733;</span>
                 </button>
               );
             })}{reviewRating[this.state.rating - 1]}
@@ -270,7 +262,7 @@ class Modal extends React.Component {
           <div>
             <label><p>
               Recommend this item:
-              </p></label>
+            </p></label>
             <button
               type="button"
               onClick={() => { this.setState({ recommend: true }) }}
@@ -330,7 +322,7 @@ class Modal extends React.Component {
           <div>
             <label><p>
               Review Summary&#58;
-              </p></label>
+            </p></label>
             <textarea
               type="text"
               placeholder="leave a summary..."
@@ -349,7 +341,7 @@ class Modal extends React.Component {
           <div>
             <label><p>
               Review Body&#58;
-              </p></label>
+            </p></label>
             <textarea
               type="text"
               placeholder="review the product..."
@@ -366,36 +358,36 @@ class Modal extends React.Component {
           UP TO 5 PICTURES
           */}
           <div>
-              Upload photo &#40;s&#41;&#58;
+            Upload photo &#40;s&#41;&#58;
             <input
               type="text"
               name="img1"
               onChange={this.handleImgChange}
-              />
-              Upload photo &#40;s&#41;&#58;
+            />
+            Upload photo &#40;s&#41;&#58;
             <input
               type="text"
               name="img2"
               onChange={this.handleImgChange}
-              />
-              Upload photo &#40;s&#41;&#58;
+            />
+            Upload photo &#40;s&#41;&#58;
             <input
               type="text"
               name="img3"
               onChange={this.handleImgChange}
-              />
-              Upload photo &#40;s&#41;&#58;
+            />
+            Upload photo &#40;s&#41;&#58;
             <input
               type="text"
               name="img4"
               onChange={this.handleImgChange}
-              />
-              Upload photo &#40;s&#41;&#58;
+            />
+            Upload photo &#40;s&#41;&#58;
             <input
               type="text"
               name="img5"
               onChange={this.handleImgChange}
-              />
+            />
           </div>
 
 
@@ -403,7 +395,7 @@ class Modal extends React.Component {
           60 CHARACTER LIMIT*/}
           <div>
             <label>
-               Username&#58;
+              Username&#58;
             </label>
             <input
               type="text"
@@ -420,7 +412,7 @@ class Modal extends React.Component {
           */}
           <div>
             <label>
-               e-mail&#58;
+              e-mail&#58;
             </label>
             <input
               type="email"
@@ -438,7 +430,7 @@ class Modal extends React.Component {
             <button
               className={ReviewsCSS.buttonsA}
               onClick={(e) => { this.onClose(e); }}
-              >
+            >
               Close
             </button>
             <button

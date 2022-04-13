@@ -4,27 +4,33 @@ import ProductCSS from '../cssModules/ProductDetail.module.css';
 
 const VerticalCarousel = (props) => {
   const [startIndex, setStartIndex] = useState(0);
-  // const [currVertIndex, setCurrVertIndex] = useState(props.currIndex)
 
   useEffect(() => {
     props.setCurrIndex(0);
   }, [props.styles]);
+
+  useEffect(() => {
+    if (props.currIndex === 0) {
+      setStartIndex(0);
+    }
+
+    if (props.currIndex < startIndex) {
+      setStartIndex(props.currIndex);
+    }
+  }, [props.currIndex]);
 
   const down = () => {
     setStartIndex(startIndex === props.styles.length - 5 ? 0 : startIndex + 1);
   }
 
   const up = () => {
+    // console.log('here', startIndex)
     setStartIndex(startIndex === 0 ? 0 : startIndex - 1);
   }
 
   if (props.currIndex >= startIndex + 5) {
     setStartIndex(startIndex + 1);
   }
-
-  // if (props.currIndex < startIndex) {
-  //   setStartIndex(props.currIndex);
-  // }
 
   return (
     <>
@@ -35,21 +41,11 @@ const VerticalCarousel = (props) => {
           if (i >= startIndex && i < startIndex + 5) {
             return <img className={props.currIndex === i ? `${ProductCSS.verticalPhotos} ${ProductCSS.verticalSelected}` : ProductCSS.verticalPhotos} onClick={() => {
               props.setCurrIndex(i);
-              // setCurrVertIndex(i);
             }} src={photo.url} alt='product style' key={i} />
           }
         })}
 
-        <button className={`${ProductCSS.verticalButton} ${ProductCSS.down}`} onClick={() => {
-          // if (startIndex === props.styles.length - 5) {
-          //   // setCurrVertIndex(0);
-          //   props.setCurrIndex(0);
-          // } else {
-          //   // setCurrVertIndex(props.currIndex + 1);
-          //   props.setCurrIndex(props.currIndex + 1);
-          // }
-          down();
-        }}><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
+        <button className={props.styles.length > 5 ? `${ProductCSS.verticalButton} ${ProductCSS.down}` : `${ProductCSS.verticalButton} ${ProductCSS.down} ${ProductCSS.hidden}`} onClick={down}><i className="fa fa-arrow-down" aria-hidden="true"></i></button>
       </div>
     </>
   );

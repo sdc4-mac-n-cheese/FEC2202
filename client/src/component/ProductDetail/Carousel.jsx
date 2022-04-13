@@ -46,12 +46,19 @@ const Carousel = (props) => {
           {styles.map((photo, i) =>
             <div className={ProductCSS.carouselItem} key={i}>
               <i className="fa fa-arrows-alt" aria-hidden="true" onClick={() => open(photo.url)}></i>
-              <img className={ProductCSS.spotlight} src={photo.url} alt='product style' />
+              {photo.url && <img className={ProductCSS.spotlight} src={photo.url} alt='product style' />}
+              {!photo.url && <img className={ProductCSS.spotlight} src='https://whetstonefire.org/wp-content/uploads/2020/06/image-not-available.jpg' style={{ width: '300px', height: 'auto' }} alt='product style' />}
             </div>
           )}
         </div>
         <button className={currIndex !== 0 ? ProductCSS.leftBtn : `${ProductCSS.leftBtn} ${ProductCSS.hidden}`} onClick={prev}>&lt;</button>
         <button className={ProductCSS.rightBtn} onClick={next}>&gt;</button>
+
+        <div className={ProductCSS.social}>
+          <i className="fa fa-facebook-square" aria-hidden="true"></i>
+          <i className="fa fa-twitter-square" aria-hidden="true"></i>
+          <i className="fa fa-pinterest-square" aria-hidden="true"></i>
+        </div>
       </div>
 
       <Modal
