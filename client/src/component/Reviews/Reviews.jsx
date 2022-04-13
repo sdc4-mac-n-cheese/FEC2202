@@ -27,7 +27,7 @@ class Reviews extends React.Component {
     this.getReviewInfo = this.getReviewInfo.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.viewFilters = this.viewFilters.bind(this);
-    this.selectFilter = this.selectFilter.bind(this);
+    // this.selectFilter = this.selectFilter.bind(this);
     this.changeRatingFilter = this.changeRatingFilter.bind(this);
   }
 
@@ -46,7 +46,6 @@ class Reviews extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     // console.log(this.props.id, prevProps.id, this.state.product_id);
     if (this.props.id !== prevProps.id) {
-      console.log(this.props.id, prevProps.id);
       this.componentDidMount();
     }
 
@@ -153,20 +152,19 @@ class Reviews extends React.Component {
     // console.log('in the viewFilter handler');
     var toggler = !this.state.displayFilters;
     // console.log(this.state.displayFilters, 'to', toggler);
-    this.setState({displayFilters: toggler})
+    this.setState({ displayFilters: toggler })
   }
 
-  selectFilter(e) {
-    console.log(e.target.value);
+  // selectFilter(e) {
+  //   console.log(e.target.value);
 
-  }
+  // }
 
   changeRatingFilter() {
-    console.log('in the change filter in main component');
     this.setState({
       currentRatingFilter: 0,
       sortType: 'relevant'
-    }, () => {this.getReviewInfo()})
+    }, () => { this.getReviewInfo() })
   }
 
   render() {
@@ -186,7 +184,7 @@ class Reviews extends React.Component {
             href="#"
             onClick={(e) => { e.preventDefault(); this.setState({ sortType: "relevant", displayFilters: false }) }}
           >Relevant</a>
-      </div>
+        </div>
     }
 
     let loadingDiv;
@@ -195,7 +193,7 @@ class Reviews extends React.Component {
         <div>
           Reviews are loading...
         </div>
-    } else if ((this.state.reviewData.length === 0 || this.state.metaData.length === 0) ) {
+    } else if ((this.state.reviewData.length === 0 || this.state.metaData.length === 0)) {
       loadingDiv =
         <Feed
           reviewData={this.state.reviewData}
@@ -203,61 +201,61 @@ class Reviews extends React.Component {
         />
     } else {
       loadingDiv =
-      <div className={ReviewsCSS.RC_FeedContainer}>
-      {/*This div will hold
+        <div className={ReviewsCSS.RC_FeedContainer}>
+          {/*This div will hold
       the css for the feed
       and star ratings, idealy
       split into a 2:1*/}
-        <div >
-          <div className={ReviewsCSS.RC_Feed_Flex1}>
-            <RatingsCharacteristics
-              ratingAvg={Number(this.state.ratingAvg)}
-              wouldRecommend={this.state.wouldRecommend}
-              reviewsArr={this.state.reviewsArr}
-              totalRatings={this.state.totalRatings}
+          <div >
+            <div className={ReviewsCSS.RC_Feed_Flex1}>
+              <RatingsCharacteristics
+                ratingAvg={Number(this.state.ratingAvg)}
+                wouldRecommend={this.state.wouldRecommend}
+                reviewsArr={this.state.reviewsArr}
+                totalRatings={this.state.totalRatings}
                 changeRatingFilter={this.changeRatingFilter}
                 id={this.props.id}
               />
               <p><strong className={ReviewsCSS.characteristicHeader}>About the product:</strong></p>
-            <div className={ReviewsCSS.characteristicsContainer}>
-              <Characteristics chars={this.state.metaData[0]}/>
-            </div>
+              <div className={ReviewsCSS.characteristicsContainer}>
+                <Characteristics chars={this.state.metaData[0]} />
+              </div>
             </div>
 
-        </div>
-
-
-         <div className={ReviewsCSS.RC_Feed_Flex2}>
-          <div className={ReviewsCSS.dropDownFlex}>
-            <span>
-              <strong>
-                {this.state.totalRatings} reviews, sorted by
-              </strong>
-              <button
-                onClick={this.viewFilters}
-                className={ReviewsCSS.buttonsA}>{this.state.sortType} &#8595;
-              </button>
-              <button
-                className={ReviewsCSS.buttonsA}
-                onClick={() => { this.setState({ sortType: 'relevant', }) }}
-                type="button"
-              >Reset
-              </button>
-            </span>
-            <div
-              className={ReviewsCSS.dropdownContent}
-            >
-              {displayFilters}
-            </div>
           </div>
-          <Feed
-            reviewData={this.state.reviewData}
-            totalRatings={this.state.totalRatings}
-            id={this.props.id}
-            helpfulRatings={this.state.helpfulRatings}
-          />
+
+
+          <div className={ReviewsCSS.RC_Feed_Flex2}>
+            <div className={ReviewsCSS.dropDownFlex}>
+              <span>
+                <strong>
+                  {this.state.totalRatings} reviews, sorted by
+                </strong>
+                <button
+                  onClick={this.viewFilters}
+                  className={ReviewsCSS.buttonsA}>{this.state.sortType} &#8595;
+                </button>
+                <button
+                  className={ReviewsCSS.buttonsA}
+                  onClick={() => { this.setState({ sortType: 'relevant', }) }}
+                  type="button"
+                >Reset
+                </button>
+              </span>
+              <div
+                className={ReviewsCSS.dropdownContent}
+              >
+                {displayFilters}
+              </div>
+            </div>
+            <Feed
+              reviewData={this.state.reviewData}
+              totalRatings={this.state.totalRatings}
+              id={this.props.id}
+              helpfulRatings={this.state.helpfulRatings}
+            />
+          </div>
         </div>
-      </div>
     }
     return (
       <div className='scroll-target'>

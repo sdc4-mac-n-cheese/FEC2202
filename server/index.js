@@ -55,10 +55,8 @@ app.get('/productStyle', (req, res) => {
 
 //route to get product's related products
 app.get('/relatedProduct', (req, res) => {
-   console.log("req.query line58>>>>>",req.query)
   api.getData(`products/${req.query.product_id}/related`)
     .then(response => {
-       console.log(response.data);
       res.status(200).send(response.data);
     })
     .catch(err => {
@@ -75,7 +73,6 @@ app.get('/relatedProduct', (req, res) => {
 app.post('/reviews', (req, res) => {
   let request = req.body;
   //send in FO object with data below and send var
-  console.log(req.body);
   let parameters = {
     product_id: request.product_id,
     rating: request.rating,
@@ -90,7 +87,7 @@ app.post('/reviews', (req, res) => {
 
   api.postData('reviews', parameters)
     .then(response => {
-      console.log(response);
+      // console.log(response);
       res.status(201).send();
     })
     .catch(err => {
@@ -216,7 +213,6 @@ app.post('/addAnswer', (req, res) => {
 
   api.postData(`qa/questions/${req.query.question_id}/answers`, parameters)
     .then((response) => {
-      console.log(req.body)
       res.status(201).send(response.data)
     })
     .catch((err) => {

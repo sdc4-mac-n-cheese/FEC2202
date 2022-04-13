@@ -56,10 +56,9 @@ describe('QA component and child components', () => {
   });
 
   test('helpful button should increment count by 1', () => {
-    const wrapper = shallow(<Answers answer={ question.answers } helpfulCount={question.answers["5361425"].helpfulness}/>);
+    const wrapper = shallow(<Answers answer={question.answers} helpfulCount={question.answers["5361425"].helpfulness} />);
     // const component = wrapper.instance().state;
     const component = wrapper.instance().props;
-    console.log('HERE>>>>', component)
     wrapper.find('#increment-btn').simulate('click');
     expect(component.helpfulCount).toBe(question.answers["5361425"].helpfulness + 1)
     // console.log('HERE>>>>>', wrapper.instance().state.helpfulCount)

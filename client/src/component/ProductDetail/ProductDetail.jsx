@@ -33,7 +33,6 @@ const ProductDetail = (props) => {
   }
 
   const addCart = function (sku) {
-    console.log('here', sku)
     axios.post('/cart', {
       sku_id: sku
     })

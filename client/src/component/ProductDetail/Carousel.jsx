@@ -6,7 +6,6 @@ import VerticalCarousel from './VerticalCarousel.jsx'
 
 const Carousel = (props) => {
   const styles = props.currStyle.photos;
-  console.log(styles);
 
   const [currIndex, setCurrIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
