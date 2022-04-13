@@ -6,7 +6,7 @@ const api = require('./api');
 
 const app = express();
 
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 3000;
 app.use(express.json());
 // app.use('/api', router);
 app.use(express.static(path.join(__dirname, '../client/dist')));
