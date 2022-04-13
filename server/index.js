@@ -55,10 +55,10 @@ app.get('/productStyle', (req, res) => {
 
 //route to get product's related products
 app.get('/relatedProduct', (req, res) => {
-  // console.log("req.query>>>>>",req.query)
+   console.log("req.query line58>>>>>",req.query)
   api.getData(`products/${req.query.product_id}/related`)
     .then(response => {
-      // console.log(response);
+       console.log(response.data);
       res.status(200).send(response.data);
     })
     .catch(err => {
