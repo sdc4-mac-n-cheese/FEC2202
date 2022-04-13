@@ -135,7 +135,7 @@ class App extends React.Component {
         console.log(err);
       });
     //console.log("state related prodcut data>>>",this.state.relatedProducts)
-  
+
 }
   changeProduct(product_id) {
     this.setState({ currentProduct: product_id });

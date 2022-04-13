@@ -1,8 +1,8 @@
 .containerStyles {
   height: 25px;
   width: 80%;
-  background-color: #e0e0de;
-  border-radius: 50;
+  background-color: #e0e0de74;
+  border-radius: 20px;
   margin: 0%;
 }
 
@@ -23,5 +23,8 @@
 }
 
 .numberAlign {
-  margin-left: -7%;
+  margin-left: 25%;
+  font-size: large;
+  font-weight: bold;
+  color: #525252;
 }

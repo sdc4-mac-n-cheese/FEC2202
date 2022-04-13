@@ -54,7 +54,7 @@ class Characteristics extends React.Component {
     }
     this.setState({
       chars: tempArr
-    }, () => { console.log(this.state.chars) });
+    });
 
   }
 
