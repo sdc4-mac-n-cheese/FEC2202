@@ -6,7 +6,7 @@ const api = require('./api');
 
 const app = express();
 
-// const PORT = 3000;
+const PORT = process.env.PORT || 80;
 app.use(express.json());
 // app.use('/api', router);
 app.use(express.static(path.join(__dirname, '../client/dist')));
@@ -301,10 +301,10 @@ app.post('/interaction', (req, res) => {
     })
 });
 
-app.listen(process.env.PORT, (err) => {
+app.listen(PORT, (err) => {
   if (err) {
     console.log('NOT connected');
   } else {
-    console.log(`connected to ${process.env.PORT}`);
+    console.log(`connected to ${PORT}`);
   }
 });
