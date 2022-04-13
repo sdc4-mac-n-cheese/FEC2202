@@ -6,7 +6,6 @@ import Relatedcards from "./RelatedItems/Relatedcards.jsx";
 import QA from "./QA/QA.jsx";
 import Reviews from "./Reviews/Reviews.jsx";
 import axios from "axios";
-import {starReview} from "./functions.jsx"
 
 class App extends React.Component {
   constructor(props) {
@@ -21,16 +20,14 @@ class App extends React.Component {
     };
     this.changeProduct = this.changeProduct.bind(this);
     this.changeStyle = this.changeStyle.bind(this);
-    this.domupdating=this.domupdating.bind(this)
+    //this.domupdating=this.domupdating.bind(this)
   }
-  
+
   // componentDidMount(){
   //  // console.log("window.location>>>>>>>",window.location)
   //   this.domupdating()
   //   document.title="Best E-commerce Site"
-
   // }
-
   // domupdating() {
   //   //current product based off of current product_id
   //   axios.get(`/product?product_id=${this.state.currentProduct}`)
@@ -50,12 +47,12 @@ class App extends React.Component {
   //       console.log(err);
   //     });
   componentDidMount() {
-
     //current product based off of current product_id
     axios.get(`/product?product_id=${this.state.currentProduct}`)
       .then(product => {
         this.setState({
-          currProductData: product.data
+          currProductData: product.data,
+          // currentProduct:product.data.id
         });
         return axios.get(`/productStyle?product_id=${this.state.currentProduct}`);
       })
@@ -68,7 +65,7 @@ class App extends React.Component {
       .catch(err => {
         console.log(err);
       });
-this.domupdating()
+      this.domupdating(this.state.currentProduct)
      
     }
     // axios
@@ -80,14 +77,17 @@ this.domupdating()
 
     //---------------------->
     //another axios call to get all related data info
-    domupdating() {
+    domupdating(id) {
+     // console.log("currentproduct line 81",this.state.currentProduct)
     axios
       //hardcoded id number. need to be fixed
       .get("/relatedProduct", {
-        params: { product_id: this.state.currentProduct },
+        params: { product_id: id},
+        
       })
       .then((res) => {
-        //console.log("related items res.data>>>>", res.data);
+        console.log("line89",id)
+        console.log("related items res.data>>>>", res.data);
         let relatedProductsData = [];
         //for loop gather related products data
         // console.log(res.data);
@@ -108,6 +108,7 @@ this.domupdating()
                   //  console.log("image", res.data.image);
                   relatedProductsData.push(res.data);
                   this.setState({ relatedProducts: relatedProductsData });
+                  console.log("line111",this.state.relatedProductsData)
                 })
 
                 .catch((err) => {
@@ -138,7 +139,14 @@ this.domupdating()
 }
   changeProduct(product_id) {
     this.setState({ currentProduct: product_id });
-    this.domupdating()
+    console.log("productId line 140>>>",product_id)
+     this.domupdating(product_id)
+    // axios
+    // .get("/relatedProduct", {
+    //   params: { product_id: this.state.currentProduct },
+    // })
+    // .then(res=>console.log(this.state.currentProduct))
+    // .catch(err=>console.log(err))
     // console.log('change product-----------------', product_id);
     // console.log('change product', this.state.currentProduct)
     // this.componentDidMount();

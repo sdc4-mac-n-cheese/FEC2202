@@ -103,7 +103,7 @@ const unique=newdataset.filter(element=>{
       <div className={RelateditemsCSS.Overlay_style} ></div>
       <div className={RelateditemsCSS.Modal_styles}>
         <button className={RelateditemsCSS.modalbutton} onClick={props.onClose}>
-        <i className="fa fa-times" aria-hidden="true"></i>
+        <i className="fa fa-times fa-2x" aria-hidden="true"/>
         </button>
         <div className={RelateditemsCSS.tablediv}>
           <div className={RelateditemsCSS.table}>
