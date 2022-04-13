@@ -60,6 +60,12 @@ class FeedItem extends React.Component {
 
   componentDidMount() {
     // console.log('in mount;',this.props.reviewData.helpfulness)
+    // console.log(this.props.idx)
+    // var tempIdx = this.props.idx;
+    // console.log(tempIdx);
+    // console.log(this.props.helpfulRating);
+    // var tempArr = this.props.helpfulRating;
+    // console.log('temp arr', tempIdx, ':', tempArr[tempIdx]);
     this.setState({
       helpfulness: this.props.reviewData.helpfulness,
       review_id: this.props.reviewData.review_id
@@ -91,14 +97,15 @@ class FeedItem extends React.Component {
 
     let hasBeenReported;
     if (this.state.reportedClick === false) {
-      hasBeenReported = <button className={ReviewsCSS.buttons} onClick={this.putReport}>Report</button>
+      hasBeenReported = <button className={ReviewsCSS.buttonsA} onClick={this.putReport}>Report</button>
     } else {
       hasBeenReported = `Item Reported`
     }
 
     let hasBeenHelpful;
     if (this.state.helpfulClick === false) {
-      hasBeenHelpful =  <button onClick={this.putHelpful} >Helpful({this.state.helpfulness})</button>
+
+      hasBeenHelpful =  <button className={ReviewsCSS.buttonsA} onClick={this.putHelpful} >Helpful({this.state.helpfulness})</button>
     } else {
       hasBeenHelpful = `Thanks for your input!`
     }
@@ -107,47 +114,46 @@ class FeedItem extends React.Component {
     if (this.props.reviewData.photos.length !== 0) {
       var tempHolder = [];
 
-        // <img
-        //   className={ReviewsCSS.reviewImages}
-        //   alt="item review photo"
-        //   src={this.props.reviewData.photos[0].url}
-        // />;
+      // <img
+      //   className={ReviewsCSS.reviewImages}
+      //   alt="item review photo"
+      //   src={this.props.reviewData.photos[0].url}
+      // />;
       for (let i = 0; i < this.props.reviewData.photos.length; i++) {
         tempHolder.push(
           <img
           className={ReviewsCSS.reviewImages}
           alt="item review photo"
           src={this.props.reviewData.photos[i].url}
-        />)
+          />)
+        }
+        displayPhotos = tempHolder;
       }
-      displayPhotos = tempHolder;
-    }
-    if (displayPhotos) {
-      // console.log(displayPhotos.length);
-    }
+      if (displayPhotos) {
+        // console.log(displayPhotos.length);
+      }
 
-    return (
-      <li>
-        <p>{stars} {this.props.reviewData.reviewer_name}
-          <span>{moment(this.props.reviewData.date).format('MMM DD, YYYY')}
-          </span>
-        </p>
-        <p>Purchaser Summary: {this.props.reviewData.summary}</p>
-        <p>Purchaser Review: {this.props.reviewData.body}</p>
-        {conditionalMerchantResponse}
+      return (
+        <li className={ReviewsCSS.feedFont}>
+          <p>{this.props.reviewData.reviewer_name}&nbsp;&nbsp;{stars}
+          </p>
+          <em>{moment(this.props.reviewData.date).format('MMM DD, YYYY')}
+          </em><br></br><br></br>
+          <p>Purchaser Summary&#58; {this.props.reviewData.summary}</p>
+          <p>Purchaser Review&#58; {this.props.reviewData.body}</p>
+          {conditionalMerchantResponse}
 
 
-        {/*Spce for photos and css for it*/}
-        <div>
+          {/*Spce for photos and css for it*/}
+          <div>
             {displayPhotos}
-        </div>
-        <div className={ReviewsCSS.og}> {hasBeenHelpful} | {hasBeenReported}
-        </div>
-      </li>
-
-    )
+          </div>
+          <div className={ReviewsCSS.og}> {hasBeenHelpful}  {hasBeenReported}
+          </div>
+        </li>
+      )
+    }
   }
-}
 
 FeedItem.propTypes = {
   reviewData: PropTypes.object,
