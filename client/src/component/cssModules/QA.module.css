@@ -2,45 +2,37 @@
 
   font-weight: bolder;
   font-size: xx-large;
-  /* font-family: Georgia, 'Times New Roman', Times, serif; */
-  border-color: blue;
-  /* background-color: rgb(197, 207, 207); */
+  position: relative;
+  left: 20px;
 }
 
 .searchBar {
 
   height: 30px;
-  width: 1300px;
+  width: 1293px;
+  font-size: 17px;
+  border-style: solid;
+  border-color: #525252;
   border-radius: 50px;
-  position: relative;
   display: flex;
   min-width: 100px;
 }
 
 .questions {
 
-  font-size: large;
-  /* font-family: Georgia, 'Times New Roman', Times, serif; */
+  font-size: x-large;
+  border-style: solid;
+  border-color: #525252 3px;;
+  border-radius: 20px;
   font-weight: bold;
-      /* border: black solid 1px; */
-      box-shadow: 30%;
-      height: auto;
-      width: flex;
-      /* overflow: scroll; */
-      /* float: left; */
-      /* position: relative; */
-      margin-left: -5px;
-      border-radius: 20px;
-      box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
-      display: inline-flexbox;
+  width: flex;
 }
 
 .answers {
 
+  border-bottom: solid 1px;
   font-size: medium;
-  /* font-family: Georgia, 'Times New Roman', Times, serif; */
   font-weight: normal;
-
 }
 
 .helpfulQuestion {
@@ -50,8 +42,10 @@
 
 .helpfulQuestion:hover,
 .helpfulQuestion:focus {
+
   color: rgb(17, 16, 16);
-  background-color: rgb(221, 214, 214);
+  background-color:rgb(121, 118, 118, 0.1);
+  border-radius: 15px;
   text-decoration: none;
   cursor: pointer;
 }
@@ -63,8 +57,10 @@
 
 .addAnswer:hover,
 .addAnswer:focus {
+
   color: rgb(17, 16, 16);
-  background-color: rgb(221, 214, 214);
+  background-color:rgb(121, 118, 118, 0.1);
+  border-radius: 15px;
   text-decoration: none;
   cursor: pointer;
 }
@@ -76,8 +72,10 @@
 
 .helpfulAnswer:hover,
 .helpfulAnswer:focus {
+
   color: rgb(17, 16, 16);
-  background-color: rgb(221, 214, 214);
+  background-color:rgb(121, 118, 118, 0.1);
+  border-radius: 15px;
   text-decoration: none;
   cursor: pointer;
 }
@@ -89,58 +87,16 @@
 
 .reportAnswer:hover,
 .reportAnswer:focus {
+
   color: rgb(17, 16, 16);
-  background-color: rgb(221, 214, 214);
+  background-color:rgb(121, 118, 118, 0.1);
+  border-radius: 15px;
   text-decoration: none;
   cursor: pointer;
 }
 
-.MODAL_STYLES {
-
-  position: 'fixed';
-  top: '50%';
-  left: '50%';
-  transform: 'translate(-50%, -50%)';
-  backgroundColor: '#FFF';
-  padding:'50px';
-  zIndex: 1000;
-}
-
-/* .OVERLAY_STYLES {
-
-  position: 'fixed';
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  backgroundColor: 'rgba(0, 0, 0, .7)';
-  zIndex: 1000;
-} */
-
-/* .modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
-} */
-
-/* Modal Content/Box */
-.modalContent {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
 .close {
+
   color: rgb(51, 48, 48);
   float: right;
   font-size: 20px;
@@ -152,43 +108,44 @@
 
 .close:hover,
 .close:focus {
+
   color: rgb(17, 16, 16);
-  background-color: rgb(221, 214, 214);
+  background-color:rgb(121, 118, 118, 0.1);
+  border-radius: 15px;
   text-decoration: none;
   cursor: pointer;
 }
 
-.showMore {
+.showMore{
 
+  font-size: large;
+  font-weight: bold;
 }
 
 .showMore:hover,
 .showMore:focus {
   color: rgb(17, 16, 16);
-  background-color: rgb(221, 214, 214);
+  background-color:rgb(121, 118, 118, 0.1);
+  border-radius: 15px;
   text-decoration: none;
   cursor: pointer;
+
 }
 
 .itemConfiguration {
-     /* border: black solid 1px; */
-     box-shadow: 30%;
-     height: 440px;
-     width: flex;
-     overflow: scroll;
-     /* float: left; */
-     /* position: relative; */
-     /* margin-left: -5px; */
-     border-radius: 20px;
-     box-shadow: 0 2px 16px rgb(0 0 0 / 60%);
+
+  height: 440px;
+  width: flex;
+  overflow: scroll;
+  border-radius: 20px;
 }
 
 .formContainer {
+
   position: relative;
   margin: 8% auto;
   min-height: 60%;
   width: 50%;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.6);
   background: white;
   padding: 0px 0px 5px 15px;
   box-sizing: border-box;
@@ -196,22 +153,22 @@
 }
 
 .formInput {
+
   display: block;
+  font-family: Arial, Helvetica, sans-serif;
   margin: 0px 0px 15px 20px;
   padding: 4px;
   width: 300px;
   height: 5%;
   box-sizing: border-box;
-  border:solid 1px dimgrey;
+  border: solid 1px dimgrey;
   border-radius: 5px;
-  outline:dimgrey;
-  /* border-bottom: 1px solid #aaa; */
+  outline: dimgrey;
   font-size: 16px;
-  /* font-family: Georgia, 'Times New Roman', Times, serif; */
 }
 
 .exit {
-  font-family: system-ui;
+
   width: 50px;
   margin-left: 15px;
   padding: 0;
@@ -225,38 +182,57 @@
 
 .exit:hover,
 .exit:focus {
+
   color: rgb(17, 16, 16);
-  background-color: rgb(221, 214, 214);
   text-decoration: none;
   cursor: pointer;
 }
 
 .addLoad {
+
   font-size: large;
-  /* font-family: Georgia, 'Times New Roman', Times, serif; */
   font-weight: bold;
 }
 
 .addLoad:hover,
 .addLoad:focus {
+
   color: rgb(17, 16, 16);
-  background-color: rgb(221, 214, 214);
+  background-color:rgb(121, 118, 118, 0.1);
+  border-radius: 15px;
   text-decoration: none;
   cursor: pointer;
 }
 
-.addFirstAnswer {
+.imageDetails {
 
-  /* float: center; */
+  border-radius:  20px;
+  max-width: 150px;
+  height: 120px;
+}
+
+.imageDetails:hover {
+
+  transform: scale(2);
+}
+
+.answerBody {
+
+  font-size: large;
+  font-weight: bold;
+}
+
+/* .pictureScroller {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height:100px;
+  width: 300px
+} */
+
+.photoCount {
+
+  font-size: medium;
   position: relative;
-  left: 330px;
-  top: 10px;
-}
-
-.addFirstAnswer:hover,
-.addFirstAnswer:focus {
-  color: rgb(17, 16, 16);
-  background-color: rgb(221, 214, 214);
-  text-decoration: none;
-  cursor: pointer;
+  left: 20px;
+  top: -10px;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import Question from './Question.jsx';
 import QuestionModal from './QuestionModal.jsx';
 import ProductCSS from '../cssModules/QA.module.css';
-// import Answers from './Answers.jsx';
+import PropTypes from 'prop-types';
 
 class QuestionList extends React.Component {
   constructor(props) {
@@ -87,28 +87,21 @@ class QuestionList extends React.Component {
                   currentProduct={this.props.currentProduct}
                 />
               </>
-
-
             ))
           )}
-
           <QuestionModal
             open={this.state.isOpen}
             onClose={() => this.openQuestionModal(false)}
             currentProduct={this.props.currentProduct}
             updateQuestions={this.props.updateQuestions}
-            newQuestions={this.props.newQuestions}
           ></QuestionModal>
           <br />
-
-          {/* <a onClick={this.showMore}>More Answered Questions</a> */}
           <a className={ProductCSS.addLoad} onClick={() => this.openQuestionModal(true)} >Add A Question +</a>
         </div>
       )
     } else {
 
       return (
-
 
         <div>
           <span className={ProductCSS.main}>Questions and Answers</span>
@@ -132,7 +125,6 @@ class QuestionList extends React.Component {
                   currentProduct={this.props.currentProduct}
                 />
               </>
-
             ))
           ) : (
             this.props.currentQuestions.slice(0, this.state.count).map((question) => (
@@ -145,28 +137,28 @@ class QuestionList extends React.Component {
                   currentProduct={this.props.currentProduct}
                 />
               </>
-
-
             ))
           )}
-
           <QuestionModal
             open={this.state.isOpen}
             onClose={() => this.openQuestionModal(false)}
             currentProduct={this.props.currentProduct}
             updateQuestions={this.props.updateQuestions}
-            newQuestions={this.props.newQuestions}
           ></QuestionModal>
           <br />
           <a className={ProductCSS.addLoad} onClick={this.showMore}>Load More Questions</a>
           <a className={ProductCSS.addLoad} onClick={() => this.openQuestionModal(true)}>Add A Question +</a>
-
         </div>
       )
     }
-
   }
+}
 
+QuestionList.propTypes = {
+
+  currentProduct: PropTypes.number,
+  updateQuestions: PropTypes.func,
+  currentQuestions: PropTypes.array,
 }
 
 export default QuestionList;
