@@ -1,19 +1,21 @@
 .containerStyles {
   height: 25px;
   width: 80%;
-  background-color: #e0e0de74;
+  background-color: black;
   border-radius: 20px;
   margin: 0%;
+  border-style: solid;
 }
 
 .fillerStyles {
   position: relative;
   height: 100%;
   border-radius: inherit;
-  text-align: center;
-  margin-top: -2.4%;
-  margin-left: -2.4%;
+  text-align: left;
+  margin-top: -2.35%;
+  margin-left: -2.45%;
 }
+
 
 .labelStyles {
   position: relative;

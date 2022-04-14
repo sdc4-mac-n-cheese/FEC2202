@@ -74,9 +74,12 @@ class RatingsCharacteristics extends React.Component {
           <span>
             <span className={ProgressBarCSS.starAlign}>{stars[idx]}</span>
             <ProgressBar
-              stars={5-idx}
-              bgcolor="#50C878"
+              stars={5 - idx}
+              bgcolor="#525252"
               completed={(arr[4 - idx] / this.props.totalRatings * 100).toFixed(0)}
+              changeRatingFilter={this.props.changeRatingFilter}
+              filterArr={this.props.filterArr[idx]}
+              starIndex={idx}
             />
           </span>
         ))}
