@@ -85,12 +85,17 @@ class AnswerModal extends React.Component {
   }
 
   handleBody() {
+
     this.setState({ body: event.target.value })
   }
+
   handleName() {
+
     this.setState({ name: event.target.value })
   }
+
   handleEmail() {
+
     this.setState({ email: event.target.value })
   }
 
@@ -119,6 +124,7 @@ class AnswerModal extends React.Component {
   render() {
 
     if (!this.props.open) return null;
+
     return (
 
       <>

@@ -44,32 +44,32 @@ if ( currentIndex+4 < props.data.length){
     //   console.log("currentIndex>>>",currentIndex)
     //  let filtereddata=props.data.slice(currentIndex,currentIndex+4)
     //  setList(filtereddata)
-     
+
     }
   };
 
 
   return (
     <>
-      <div className={RelateditemsCSS.related_carouselcontainer}>
+      <div className={`${RelateditemsCSS.related_carouselcontainer} scroll-targetRP`}>
         {/* <div className={RelateditemsCSS.related_carousel_wrapper}> */}
           {
-          currentIndex > 0 && 
-            <button onClick={prev} 
+          currentIndex > 0 &&
+            <button onClick={prev}
             className={RelateditemsCSS.left_arrow}
             >
               <i className="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
             </button>
           }
-{/* 
+{/*
           <div className={RelateditemsCSS.related_content_wrapper}>
             <div
               className={RelateditemsCSS.related_carousel_content}
               //style={{ transform: `translateX(25%)` }}
             > */}
                 {/* <button>left</button>
-        <button>right</button> console.log("list at line 70>>>>",list)*/} 
-          {list.map((item,i) => { 
+        <button>right</button> console.log("list at line 70>>>>",list)*/}
+          {list.map((item,i) => {
            if (currentIndex+4>i && currentIndex <=i){
             return (
               <Relateditem
@@ -80,7 +80,7 @@ if ( currentIndex+4 < props.data.length){
               />
             );}
           })}
-          {currentIndex < props.data.length - 4 && <button onClick={next} 
+          {currentIndex < props.data.length - 4 && <button onClick={next}
             className={RelateditemsCSS.right_arrow}
             >
              <i className="fa fa-arrow-right fa-2x" aria-hidden="true"></i>

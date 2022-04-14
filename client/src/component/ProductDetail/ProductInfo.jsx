@@ -15,8 +15,9 @@ const ProductInfo = (props) => {
   const [rating, setRating] = useState(0);
 
   const toReviews = () => {
-    scroller.scrollTo('scroll-target', {
-      smooth: true
+    scroller.scrollTo('scroll-targetRR', {
+      smooth: true,
+      offset: -50
     });
   }
 
