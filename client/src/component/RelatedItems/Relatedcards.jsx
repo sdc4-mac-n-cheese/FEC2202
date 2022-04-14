@@ -3,7 +3,7 @@ import RelateditemsCSS from "../cssModules/RelatedItems.module.css";
 import PropTypes from 'prop-types';
 import Carousel from "./Carousel.jsx";
 import axios from "axios";
-
+import { scroller } from 'react-scroll';
 
 function Relatedcards(props) {
   const [relatedProducts, setRelatedProducts] = useState([])
@@ -61,7 +61,7 @@ function Relatedcards(props) {
         <div
           style={{ "margin-Bottom": "30px" }}
         >
-          <h1 className={RelateditemsCSS.title}>Related Products</h1>
+          <h1 className={`${RelateditemsCSS.title} scroll-targetRP`}>Related Products</h1>
           <div className={RelateditemsCSS.container}>
             <div>
               <Carousel data={props.data} changeProduct={props.changeProduct} changeinRelated={changeinRelated}

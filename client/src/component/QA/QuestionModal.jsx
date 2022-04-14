@@ -51,14 +51,20 @@ class QuestionModal extends React.Component {
   }
 
   handleBody() {
+
     this.setState({ body: event.target.value })
   }
+
   handleName() {
+
     this.setState({ name: event.target.value })
   }
+
   handleEmail() {
+
     this.setState({ email: event.target.value })
   }
+
   // handlePhotos() {
   //   this.setState({ photos: [event.target.value] })
   // }

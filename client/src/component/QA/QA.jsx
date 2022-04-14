@@ -1,4 +1,3 @@
-// import React, { useState } from 'react';
 import React from 'react';
 import ProductCSS from '../cssModules/QA.module.css'
 import axios from 'axios';
@@ -64,8 +63,7 @@ class QA extends React.Component {
   render() {
 
     return (
-
-      <div >
+      <div className='scroll-targetQA'>
         <QuestionList
           className={ProductCSS.main}
           currentQuestions={this.state.currentQuestions}

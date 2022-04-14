@@ -2,6 +2,8 @@
   "scripts": {
     "server-dev": "npx nodemon --watch server server/index.js",
     "client-dev": "npx webpack --config webpack.config.js --mode development --watch",
+    "server-prod": "npx node server",
+    "client-prod": "npx webpack",
     "test": "jest"
   },
   "jest": {

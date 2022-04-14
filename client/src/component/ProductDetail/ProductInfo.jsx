@@ -15,8 +15,9 @@ const ProductInfo = (props) => {
   const [rating, setRating] = useState(0);
 
   const toReviews = () => {
-    scroller.scrollTo('scroll-target', {
-      smooth: true
+    scroller.scrollTo('scroll-targetRR', {
+      smooth: true,
+      offset: -50
     });
   }
 
@@ -55,8 +56,10 @@ const ProductInfo = (props) => {
           <p>${product.default_price}</p>
           <p><strong>STYLE  ></strong>{currStyle.name}</p>
         </div>
-        <StyleSelector styles={props.styles} currStyle={currStyle} onSelect={props.onSelect} />
-        <Cart currStyle={currStyle} addCart={props.addCart} />
+        <div className={ProductCSS.productOptions}>
+          <StyleSelector styles={props.styles} currStyle={currStyle} onSelect={props.onSelect} />
+          <Cart currStyle={currStyle} addCart={props.addCart} />
+        </div>
       </div>
     </>
   );

@@ -258,7 +258,7 @@ class Reviews extends React.Component {
         </div>
     }
     return (
-      <div className='scroll-target'>
+      <div className='scroll-targetRR'>
         {loadingDiv}
       </div>
     )

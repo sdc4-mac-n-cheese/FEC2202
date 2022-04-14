@@ -26,7 +26,6 @@ function Carousel(props) {
     <>
       <div className={RelateditemsCSS.related_carouselcontainer}>
         {
-          //currentIndex > 0 &&
           <button
             onClick={prev}
             className={
@@ -51,7 +50,6 @@ function Carousel(props) {
           }
         })}
         {
-          //currentIndex < props.data.length - 4 &&
           <button
             onClick={next}
             className={
