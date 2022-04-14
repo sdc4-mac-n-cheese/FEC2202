@@ -24,7 +24,6 @@ const VerticalCarousel = (props) => {
   }
 
   const up = () => {
-    // console.log('here', startIndex)
     setStartIndex(startIndex === 0 ? 0 : startIndex - 1);
   }
 
