@@ -20,39 +20,15 @@ class App extends React.Component {
     };
     this.changeProduct = this.changeProduct.bind(this);
     this.changeStyle = this.changeStyle.bind(this);
-    //this.domupdating=this.domupdating.bind(this)
   }
 
-  // componentDidMount(){
-  //  // console.log("window.location>>>>>>>",window.location)
-  //   this.domupdating()
-  //   document.title="Best E-commerce Site"
-  // }
-  // domupdating() {
-  //   //current product based off of current product_id
-  //   axios.get(`/product?product_id=${this.state.currentProduct}`)
-  //     .then(product => {
-  //       this.setState({
-  //         currProductData: product.data
-  //       });
-  //       return axios.get(`/productStyle?product_id=${this.state.currentProduct}`);
-  //     })
-  //     .then(styles => {
-  //       this.setState({
-  //         currStyleData: styles.data.results,
-  //         currStyle: styles.data.results[0]
-  //       });
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
   componentDidMount() {
-    //current product based off of current product_id
+ 
     axios.get(`/product?product_id=${this.state.currentProduct}`)
       .then(product => {
         this.setState({
           currProductData: product.data,
-          // currentProduct:product.data.id
+
         });
         return axios.get(`/productStyle?product_id=${this.state.currentProduct}`);
       })
@@ -68,17 +44,12 @@ class App extends React.Component {
     this.domupdating(this.state.currentProduct)
 
   }
-  // axios
-  // .get("http://localhost:3000/products")
-  // .then((res)=>{
-  //   this.setState({data:res.data})
-  // })
-  // .catch((err)=>{console.log(err)})
+
 
   //---------------------->
   //another axios call to get all related data info
   domupdating(id) {
-    // console.log("currentproduct line 81",this.state.currentProduct)
+  
     axios
       //hardcoded id number. need to be fixed
       .get("/relatedProduct", {
@@ -87,11 +58,9 @@ class App extends React.Component {
       })
       .then((res) => {
         let relatedProductsData = [];
-        //for loop gather related products data
-        // console.log(res.data);
+
         for (var i = 0; i < res.data.length; i++) {
           let product_id = res.data[i];
-
           axios
             .get("/product", { params: { product_id: product_id } })
             .then((res) => {
@@ -99,27 +68,16 @@ class App extends React.Component {
               axios
                 .get("/productStyle", { params: { product_id: product_id } })
                 .then((styleres) => {
-                  //     console.log("styleres>>>>", styleres.data);
                   //append the image information to the data
                   res.data.image =
                     styleres.data.results[0].photos[0].thumbnail_url;
-                  //  console.log("image", res.data.image);
                   relatedProductsData.push(res.data);
                   this.setState({ relatedProducts: relatedProductsData });
                 })
-
                 .catch((err) => {
                   console.log(err);
                 });
 
-              // console.log("res>>>>>",res.data)
-              // relatedProductsData.push(res.data);
-              //console.log("relatedproductsData>>>>",relatedProductsData)
-              // this.setState({ relatedProducts: relatedProductsData });
-              //  console.log(
-              //    "staterelatedproducts>>>>",
-              //    this.state.relatedProducts
-              //  );
             })
 
             .catch((err) => {
