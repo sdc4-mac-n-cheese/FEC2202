@@ -69,9 +69,10 @@ class RatingsCharacteristics extends React.Component {
 
           {/*Div will add outline to the
           ratings box for viewing clarity*/}
-      <div className={ReviewsCSS.ratingBoxOutline}>
+        {/* add a checkbox here */}
+        <div className={ReviewsCSS.ratingBoxOutline}>
         {this.props.reviewsArr.map((item, idx, arr) => (
-          <span><span onClick={() => {console.log('in the thingy')}}>1</span>
+          <span><span onClick={() => {console.log('in the thingy')}}></span>
             <span className={ProgressBarCSS.starAlign}>{stars[idx]}</span>
             <ProgressBar
               stars={5 - idx}
