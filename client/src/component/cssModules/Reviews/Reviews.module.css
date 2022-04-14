@@ -5,8 +5,9 @@
   border: none;
   color: #525252;
   border: solid;
-  border-width: 1px;
+  border-width: .5px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .buttonsA:hover {
@@ -108,11 +109,12 @@ CSS for the drop down bar
 
 /*formatting for review photos*/
 .reviewImages {
-  height: 300px;
-  width: 200px;
-  -webkit-filter: brightness(90%);
-  object-fit: contain;
   border-radius: 20px;
+  height: 200px;
+  width: 150px;
+  margin-left: 15px;
+  margin-right: 15px;
+  -webkit-filter: brightness(90%);
   z-index: 10;
  }
 
@@ -136,7 +138,7 @@ CSS for the drop down bar
    height: flex;
    border-radius: 20px;
    box-shadow: 30%;
-   box-shadow: rgb(0 0 0 /35%) 0px 5px 15px;
+   box-shadow: #525252 0px 5px 15px;
    display: inline-flexbox;
  }
 
@@ -162,7 +164,7 @@ CSS for the drop down bar
   height: flex;
   border-radius: 20px;
   box-shadow: 30%;
-  box-shadow: rgb(0 0 0 /35%) 0px 5px 15px;
+  box-shadow: #00000059 0px 5px 15px;
   display: inline-flexbox;
 }
 

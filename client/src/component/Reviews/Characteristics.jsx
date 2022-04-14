@@ -75,7 +75,7 @@ class Characteristics extends React.Component {
               <CharacteristicsBar
                 char={char}
                 key={i}
-                bgcolor="#50C878"
+                bgcolor="#525252"
               />
             </span>
           ))}

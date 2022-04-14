@@ -20,14 +20,13 @@ class Reviews extends React.Component {
       reviewsArr: [],
       displayFilters: false,
       sortType: 'relevant',
-      currentRatingFilter: 0,
+      currentRatingFilter: [0, 0, 0, 0, 0],
       helpfulRatings: []
     };
     this.getMetaData = this.getMetaData.bind(this);
     this.getReviewInfo = this.getReviewInfo.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.viewFilters = this.viewFilters.bind(this);
-    // this.selectFilter = this.selectFilter.bind(this);
     this.changeRatingFilter = this.changeRatingFilter.bind(this);
   }
 
@@ -63,6 +62,14 @@ class Reviews extends React.Component {
       .then((result) => {
         var temp = result.data;
 
+        var initialPageFilterFlag = true;
+        for (let i = 0; i < this.state.currentRatingFilter.length; i++) {
+          if (this.state.currentRatingFilter[i] !== 0) {
+            initialPageFilterFlag = false;
+          }
+        }
+
+        if(initialPageFilterFlag) {
         var tempHelpfulness = 0;
         var tempRatings = 0;
         var tempAvg = 0;
@@ -75,12 +82,6 @@ class Reviews extends React.Component {
           temphelpfulRatings.push(temp[i].helpfulness)
         }
 
-        // console.log(temp);
-        // for (let i = 0; i < temphelpfulRatings.length; i++) {
-        //   temp[i].helpfulness = temphelpfulRatings[i];
-        // }
-        // console.log(temp);
-
         tempAvg = tempRatings / ratingCtr;
         tempAvg = tempAvg.toFixed(1);
         // console.log(temphelpfulRatings);
@@ -91,9 +92,7 @@ class Reviews extends React.Component {
             wouldRecommend++;
           }
           tempHelpfulness += temp[i].helpfulness;
-
         }
-
         var recPct = 100 * (wouldRecommend / ratingCtr).toFixed(2);
 
         //getting the star reviews array
@@ -101,7 +100,6 @@ class Reviews extends React.Component {
         for (var i = 0; i < temp.length; i++) {
           tempReviewsArr[temp[i].rating - 1]++
         }
-        // console.log(tempReviewsArr);
 
         //setting up initial render array
         var tempDisplayArr = [];
@@ -113,17 +111,90 @@ class Reviews extends React.Component {
           tempDisplayArr.push(temp[0], temp[1]);
           tempDisplay = 2;
         }
-        // console.log(tempDisplay);
+      } else if (!initialPageFilterFlag) {
+          var newTemp = [];
+          var getStarsArr = [];
+          for (let i = 0; i < this.state.currentRatingFilter.length; i++) {
+            if (this.state.currentRatingFilter[i] !== 0) {
+              getStarsArr.push(i + 1);
+            }
+          }
+          for (let j = 0; j < getStarsArr.length; j++) {
+            //getting the new array to work with, filtered
+            for (let k = 0; k < temp.length; k++) {
+              // console.log(6 - getStarsArr[j])
+              if ((6 - getStarsArr[j]) === temp[k].rating) {
+                newTemp.push(temp[k]);
+              }
+            }
+          }
+
+          var filteredtempHelpfulness = 0;
+          var filteredtempRatings = 0;
+          var filteredtempAvg = 0;
+          var filteredratingCtr = 0;
+          var filteredtemphelpfulRatings = [];
+          var actualFilteredRatingCtr = 0;
+          for (let i = 0; i < temp.length; i++) {
+            filteredratingCtr++;
+            filteredtempRatings += temp[i].rating;
+            filteredtemphelpfulRatings.push(temp[i].helpfulness)
+          }
+
+          filteredtempAvg = filteredtempRatings / filteredratingCtr;
+          filteredtempAvg = filteredtempAvg.toFixed(1);
+
+          for (let i = 0; i < newTemp.length; i++) {
+            actualFilteredRatingCtr++;
+          }
+          // console.log('ctr and avg',filteredratingCtr, filteredtempAvg);
+
+          var filteredwouldRecommend = 0;
+          for (let i = 0; i < temp.length; i++) {
+            if (temp[i].recommend === true) {
+              filteredwouldRecommend++;
+            }
+            filteredtempHelpfulness += temp[i].helpfulness;
+          }
+          var filteredrecPct = 100 * (filteredwouldRecommend / filteredratingCtr).toFixed(2);
+
+          // console.log('filterred helpfulness would rec and recPct', filteredtempHelpfulness, filteredwouldRecommend, filteredrecPct)
+
+          var filteredtempReviewsArr = [0, 0, 0, 0, 0];
+          for (let i = 0; i < newTemp.length; i++) {
+            filteredtempReviewsArr[newTemp[i].rating - 1]++
+          }
+          // console.log(filteredtempReviewsArr);
+
+          var filteredtempDisplayArr = [];
+          var filteredtempDisplay = 0
+          if (filteredtempReviewsArr.length === 1) {
+            filteredtempDisplayArr.push(temp[0]);
+            filteredtempDisplay = 1;
+          } else {
+            filteredtempDisplayArr.push(newTemp[0], newTemp[1]);
+            filteredtempDisplay = 2;
+          }
+          console.log(filteredtempDisplayArr, filteredtempDisplay, filteredtempReviewsArr)
+
+        }
+
+        // console.log(newTemp);
+        var tempBarRating = filteredratingCtr;
+        if (actualFilteredRatingCtr) {
+          filteredratingCtr = actualFilteredRatingCtr
+        }
         this.setState({
-          reviewData: temp,
-          ratingAvg: tempAvg,
-          totalRatings: ratingCtr,
-          wouldRecommend: recPct,
-          helpfulness: tempHelpfulness,
-          reviewsArr: tempReviewsArr,
-          displayArr: tempDisplayArr,
-          currentlyDisplaying: tempDisplay,
-          helpfulRatings: temphelpfulRatings
+          reviewData: newTemp || temp,
+          ratingAvg: filteredtempAvg || tempAvg,
+          barRatings: tempBarRating || ratingCtr,
+          totalRatings: filteredratingCtr || ratingCtr,
+          wouldRecommend: filteredrecPct || recPct,
+          helpfulness: filteredtempHelpfulness || tempHelpfulness,
+          reviewsArr: filteredtempReviewsArr || tempReviewsArr,
+          displayArr: filteredtempDisplayArr || tempDisplayArr,
+          currentlyDisplaying: filteredtempDisplay || tempDisplay,
+          helpfulRatings: filteredtemphelpfulRatings || temphelpfulRatings
         })
       })
       .catch((err) => {
@@ -149,20 +220,15 @@ class Reviews extends React.Component {
   }
 
   viewFilters(e) {
-    // console.log('in the viewFilter handler');
     var toggler = !this.state.displayFilters;
-    // console.log(this.state.displayFilters, 'to', toggler);
     this.setState({ displayFilters: toggler })
   }
 
-  // selectFilter(e) {
-  //   console.log(e.target.value);
+  changeRatingFilter(index, newRating) {
 
-  // }
-
-  changeRatingFilter() {
+    let currentRevs = this.state.currentRatingFilter;
+    currentRevs[index] = newRating;
     this.setState({
-      currentRatingFilter: 0,
       sortType: 'relevant'
     }, () => { this.getReviewInfo() })
   }
@@ -212,9 +278,10 @@ class Reviews extends React.Component {
                 ratingAvg={Number(this.state.ratingAvg)}
                 wouldRecommend={this.state.wouldRecommend}
                 reviewsArr={this.state.reviewsArr}
-                totalRatings={this.state.totalRatings}
+                totalRatings={this.state.barRatings}
                 changeRatingFilter={this.changeRatingFilter}
                 id={this.props.id}
+                filterArr={this.state.currentRatingFilter}
               />
               <p><strong className={ReviewsCSS.characteristicHeader}>About the product:</strong></p>
               <div className={ReviewsCSS.characteristicsContainer}>
