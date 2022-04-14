@@ -9,13 +9,13 @@
 .searchBar {
 
   height: 30px;
-  width: 1293px;
+  width: 100px !important;
+  min-width: 97.5%;
   font-size: 17px;
   border-style: solid;
+  border-width: medium;
   border-color: #525252;
   border-radius: 50px;
-  display: flex;
-  min-width: 100px;
 }
 
 .questions {
@@ -28,6 +28,11 @@
   width: flex;
 }
 
+.questionBody {
+
+  /* max-width: 800px; */
+}
+
 .answers {
 
   border-bottom: solid 1px;
@@ -38,6 +43,7 @@
 .helpfulQuestion {
 
   float: right;
+  flex-wrap: wrap;
 }
 
 .helpfulQuestion:hover,
@@ -124,12 +130,12 @@
 
 .showMore:hover,
 .showMore:focus {
+
   color: rgb(17, 16, 16);
   background-color:rgb(121, 118, 118, 0.1);
   border-radius: 15px;
   text-decoration: none;
   cursor: pointer;
-
 }
 
 .itemConfiguration {
@@ -206,6 +212,8 @@
 
 .imageDetails {
 
+  position: relative;
+  left: 20px;
   border-radius:  20px;
   max-width: 150px;
   height: 120px;
@@ -213,21 +221,15 @@
 
 .imageDetails:hover {
 
-  transform: scale(2);
+  transform: scale(1.5);
 }
 
 .answerBody {
 
   font-size: large;
   font-weight: bold;
+  max-width: 800px;
 }
-
-/* .pictureScroller {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  height:100px;
-  width: 300px
-} */
 
 .photoCount {
 

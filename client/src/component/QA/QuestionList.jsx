@@ -27,8 +27,10 @@ class QuestionList extends React.Component {
 
   componentDidUpdate(prevProps) {
 
-    if (this.props.currentQuestions !== prevProps.currentQuestions)
+    if (this.props.currentQuestions !== prevProps.currentQuestions) {
+
       this.setState({ count: 2 })
+    }
   }
 
   showMore() {
@@ -39,7 +41,6 @@ class QuestionList extends React.Component {
   handleSearch() {
 
     this.setState({ searchQuery: event.target.value })
-
   }
 
   render() {
@@ -53,7 +54,8 @@ class QuestionList extends React.Component {
       return (
 
         <div>
-          <span className={ProductCSS.main}>Questions and Answers</span>
+          <br/>
+          <span className={ProductCSS.main}>Questions & Answers</span>
           <br />
           <input
             className={ProductCSS.searchBar}
@@ -104,7 +106,8 @@ class QuestionList extends React.Component {
       return (
 
         <div>
-          <span className={ProductCSS.main}>Questions and Answers</span>
+          <br />
+          <span className={ProductCSS.main}>Questions & Answers</span>
           <br />
           <input
             className={ProductCSS.searchBar}

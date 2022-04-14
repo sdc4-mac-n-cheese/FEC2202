@@ -2,8 +2,9 @@
 *bundle.js
 config.js
 node_modules/
+coverage/
 <<<<<<< HEAD
-coverage/
+first.pem
 =======
-coverage/
+FEC-HR.pem
 >>>>>>> main

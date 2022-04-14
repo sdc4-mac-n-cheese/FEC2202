@@ -1,4 +1,7 @@
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 2000;
   width: 100%;
   height: 50px;
   background-color: #525252;
@@ -31,4 +34,68 @@
   color: white;
   font-weight: bold;
   font-size: medium;
+}
+
+.PD {
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  left: 110px;
+  font-weight: bold;
+  color: white;
+}
+
+.PD:hover,
+.PD:focus {
+
+  color: rgba(0, 0, 0, 0.612);
+  cursor: pointer;
+}
+
+.RP {
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  left: 160px;
+  font-weight: bold;
+  color: white;
+}
+
+.RP:hover,
+.RP:focus {
+
+  color: rgba(0, 0, 0, 0.612);
+  cursor: pointer;
+}
+
+.QA {
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  left: 210px;
+  font-weight: bold;
+  color: white;
+}
+
+.QA:hover,
+.QA:focus {
+
+  color: rgba(0, 0, 0, 0.612);
+  cursor: pointer;
+}
+
+.RR {
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  left: 260px;
+  font-weight: bold;
+  color: white;
+}
+
+.RR:hover,
+.RR:focus {
+
+  color: rgba(0, 0, 0, 0.612);
+  cursor: pointer;
 }

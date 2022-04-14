@@ -61,7 +61,7 @@ class Answers extends React.Component {
 
       <div className={ProductCSS.answers}>
         <div>
-          <span className={ProductCSS.answerBody} >{this.props.answer.body}</span>
+          <p className={ProductCSS.answerBody} >{this.props.answer.body}</p>
         </div>
         <span className={ProductCSS.pictureScroller}>
           {this.props.answer.photos.map((photo, index) => (
