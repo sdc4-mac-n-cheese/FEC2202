@@ -9,7 +9,7 @@ p {
 
 .main {
   display: flex;
-  margin: 0 3% 0 7%;
+  justify-content: center;
 }
 
 .main button:hover {
@@ -345,7 +345,7 @@ p {
 }
 
 /* responsive styles */
-@media only screen and (max-width: 1525px) {
+@media only screen and (max-width: 1365px) {
   .main {
     flex-wrap: wrap;
   }
@@ -387,7 +387,7 @@ p {
   }
 }
 
-@media only screen and (max-width: 1162px) {
+@media only screen and (max-width: 1058px) {
   .selectorContainer {
     margin: auto;
   }
