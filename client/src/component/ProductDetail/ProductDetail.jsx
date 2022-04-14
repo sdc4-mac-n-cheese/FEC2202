@@ -7,9 +7,6 @@ import ProductInfo from './ProductInfo.jsx';
 import Marketing from './Marketing.jsx';
 
 const ProductDetail = (props) => {
-  //product_id should be passed in through props
-  // const [currProduct, setCurrProduct] = useState({});
-  // const [styleResults, setStyleResults] = useState([]);
   const [currStyle, setCurrStyle] = useState({});
 
   let currProduct = props.currProductData || {};
@@ -23,7 +20,6 @@ const ProductDetail = (props) => {
   }, [styleResults]);
 
   const selectStyle = function (id) {
-    // console.log('invoked', id);
     styleResults.forEach(style => {
       if (style.style_id === id) {
         setCurrStyle(style);
@@ -56,7 +52,6 @@ ProductDetail.propTypes = {
   currProductData: PropTypes.object,
   currStyleData: PropTypes.array,
   changeStyle: PropTypes.func
-  //test comment
 }
 
 
