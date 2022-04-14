@@ -154,27 +154,39 @@ padding: 8px;
 
 .left_arrow, .right_arrow {
   /* position:relative; */
- display: absolute;
+ /* display: absolute;
+  */
+  /* display:flex;
+  position: fixed; */
   z-index: 100;
-  /* top: 1500px;
+  top: 1500px;
+  /* 
   transform: translateY(-50%);
   width: 48px;
   height: 48px;
   border-radius: 24px; */
   background-color:white;
   border-color: transparent;
-
-
 }
 
 .left_arrow {
   left: 24px;
 }
 
+.empty_left_arraw{
+  color:transparent;
+  background-color: transparent;
+  border: transparent
+}
 .right_arrow {
   right: 24px;
 }
 
+.empty_right_arraw{
+  color:transparent;
+  background-color: transparent;
+  border: transparent
+}
 .title{
   margin: 0;
   padding: 0;

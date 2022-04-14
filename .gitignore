@@ -2,8 +2,5 @@
 *bundle.js
 config.js
 node_modules/
-<<<<<<< HEAD
 coverage/
-=======
-coverage/
->>>>>>> main
+first.pem
