@@ -55,8 +55,10 @@ const ProductInfo = (props) => {
           <p>${product.default_price}</p>
           <p><strong>STYLE  ></strong>{currStyle.name}</p>
         </div>
-        <StyleSelector styles={props.styles} currStyle={currStyle} onSelect={props.onSelect} />
-        <Cart currStyle={currStyle} addCart={props.addCart} />
+        <div className={ProductCSS.productOptions}>
+          <StyleSelector styles={props.styles} currStyle={currStyle} onSelect={props.onSelect} />
+          <Cart currStyle={currStyle} addCart={props.addCart} />
+        </div>
       </div>
     </>
   );
