@@ -39,7 +39,7 @@ const ProductDetail = (props) => {
 
   return (
     <>
-      < div className={ProductCSS.main} >
+      < div className={`${ProductCSS.main} scroll-targetPD`} >
         {Object.keys(currStyle).length && <Carousel currStyle={currStyle} />}
         {Object.keys(currProduct).length && styleResults.length && currStyle && <ProductInfo product={currProduct} currStyle={currStyle} styles={styleResults} onSelect={selectStyle} addCart={addCart} />}
       </div >

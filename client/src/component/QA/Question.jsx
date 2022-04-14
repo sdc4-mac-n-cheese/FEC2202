@@ -4,6 +4,7 @@ import ProductCSS from '../cssModules/QA.module.css';
 import axios from 'axios';
 import AnswerModal from './AnswerModal.jsx';
 import PropTypes from 'prop-types';
+import { scroller } from 'react-scroll';
 
 class Question extends React.Component {
   constructor(props) {
@@ -28,6 +29,12 @@ class Question extends React.Component {
   }
 
   showMore() {
+
+    scroller.scrollTo('topAnswer', {
+      smooth: true,
+      offset: -125,
+      duration: 300
+    })
 
     this.setState({ count: this.props.question.answers.length })
   }
@@ -71,7 +78,7 @@ class Question extends React.Component {
       return (
 
         <div className={ProductCSS.questions}>
-          <div>Q: {this.props.question.question_body}
+          <div className={ProductCSS.questionBody}>Q: {this.props.question.question_body}
             <a
               className={ProductCSS.helpfulQuestion}
               onClick={this.questionWasHelpful}
@@ -110,7 +117,7 @@ class Question extends React.Component {
       return (
 
         <div className={ProductCSS.questions}>
-          <div>Q: {this.props.question.question_body}
+          <div className={ProductCSS.questionBody}>Q: {this.props.question.question_body}
             <a
               className={ProductCSS.addAnswer}
               onClick={() => this.openAnswerModal(true)}
@@ -148,7 +155,7 @@ class Question extends React.Component {
       return (
 
         <div className={ProductCSS.questions}>
-          <div>Q: {this.props.question.question_body}
+          <div className={ProductCSS.questionBody}>Q: {this.props.question.question_body}
             <a
               className={ProductCSS.addAnswer}
               onClick={() => this.openAnswerModal(true)}
@@ -169,7 +176,7 @@ class Question extends React.Component {
               Helpful? Yes ({this.state.helpfulCount})
             </a>
           </div>
-          <div> A:
+          <div className='topAnswer'> A:
             {sortedAnswers.slice(0, this.state.count).map((answer) => (
 
               <Answers
@@ -189,7 +196,7 @@ class Question extends React.Component {
       return (
 
         <div className={ProductCSS.questions}>
-          <div>Q: {this.props.question.question_body}
+          <div className={ProductCSS.questionBody}>Q: {this.props.question.question_body}
             <a
               className={ProductCSS.addAnswer}
               onClick={() => this.openAnswerModal(true)}
