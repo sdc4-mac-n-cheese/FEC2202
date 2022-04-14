@@ -6,7 +6,6 @@ import { starReview } from "../functions.jsx";
 
 function Outfitcard(props) {
   const [averagescore, setAveragescore] = useState(0);
-  //const [starreview, setStarreivew]=useState(<div></div>)
 
   useEffect(() => {
     let isMounted = true;
@@ -23,7 +22,6 @@ function Outfitcard(props) {
             counter += Number(num);
             sumscore += Number(star) * Number(num);
           }
-          //console.log("counter,sumscore",counter,sumscore)
           average = sumscore / counter;
           setAveragescore(average);
         }
@@ -33,15 +31,12 @@ function Outfitcard(props) {
       });
       return () => {isMounted = false};
   }, []);
-  //console.log("averagescore>>>>",averagescore)
+
   const handledelete = () => {
     let collection = JSON.parse(localStorage.getItem("collection"));
-    // console.log("getting inforamtion from localstorage>>>>",collection)
-    // console.log(props.item.id)
     let newcollection = collection.filter(
       (collectitem) => props.item.id !== collectitem.id
     );
-    //console.log("after filter collection",newcollection)
     localStorage.setItem("collection", JSON.stringify(newcollection));
     props.handleUpdate();
     
@@ -62,12 +57,6 @@ function Outfitcard(props) {
       <p>{props.item.category}</p>
       <h3 className={OutfitCSS.outfitname}>{props.item.name}</h3>
       {starReview(averagescore, OutfitCSS)}
-
-      {/* <h2>review star placeholder</h2> */}
-      {/* <div style={{"background-color":"yellow"}}>
-      {<div className={OutfitCSS.Stars} style={{"--rating": 2.3}} aria-label={"Rating of this product is 2.3 out of 5."}></div> }
-      <div style={{"backgroud":"linear-gradient(90deg, #eee 30%, #fff 70%"}}>☆☆☆☆☆ </div>  
-      </div>*/}
       <span className={OutfitCSS.outfitprice}>
         <strong>${props.item.default_price}</strong>
       </span>

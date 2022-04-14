@@ -1,128 +1,124 @@
 .container {
-    display: flex;
-    overflow-y: hidden;
-    overflow-x: scroll;
-    padding: 20px;
-    padding-bottom: 30px;
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  padding: 20px;
+  padding-bottom: 30px;
+  margin-left: 95px;
+}
 
-  }
+.imageparent {
+  height: 305px;
+  width: 305px;
+  padding: 0;
+  margin: 0;
+}
+.image {
+  height: 305px;
+  width: 305px;
+  object-fit: cover;
+  border-radius: 5%;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+.card {
+  position: relative;
+  width: 305px;
+  height: 375px;
+  background-color: transparent;
+  border: 1px;
+  border-radius: 5%;
+  border-color: black;
+  margin-right: 15px;
+  padding: 0px;
+  transition: transform 450ms;
+  margin-bottom: 30px;
+}
+.card:hover {
+  transform: scale(1.05);
+}
 
-  .imageparent{
-    height: 305px;
-    width: 305px;
-    padding: 0;
-    margin: 0;
+.outfitcardbutton {
+  border: transparent;
+  background: transparent;
 
-  }
-  .image {
-    height: 305px;
-    width: 305px;
-    object-fit: cover;
-    border-radius: 5%;
-    margin-bottom: 0px;
-    padding-bottom: 0px;
-  }
-  .card {
-    position:relative;
-      width: 305px;
-    height: 375px;
-      background-color:transparent;
-      border: 1px;
-      border-radius: 5%;
-      border-color: black;
-      margin-right: 30px;
-      padding: 0px;
-      transition: transform 450ms;
-margin-bottom: 30px;
-    }
-    .card:hover {
-        transform: scale(1.05);
-      }
-    
-      .outfitcardbutton {
-        border:transparent;
-        background:transparent; 
-   
-        position: absolute;
-        left: 5px;
-        top:5px;
-       z-index: 1;
-       background-color:#ffffff36;
-       border-radius: 50%;
-
-
-      }
-  .addbutton{
-    position: relative;
-    left:35%;
-    top:30%;
-    background-color:#ffffff8a;
-    border: transparent;
-    z-index: 1;
-    border-radius: 50%;
-  }
-  .firstcard{
-    flex-shrink: 0px;
-    position:relative;
-    width: 305px;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  z-index: 1;
+  background-color: #ffffff36;
+  border-radius: 50%;
+}
+.addbutton {
+  position: relative;
+  left: 35%;
+  top: 30%;
+  background-color: #ffffff8a;
+  border: transparent;
+  z-index: 1;
+  border-radius: 50%;
+}
+.firstcard {
+  flex-shrink: 0px;
+  position: relative;
+  width: 305px;
   height: 385px;
-    background-color:rgb(121, 118, 118, 0.1);
-    border: 1px;
-    border-radius: 5%;
-    border-color: black;
-    margin-right: 30px;
-    padding: 0px;
-    transition: transform 450ms;
-  }
-  .firstcard:hover {
-    transform: scale(1.05);
-  }
-      .text{
-         position: absolute;
-          top: 60%;
-          left:10%;
-          right: 10%;
-          bottom: 50%;
-          text-align: center;
-          margin:0px;
-          padding: 0px; 
-      }
-      .outfitname{
-        margin-left: 7px !important;
-        padding-left: 10px;
-        padding: 3px;
-        margin:0px;
-        line-height: 0.7;
-      
-      }
-      .card p{
-        margin-top: 15px;
-        margin-Bottom: 0px; 
-        padding-left: 6px;
-        line-height:0.7;
-      }
-      .starreview{
-        background-color:transparent;
-        margin-top: 3px;
-        margin-left: 8px;
-        padding: 0;
-        margin-bottom: 0px;
-      }
-      .title{
-        margin:20px,0,0,0;
-        padding: 0;
-        line-height: 0.7;
+  min-width: 305px;
+  background-color: rgb(121, 118, 118, 0.1);
+  border: 1px;
+  border-radius: 5%;
+  border-color: black;
+  margin-right: 5px;
+  padding: 0px;
+  transition: transform 450ms;
+}
+.firstcard:hover {
+  transform: scale(1.05);
+}
+.text {
+  position: absolute;
+  top: 60%;
+  left: 10%;
+  right: 10%;
+  bottom: 50%;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+}
+.outfitname {
+  margin-left: 7px !important;
+  padding-left: 10px;
+  padding: 3px;
+  margin: 0px;
+  line-height: 0.7;
+}
+.card p {
+  margin-top: 15px;
+  margin-bottom: 0px;
+  padding-left: 6px;
+  line-height: 0.7;
+}
+.starreview {
+  background-color: transparent;
+  margin-top: 3px;
+  margin-left: 8px;
+  padding: 0;
+  margin-bottom: 0px;
+}
+.title {
+  margin: 20px, 0, 0, 0;
+  padding: 0;
+  line-height: 0.7;
+}
 
-      }
+.starreview i {
+  margin: 0px;
+  padding: 0px;
+  line-height: 0.7;
+}
 
-      .starreview i{
-        margin: 0px;
-        padding: 0px;
-        line-height: 0.7;
-        }
-
-        .outfitprice{
-          margin: 0;
-          padding:0;
-          line-height: 0.7;
-        }
+.outfitprice {
+  margin: 0;
+  padding: 0;
+  line-height: 0.7;
+}
