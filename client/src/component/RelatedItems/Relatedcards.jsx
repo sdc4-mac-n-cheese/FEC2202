@@ -61,7 +61,7 @@ function Relatedcards(props) {
         <div
           style={{ "margin-Bottom": "30px" }}
         >
-          <h1 className={RelateditemsCSS.title}>Related products</h1>
+          <h1 className={RelateditemsCSS.title}>Related Products</h1>
           <div className={RelateditemsCSS.container}>
             <div>
               <Carousel data={props.data} changeProduct={props.changeProduct} changeinRelated={changeinRelated}
