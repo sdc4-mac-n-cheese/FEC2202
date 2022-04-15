@@ -32,7 +32,7 @@ class Question extends React.Component {
 
     scroller.scrollTo('topAnswer', {
       smooth: true,
-      offset: -125,
+      offset: -590,
       duration: 300
     })
 
@@ -176,7 +176,7 @@ class Question extends React.Component {
               Helpful? Yes ({this.state.helpfulCount})
             </a>
           </div>
-          <div className='topAnswer'> A:
+          <div> A:
             {sortedAnswers.slice(0, this.state.count).map((answer) => (
 
               <Answers
@@ -187,7 +187,7 @@ class Question extends React.Component {
               />
             ))}
             <br />
-            <span className={ProductCSS.showMore} onClick={this.showMore}>Load More Answers</span>
+            <span className={`${ProductCSS.showMore} topAnswer`} onClick={this.showMore}>Load More Answers</span>
           </div>
         </div>
       )

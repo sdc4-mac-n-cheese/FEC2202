@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ProductCSS from '../cssModules/QA.module.css'
 import axios from 'axios';
 import QuestionList from './QuestionList.jsx';
 import PropTypes from 'prop-types';
 
-class QA extends React.Component {
+class QA extends Component {
   constructor(props) {
     super(props);
     this.state = {

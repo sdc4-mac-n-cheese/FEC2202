@@ -3,6 +3,7 @@ import NavCSS from './cssModules/NavBar.module.css';
 import { scroller } from 'react-scroll';
 
 const toReviews = () => {
+
   scroller.scrollTo('scroll-targetRR', {
     smooth: true,
     offset: -50
@@ -10,6 +11,7 @@ const toReviews = () => {
 }
 
 const toDetail = () => {
+
   scroller.scrollTo('scroll-targetPD', {
     smooth: true,
     offset: -500
@@ -17,7 +19,7 @@ const toDetail = () => {
 }
 
 const toQuestions = () => {
-  // console.log('clicked')
+
   scroller.scrollTo('scroll-targetQA', {
     smooth: true,
     offset: -65
@@ -25,7 +27,7 @@ const toQuestions = () => {
 }
 
 const toRelated = () => {
-  console.log('clicked')
+
   scroller.scrollTo('scroll-targetRP', {
     smooth: true,
     offset: -140
@@ -33,6 +35,7 @@ const toRelated = () => {
 }
 
 const NavBar = () => {
+
   return (
     <div className={NavCSS.navbar}>
       <h1 className={NavCSS.logo}>ATELIER</h1>
