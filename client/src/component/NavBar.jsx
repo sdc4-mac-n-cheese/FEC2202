@@ -10,6 +10,7 @@ const toTarget = (target, offset) => {
 }
 
 const NavBar = () => {
+
   return (
     <div className={NavCSS.navbar}>
       <h1 className={NavCSS.logo}>ATELIER</h1>

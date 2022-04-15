@@ -13,6 +13,7 @@
 }
 
 .logo {
+
   display: inline-block;
   position: relative;
   bottom: 2px;
@@ -38,6 +39,7 @@
 }
 
 .search {
+
   position: relative;
   bottom: 5px;
   right: 10px;
@@ -47,6 +49,7 @@
 }
 
 .search input {
+
   background-color: #525252;
   outline: 0;
   border-width: 0 0 2px;

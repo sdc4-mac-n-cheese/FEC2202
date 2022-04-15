@@ -28,11 +28,6 @@
   width: flex;
 }
 
-.questionBody {
-
-  /* max-width: 800px; */
-}
-
 .answers {
 
   border-bottom: solid 1px;
@@ -222,6 +217,7 @@
 .imageDetails:hover {
 
   transform: scale(1.5);
+  z-index: 3000;
 }
 
 .answerBody {
@@ -238,3 +234,10 @@
   left: 20px;
   top: -10px;
 }
+
+/* .pictureScroller {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height:100px;
+  width: 300px
+} */
