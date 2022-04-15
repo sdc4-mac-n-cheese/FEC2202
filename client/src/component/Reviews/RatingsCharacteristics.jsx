@@ -10,6 +10,7 @@ class RatingsCharacteristics extends React.Component {
     this.state = {
     };
     this.handleClick = this.handleClick.bind(this);
+    this.resetReviews = this.resetReviews.bind(this);
   }
 
   componentDidMount() {
@@ -25,29 +26,37 @@ class RatingsCharacteristics extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-
-    console.log('props.filterArr[e.target.id]', this.props.filterArr[e.target.id])
-    console.log('id', e.target.id);
+    console.log(e.target.checked);
     if (this.props.filterArr[4 - e.target.id] === 0) {
-      console.log('in 0')
       this.setState({
         [e.target.id]: e.target.checked
       },
         () => {
           this.props.changeRatingFilter(4 - e.target.id, 1);
-          // this.props.filterArr[4 - e.target.id] = 1
         }
       );
     } else if (this.props.filterArr[4 - e.target.id] === 1) {
-      console.log('in 1')
       this.setState({
         [e.target.id]: e.target.checked
       },
         () => {
           this.props.changeRatingFilter(4 - e.target.id, 0);
-          // this.props.filterArr[4 - e.target.id] = 0;
         })
     }
+  }
+
+  resetReviews(e) {
+    e.preventDefault();
+    for (let i = 0; i < this.props.filterArr.length; i++) {
+      if (this.state[i] === true) {
+        this.setState({
+          [i]: false
+        }, () => {
+          this.props.changeRatingFilter(i, 0);
+        })
+      }
+    }
+
   }
 
   render() {
@@ -122,6 +131,7 @@ class RatingsCharacteristics extends React.Component {
             <span>
               <input
                 id={4 - idx}
+                className={ProgressBarCSS.filterBoxes}
                 for='checkedbox'
                 type="checkbox"
                 onClick={this.handleClick}
@@ -138,7 +148,11 @@ class RatingsCharacteristics extends React.Component {
               />
             </span>
           ))}
-        </div>
+
+          {/* <button
+            className={ProgressBarCSS.resetFilters}
+            onClick={this.resetReviews}>Reset Filters</button>
+        </div> */}
       </>
     }
     return (

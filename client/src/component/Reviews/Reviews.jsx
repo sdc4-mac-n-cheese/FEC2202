@@ -225,14 +225,9 @@ class Reviews extends React.Component {
   }
 
   changeRatingFilter(index, newRating) {
-
-    // let currentRevs = this.state.currentRatingFilter;
-    // console.log('in main index',index,'\nin main newrating', newRating)
-    // currentRevs[index] = newRating;
-
     let tempRevs = [...this.state.currentRatingFilter];
     tempRevs[index] = newRating;
-
+    console.log(index, newRating)
     this.setState({
       sortType: 'relevant',
       currentRatingFilter: tempRevs
