@@ -5,6 +5,7 @@
   border-radius: 20px;
   margin: 0%;
   border-style: solid;
+  /* cursor: pointer; */
 }
 
 .fillerStyles {
@@ -28,6 +29,46 @@
 }
 
 .fontType {
-  font-weight: bold;
+  font-weight:bolder;
+  font-size: xx-large;
+}
+
+.filterText {
+  font-weight:bold;
   font-size: large;
+  text-align: left;
+  font-style: italic;
+}
+
+.resetFilter {
+  display: inline-block;
+  padding: 12px 8px;
+  background-color: transparent;
+  border: none;
+  color: #525252;
+  border: solid;
+  border-width: .5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.resetFilters {
+  display: inline-block;
+  padding: 12px 8px;
+  background-color: transparent;
+  border: none;
+  color: #525252;
+  border: solid;
+  border-width: .5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.resetFilters:hover {
+  /* background-color:dimgray; */
+  background-color:rgb(121, 118, 118, 0.1);
+}
+
+.filterBoxes:hover {
+  cursor:pointer;
 }

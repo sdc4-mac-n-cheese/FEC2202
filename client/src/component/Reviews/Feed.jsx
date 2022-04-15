@@ -30,20 +30,12 @@ class Feed extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // console.log('prevProps:', prevProps.id, '\ncurrent id:', this.props.id)
     if (this.state.id !== this.props.id) {
       this.setState({
         id: this.props.id
       }, () => { this.componentDidMount });
     }
   }
-  // componentDidUpdate(prevProps) {
-  //   console.log('in feed:', '\nthis.props.id: ', this.props.id, '\nprevProps.id:', prevProps.id)
-  //   if (this.props.id !== prevProps.id) {
-  //     this.componentDidMount()
-  //   }
-
-  // }
 
   getTwoMore() {
     var tempCtr = this.state.reviewCtr + 2;
@@ -56,7 +48,6 @@ class Feed extends React.Component {
 
   render() {
 
-    //Hides the more reviews button when all are currently displayed
     let hideMoreReviewsButton;
     if (this.state.reviewCtr >= this.props.totalRatings) {
       hideMoreReviewsButton = <></>
@@ -67,7 +58,6 @@ class Feed extends React.Component {
     >More Reviews</button>
     }
 
-    //Loads empty reviews section, allows user to add a first comment
     if (this.props.totalRatings === 0) {
       return (
         <div>This item has no reviews!
@@ -93,8 +83,6 @@ class Feed extends React.Component {
                 <FeedItem
                   reviewData={data}
                   key={i}
-                  // helpfulRating={this.props.helpfulRatings[Number(i)]}
-                  // helpfulRating={this.props.helpfulRatings}
                 />
               ))}
             </ul>
@@ -121,7 +109,6 @@ Feed.propTypes = {
   totalRatings: PropTypes.number,
   reviewData: PropTypes.array,
   id: PropTypes.number,
-  // helpfulRatings: PropTypes.array
 }
 
 export default Feed;
