@@ -8,6 +8,11 @@ class RatingsCharacteristics extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      '0': false,
+      '1': false,
+      '2': false,
+      '3': false,
+      '4': false,
     };
     this.handleClick = this.handleClick.bind(this);
     this.resetReviews = this.resetReviews.bind(this);
@@ -15,17 +20,12 @@ class RatingsCharacteristics extends React.Component {
 
   componentDidMount() {
     this.setState({
-      '0': false,
-      '1': false,
-      '2': false,
-      '3': false,
-      '4': false,
       reviewsArr: this.props.reviewsArr
     })
   }
 
   handleClick(e) {
-    e.preventDefault();
+    // e.preventDefault();
     console.log(e.target.checked);
     if (this.props.filterArr[4 - e.target.id] === 0) {
       this.setState({
@@ -46,16 +46,20 @@ class RatingsCharacteristics extends React.Component {
   }
 
   resetReviews(e) {
-    e.preventDefault();
-    for (let i = 0; i < this.props.filterArr.length; i++) {
-      if (this.state[i] === true) {
-        this.setState({
-          [i]: false
-        }, () => {
-          this.props.changeRatingFilter(i, 0);
-        })
-      }
-    }
+    // console.log('reset clicked');
+    // this.setState({
+    //   '0': false,
+    //   '1': false,
+    //   '2': false,
+    //   '3': false,
+    //   '4': false,
+    // }, () => {
+    //   this.props.changeRatingFilter(4, 0);
+    //   this.props.changeRatingFilter(3, 0);
+    //   this.props.changeRatingFilter(2, 0);
+    //   this.props.changeRatingFilter(1, 0);
+    //   this.props.changeRatingFilter(0, 0);
+    // })
 
   }
 
@@ -151,8 +155,8 @@ class RatingsCharacteristics extends React.Component {
 
           {/* <button
             className={ProgressBarCSS.resetFilters}
-            onClick={this.resetReviews}>Reset Filters</button>
-        </div> */}
+            onClick={this.resetReviews}>Reset Filters</button> */}
+        </div>
       </>
     }
     return (
