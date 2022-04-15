@@ -8,9 +8,9 @@ module.exports = {
     filename: 'bundle.js',
   },
   module: {
-    plugins: [new CompressionPlugin({
-      include: /\/.(js|jsx)$/,
-    })],
+    // plugins: [new CompressionPlugin({
+    //   include: /\/.(js|jsx)$/,
+    // })],
     rules: [
       {
         test: /\.(js|jsx)$/,

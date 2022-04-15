@@ -2,33 +2,10 @@ import React from 'react';
 import NavCSS from './cssModules/NavBar.module.css';
 import { scroller } from 'react-scroll';
 
-const toReviews = () => {
-  scroller.scrollTo('scroll-targetRR', {
+const toTarget = (target, offset) => {
+  scroller.scrollTo(target, {
     smooth: true,
-    offset: -50
-  });
-}
-
-const toDetail = () => {
-  scroller.scrollTo('scroll-targetPD', {
-    smooth: true,
-    offset: -500
-  });
-}
-
-const toQuestions = () => {
-  // console.log('clicked')
-  scroller.scrollTo('scroll-targetQA', {
-    smooth: true,
-    offset: -65
-  });
-}
-
-const toRelated = () => {
-  console.log('clicked')
-  scroller.scrollTo('scroll-targetRP', {
-    smooth: true,
-    offset: -140
+    offset: offset
   });
 }
 
@@ -36,16 +13,16 @@ const NavBar = () => {
   return (
     <div className={NavCSS.navbar}>
       <h1 className={NavCSS.logo}>ATELIER</h1>
-      <span className={NavCSS.PD} onClick={toDetail}>
+      <span className={NavCSS.PD} onClick={() => toTarget('scroll-targetPD', -500)}>
         Product Detail
       </span>
-      <span className={NavCSS.RP} onClick={toRelated}>
+      <span className={NavCSS.RP} onClick={() => toTarget('scroll-targetRP', -140)}>
         Related Products
       </span>
-      <span className={NavCSS.QA} onClick={toQuestions}>
+      <span className={NavCSS.QA} onClick={() => toTarget('scroll-targetQA', -65)}>
         Questions & Answers
       </span>
-      <span className={NavCSS.RR} onClick={toReviews}>
+      <span className={NavCSS.RR} onClick={() => toTarget('scroll-targetRR', -50)}>
         Ratings & Reviews
       </span>
       <span className={NavCSS.search}>
