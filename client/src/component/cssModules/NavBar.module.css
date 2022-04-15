@@ -1,5 +1,9 @@
 .navbar {
+  display: flex;
+  flex-wrap: wrap;
   position: sticky;
+  align-items: center;
+  justify-content: space-between;
   top: 0;
   z-index: 2000;
   width: 100%;
@@ -11,10 +15,26 @@
 .logo {
   display: inline-block;
   position: relative;
-  top: 2px;
+  bottom: 2px;
   left: 15px;
   font-weight: bold;
   color: white;
+}
+
+.navElements {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navElements li a {
+  color: white;
+  font-weight: bold;
+}
+
+.navElements li a:hover {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.612);
 }
 
 .search {
@@ -36,66 +56,33 @@
   font-size: medium;
 }
 
-.PD {
-  display: inline-block;
-  position: relative;
-  top: 2px;
-  left: 110px;
-  font-weight: bold;
+.hamburger {
+  display: none;
+  background-color: transparent;
+  border: 0;
   color: white;
-}
-
-.PD:hover,
-.PD:focus {
-
-  color: rgba(0, 0, 0, 0.612);
+  font-size: 24px;
+  padding: 0;
   cursor: pointer;
 }
 
-.RP {
-  display: inline-block;
-  position: relative;
-  top: 2px;
-  left: 160px;
-  font-weight: bold;
-  color: white;
-}
+@media screen and (max-width: 1265px) {
+  .navElements {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #525252;
+  }
 
-.RP:hover,
-.RP:focus {
+  .navElements.show {
+    display: flex;
+  }
 
-  color: rgba(0, 0, 0, 0.612);
-  cursor: pointer;
-}
+  .search {
+    display: none;
+  }
 
-.QA {
-  display: inline-block;
-  position: relative;
-  top: 2px;
-  left: 210px;
-  font-weight: bold;
-  color: white;
-}
-
-.QA:hover,
-.QA:focus {
-
-  color: rgba(0, 0, 0, 0.612);
-  cursor: pointer;
-}
-
-.RR {
-  display: inline-block;
-  position: relative;
-  top: 2px;
-  left: 260px;
-  font-weight: bold;
-  color: white;
-}
-
-.RR:hover,
-.RR:focus {
-
-  color: rgba(0, 0, 0, 0.612);
-  cursor: pointer;
+  .hamburger {
+    display: block;
+  }
 }
