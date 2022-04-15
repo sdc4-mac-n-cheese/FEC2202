@@ -23,9 +23,7 @@ class FeedItem extends React.Component {
     if (this.state.helpfulClick === false) {
       axios.put(`/reviews/helpful`, { review_id: this.props.reviewData.review_id })
         .then((result) => {
-          // console.log('great success')
           var temp = this.props.reviewData.helpfulness + 1;
-          // console.log('in axios put', temp);
           this.setState({
             helpfulness: temp,
             helpfulClick: true
@@ -35,18 +33,15 @@ class FeedItem extends React.Component {
           console.log('error');
         });
     } else {
-      // console.log('already clicked helpful this visit');
     }
   }
 
   putReport() {
-    // console.log('in put report func');
     this.setState({
       reportedClick: true
     })
     axios.put('/reviews/report', { review_id:this.props.reviewData.review_id})
       .then((result) => {
-        // console.log('success');
       })
       .catch((err) => {
         console.log('error');
@@ -54,36 +49,21 @@ class FeedItem extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // console.log('PS:', prevState.helpfulness, '\nCS:', this.state.helpfulness, '\nPP:', prevProps.reviewData.helpfulness);
     this.props.reviewData.helpfulness = this.state.helpfulness;
     }
 
   componentDidMount() {
-    // console.log('in mount;',this.props.reviewData.helpfulness)
-    // console.log(this.props.idx)
-    // var tempIdx = this.props.idx;
-    // console.log(tempIdx);
-    // console.log(this.props.helpfulRating);
-    // var tempArr = this.props.helpfulRating;
-    // console.log('temp arr', tempIdx, ':', tempArr[tempIdx]);
     this.setState({
       helpfulness: this.props.reviewData.helpfulness,
       review_id: this.props.reviewData.review_id
     })
   }
 
-
-  //reviewData brings in:
-  //body, date, helfulness, photos, rating,
-  //recommended, response, review_id, reviewer_name,
-  //summary
   render() {
     var stars = ''
-    //sets full stars
     for (var i = 0; i < this.props.reviewData.rating; i++) {
       stars += '\u2605'
     }
-    //if less than 5*, this will populate the rest with hollow stars
     while (stars.length < 5) {
       stars += '\u2606'
     }
@@ -114,11 +94,6 @@ class FeedItem extends React.Component {
     if (this.props.reviewData.photos.length !== 0) {
       var tempHolder = [];
 
-      // <img
-      //   className={ReviewsCSS.reviewImages}
-      //   alt="item review photo"
-      //   src={this.props.reviewData.photos[0].url}
-      // />;
       for (let i = 0; i < this.props.reviewData.photos.length; i++) {
         tempHolder.push(
           <img
@@ -143,8 +118,6 @@ class FeedItem extends React.Component {
           <p>Purchaser Review&#58; {this.props.reviewData.body}</p>
           {conditionalMerchantResponse}
 
-
-          {/*Spce for photos and css for it*/}
           <div>
             {displayPhotos}
           </div>

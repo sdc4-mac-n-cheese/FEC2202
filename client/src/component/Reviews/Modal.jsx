@@ -82,7 +82,6 @@ class Modal extends React.Component {
   }
 
   handleImgChange(e) {
-    // console.log(e.target.name);
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -116,15 +115,9 @@ class Modal extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    //ERROR FIRST HANDLER OF POST REQUEST...
-    //CRITERIA NOT MET,
-    //MUST SATISFY ALL FLAGS
     if (SUMMARY_FLAG || USERNAME_FLAG || EMAIL_FLAG || BODY_FLAG || this.state.recommend === null) {
       return;
     } else {
-      //AXIOS POST REQUEST HERE WITH OBJECT CREATION
-
-      // console.log(this.state.img1, this.state.img2, this.state.img3, this.state.img4, this.state.img5);
       var tempPhotos = [];
       if (this.state.img1.includes(".jpg") || this.state.img1.includes(".jpeg")) {
         tempPhotos.push(this.state.img1);
