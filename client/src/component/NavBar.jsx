@@ -13,18 +13,20 @@ const NavBar = () => {
   return (
     <div className={NavCSS.navbar}>
       <h1 className={NavCSS.logo}>ATELIER</h1>
-      <span className={NavCSS.PD} onClick={() => toTarget('scroll-targetPD', -500)}>
-        Product Detail
-      </span>
-      <span className={NavCSS.RP} onClick={() => toTarget('scroll-targetRP', -140)}>
-        Related Products
-      </span>
-      <span className={NavCSS.QA} onClick={() => toTarget('scroll-targetQA', -65)}>
-        Questions & Answers
-      </span>
-      <span className={NavCSS.RR} onClick={() => toTarget('scroll-targetRR', -50)}>
-        Ratings & Reviews
-      </span>
+
+      <button className={NavCSS.hamburger} onClick={() => {
+        document.getElementById('nav-elements').classList.toggle(NavCSS.show);
+      }}>
+        <i className="fa fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <ul className={NavCSS.navElements} id='nav-elements'>
+        <li><a onClick={() => toTarget('scroll-targetPD', -500)}>Product Detail</a></li>
+        <li><a onClick={() => toTarget('scroll-targetRP', -140)}>Related Products</a></li>
+        <li><a onClick={() => toTarget('scroll-targetQA', -65)}>Questions & Answers</a></li>
+        <li><a onClick={() => toTarget('scroll-targetRR', -50)}>Ratings & Reviews</a></li>
+      </ul>
+
       <span className={NavCSS.search}>
         <input type='text' />
         <i className="fa fa-search" aria-hidden="true"></i>
