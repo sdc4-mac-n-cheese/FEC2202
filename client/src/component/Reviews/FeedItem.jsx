@@ -18,7 +18,6 @@ class FeedItem extends React.Component {
     this.putReport = this.putReport.bind(this);
   }
 
-  //updating, not live...set state to try and update
   putHelpful() {
     if (this.state.helpfulClick === false) {
       axios.put(`/reviews/helpful`, { review_id: this.props.reviewData.review_id })
@@ -32,7 +31,6 @@ class FeedItem extends React.Component {
         .catch((err) => {
           console.log('error');
         });
-    } else {
     }
   }
 
@@ -103,9 +101,6 @@ class FeedItem extends React.Component {
           />)
         }
         displayPhotos = tempHolder;
-      }
-      if (displayPhotos) {
-        // console.log(displayPhotos.length);
       }
 
       return (

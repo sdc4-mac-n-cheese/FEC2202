@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CharacteristicsBarCSS from '../cssModules/Reviews/CharacteristicsBar.module.css';
 
-// bgcolor, char[Object.keys(char)], Object.keys(char)
 const CharacteristicsBar = (props) => {
   const { bgcolor, char } = props;
 
@@ -21,5 +20,8 @@ const CharacteristicsBar = (props) => {
   );
 };
 
-
+CharacteristicsBar.propTypes = {
+  bgcolor: PropTypes.string,
+  char: PropTypes.object
+}
 export default CharacteristicsBar;
