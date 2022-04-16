@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 import Feed from './Feed.jsx';
 import RatingsCharacteristics from './RatingsCharacteristics.jsx';
@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import ReviewsCSS from '../cssModules/Reviews/Reviews.module.css';
 import Characteristics from './Characteristics.jsx';
 
-class Reviews extends React.Component {
+class Reviews extends Component {
   constructor(props) {
     super(props);
     this.state = {
