@@ -11,7 +11,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      //> :)
       currentProduct: 65631,
       currProductData: {},
       currStyleData: [],
@@ -23,13 +22,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
- 
     axios.get(`/product?product_id=${this.state.currentProduct}`)
       .then(product => {
         this.setState({
           currProductData: product.data,
-
         });
+        localStorage.setItem(this.state.currentProduct + ' currProductData', JSON.stringify(product.data));
         return axios.get(`/productStyle?product_id=${this.state.currentProduct}`);
       })
       .then(styles => {
@@ -37,20 +35,24 @@ class App extends React.Component {
           currStyleData: styles.data.results,
           currStyle: styles.data.results[0]
         });
+        localStorage.setItem(this.state.currentProduct + ' currStyleData', JSON.stringify(styles.data.results));
       })
       .catch(err => {
         console.log(err);
       });
-    this.domupdating(this.state.currentProduct)
 
+    this.domupdating(this.state.currentProduct)
+      .catch(err => {
+        console.log(err);
+      });
   }
 
 
   //---------------------->
   //another axios call to get all related data info
   domupdating(id) {
-  
-    axios
+
+    return axios
       //hardcoded id number. need to be fixed
       .get("/relatedProduct", {
         params: { product_id: id },
@@ -84,43 +86,52 @@ class App extends React.Component {
               console.log(err);
             });
         }
-        // console.log("res.data>>>>>",res.data)
       })
       .catch((err) => {
         console.log(err);
       });
-    //console.log("state related prodcut data>>>",this.state.relatedProducts)
-
   }
+
   changeProduct(product_id) {
     this.setState({ currentProduct: product_id });
-    this.domupdating(product_id)
-    // axios
-    // .get("/relatedProduct", {
-    //   params: { product_id: this.state.currentProduct },
-    // })
-    // .then(res=>console.log(this.state.currentProduct))
-    // .catch(err=>console.log(err))
-    // console.log('change product-----------------', product_id);
-    // console.log('change product', this.state.currentProduct)
-    // this.componentDidMount();
 
-    axios.get(`/product?product_id=${product_id}`)
-      .then(product => {
-        this.setState({
-          currProductData: product.data
-        });
-        return axios.get(`/productStyle?product_id=${product_id}`);
-      })
-      .then(styles => {
-        this.setState({
-          currStyleData: styles.data.results,
-          currStyle: styles.data.results[0]
-        });
-      })
-      .catch(err => {
-        console.log(err);
+    let currProduct = JSON.parse(localStorage.getItem(product_id + ' currProductData'));
+    let currStyles = JSON.parse(localStorage.getItem(product_id + ' currStyleData'));
+    console.log('current style', currStyles);
+
+    if (currProduct) {
+      this.setState({
+        currProductData: currProduct,
+        currStyleData: currStyles,
+        currStyle: currStyles[0]
       });
+
+      this.domupdating(product_id)
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      axios.get(`/product?product_id=${product_id}`)
+        .then(product => {
+          this.setState({
+            currProductData: product.data
+          });
+          localStorage.setItem(this.state.currentProduct + ' currProductData', JSON.stringify(product.data));
+          return axios.get(`/productStyle?product_id=${product_id}`);
+        })
+        .then(styles => {
+          this.setState({
+            currStyleData: styles.data.results,
+            currStyle: styles.data.results[0]
+          });
+          localStorage.setItem(this.state.currentProduct + ' currStyleData', JSON.stringify(styles.data.results));
+
+          return this.domupdating(product_id);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   }
 
   //sets currStyle passed from product detail component
@@ -131,7 +142,6 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log('CURRENT STYLE', this.state.currStyle)
     return (
       <>
         <NavBar />
