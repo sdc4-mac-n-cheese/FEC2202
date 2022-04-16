@@ -399,6 +399,7 @@ class Modal extends React.Component {
             {usernameLimitWarning}
           </div>
 
+
           {/*USER EMAIL
           60 CHARACTER LIMIT
           MUST CONTAIN '@'

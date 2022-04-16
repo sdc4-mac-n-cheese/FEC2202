@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import ProgressBar from './ProgressBar.jsx';
 import ReviewsCSS from "../cssModules/Reviews/Reviews.module.css";
 import ProgressBarCSS from '../cssModules/Reviews/ProgressBar.module.css';
+import { starReview } from "../functions.jsx";
+import OutfitCSS from "../cssModules/Outfit.module.css";
 
 class RatingsCharacteristics extends React.Component {
   constructor(props) {
@@ -60,7 +62,6 @@ class RatingsCharacteristics extends React.Component {
     //   this.props.changeRatingFilter(1, 0);
     //   this.props.changeRatingFilter(0, 0);
     // })
-
   }
 
   render() {
@@ -88,7 +89,6 @@ class RatingsCharacteristics extends React.Component {
     var appliedFilters = [];
     for (let i = 0; i < this.props.filterArr.length; i++) {
       if (this.props.filterArr[i] === 1) {
-        console.log('adding filter', i)
         appliedFilters.push(i);
       }
     }
@@ -117,7 +117,7 @@ class RatingsCharacteristics extends React.Component {
           RATINGS &#38; REVIEWS
         </p>
         <h3>
-          {this.props.ratingAvg} {starsss}
+        {this.props.ratingAvg} {starReview(this.props.ratingAvg, OutfitCSS)}
         </h3>
         <p>
           {this.props.wouldRecommend.toFixed(0)}&#37; of reviews recommend this product
