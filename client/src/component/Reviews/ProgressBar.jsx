@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ProgressBarCSS from '../cssModules/Reviews/ProgressBar.module.css';
 
-class ProgressBar extends React.Component {
+class ProgressBar extends Component {
   constructor(props) {
     super(props);
   }
@@ -28,7 +28,7 @@ class ProgressBar extends React.Component {
 }
 
 ProgressBar.propTypes = {
-  completed: PropTypes.object,
+  completed: PropTypes.string,
   bgcolor: PropTypes.string
 }
 export default ProgressBar;

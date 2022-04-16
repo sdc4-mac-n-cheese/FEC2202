@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReviewsCSS from '../cssModules/Reviews/Reviews.module.css';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
-class FeedItem extends React.Component {
+class FeedItem extends Component {
   constructor(props) {
     super(props);
     this.state = {

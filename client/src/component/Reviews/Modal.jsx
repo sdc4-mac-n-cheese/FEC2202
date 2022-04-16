@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ModalCSS from '../cssModules/Reviews/Modal.module.css';
 import ReviewsCSS from '../cssModules/Reviews/Reviews.module.css';
@@ -13,11 +13,10 @@ var EMAIL_FLAG = true;
 const BODY_MIN = 50;
 const BODY_MAX = 1000;
 var BODY_FLAG = true;
-const PHOTO_LIMITER = 5;
 
 const reviewRating = ['Poor', 'Fair', 'Average', 'Good', 'Great']
 
-class Modal extends React.Component {
+class Modal extends Component {
 
   constructor(props) {
     super(props);

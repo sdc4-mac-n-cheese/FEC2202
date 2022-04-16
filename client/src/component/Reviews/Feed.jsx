@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
 import FeedItem from './FeedItem.jsx';
 import ReviewsCSS from "../cssModules/Reviews/Reviews.module.css";
 import FeedCSS from '../cssModules/Reviews/Feed.module.css';
 import PropTypes from 'prop-types';
 import Modal from './Modal.jsx';
 
-class Feed extends React.Component {
+class Feed extends Component {
   constructor(props) {
     super(props);
     this.state = {

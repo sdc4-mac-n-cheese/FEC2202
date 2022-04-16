@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import CharacteristicsBar from './CharacteristicsBar.jsx'
 import CharacteristicsBarCSS from '../cssModules/Reviews/CharacteristicsBar.module.css';
 
-class Characteristics extends React.Component {
+class Characteristics extends Component {
   constructor(props) {
     super(props);
     this.state = {

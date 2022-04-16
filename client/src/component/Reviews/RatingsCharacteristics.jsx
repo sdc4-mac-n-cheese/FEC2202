@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ProgressBar from './ProgressBar.jsx';
 import ReviewsCSS from "../cssModules/Reviews/Reviews.module.css";
@@ -6,7 +6,7 @@ import ProgressBarCSS from '../cssModules/Reviews/ProgressBar.module.css';
 import { starReview } from "../functions.jsx";
 import OutfitCSS from "../cssModules/Outfit.module.css";
 
-class RatingsCharacteristics extends React.Component {
+class RatingsCharacteristics extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -136,7 +136,6 @@ class RatingsCharacteristics extends React.Component {
               <input
                 id={4 - idx}
                 className={ProgressBarCSS.filterBoxes}
-                for='checkedbox'
                 type="checkbox"
                 onClick={this.handleClick}
                 checked={this.state[4 - idx]}></input>
