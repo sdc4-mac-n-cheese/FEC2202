@@ -23,6 +23,17 @@ class Question extends React.Component {
     this.collapse = this.collapse.bind(this);
   }
 
+  componentDidMount() {
+
+    const data = localStorage.getItem(`${this.props.question.question_id}`);
+
+    if (data) {
+      this.setState({
+        helpful: true
+      })
+    }
+  }
+
   collapse() {
 
     this.setState({ count: 2 })
@@ -60,11 +71,13 @@ class Question extends React.Component {
             helpful: true,
             helpfulCount: this.state.helpfulCount + 1
           })
+          localStorage.setItem(`${this.props.question.question_id}`, JSON.stringify(this.state.helpful))
         })
         .catch((err) => {
           console.error(err);
         })
     }
+
   }
 
   render() {

@@ -18,6 +18,15 @@ class Answers extends React.Component {
     this.reportAnswer = this.reportAnswer.bind(this);
   }
 
+  componentDidMount() {
+
+    const data = localStorage.getItem(`${this.props.answer.id}`);
+
+    if (data) {
+      this.setState({ helpful: true })
+    }
+  }
+
   reportAnswer(event) {
 
     event.preventDefault();
@@ -48,6 +57,7 @@ class Answers extends React.Component {
             helpfulCount: this.state.helpfulCount + 1,
             helpful: true
           })
+          localStorage.setItem(`${this.props.answer.id}`, JSON.stringify(this.state.helpful))
         })
         .catch((err) => {
           console.error(err);
