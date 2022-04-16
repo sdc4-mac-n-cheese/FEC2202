@@ -26,6 +26,7 @@ class QA extends Component {
       }
     })
       .then((questions) => {
+        console.log(questions)
         this.setState({ currentQuestions: questions.data.results })
         this.componentDidMount()
       })
