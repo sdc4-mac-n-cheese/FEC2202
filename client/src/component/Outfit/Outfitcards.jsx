@@ -23,6 +23,7 @@ function Outfitcards(props) {
       let collection = [];
       collection.push(newAdd);
       localStorage.setItem("collection", JSON.stringify(collection));
+      setCollection(collection);
     }
     let collection = localStorage.getItem("collection");
     if (collection.indexOf(`"id":${newAdd.id}`) === -1) {
@@ -57,12 +58,12 @@ function Outfitcards(props) {
         </div>
         {collection
           ? collection.map((item) => (
-              <Outfitcard
-                key={item.id}
-                item={item}
-                handleUpdate={handleUpdate}
-              />
-            ))
+            <Outfitcard
+              key={item.id}
+              item={item}
+              handleUpdate={handleUpdate}
+            />
+          ))
           : ""}
         <br></br>
       </div>

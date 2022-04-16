@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Answers from './Answers.jsx';
 import ProductCSS from '../cssModules/QA.module.css';
 import axios from 'axios';
@@ -6,7 +6,7 @@ import AnswerModal from './AnswerModal.jsx';
 import PropTypes from 'prop-types';
 import { scroller } from 'react-scroll';
 
-class Question extends React.Component {
+class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,6 +21,17 @@ class Question extends React.Component {
     this.openAnswerModal = this.openAnswerModal.bind(this);
     this.showMore = this.showMore.bind(this);
     this.collapse = this.collapse.bind(this);
+  }
+
+  componentDidMount() {
+
+    const data = localStorage.getItem(`${this.props.question.question_id}`);
+
+    if (data) {
+      this.setState({
+        helpful: true
+      })
+    }
   }
 
   collapse() {
@@ -60,11 +71,13 @@ class Question extends React.Component {
             helpful: true,
             helpfulCount: this.state.helpfulCount + 1
           })
+          localStorage.setItem(`${this.props.question.question_id}`, JSON.stringify(this.state.helpful))
         })
         .catch((err) => {
           console.error(err);
         })
     }
+
   }
 
   render() {

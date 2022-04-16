@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import ProductCSS from '../cssModules/QA.module.css';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
-class Answers extends React.Component {
+class Answers extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +16,15 @@ class Answers extends React.Component {
 
     this.helpfulAnswer = this.helpfulAnswer.bind(this);
     this.reportAnswer = this.reportAnswer.bind(this);
+  }
+
+  componentDidMount() {
+
+    const data = localStorage.getItem(`${this.props.answer.id}`);
+
+    if (data) {
+      this.setState({ helpful: true })
+    }
   }
 
   reportAnswer(event) {
@@ -48,6 +57,7 @@ class Answers extends React.Component {
             helpfulCount: this.state.helpfulCount + 1,
             helpful: true
           })
+          localStorage.setItem(`${this.props.answer.id}`, JSON.stringify(this.state.helpful))
         })
         .catch((err) => {
           console.error(err);

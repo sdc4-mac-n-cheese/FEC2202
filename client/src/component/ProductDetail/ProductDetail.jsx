@@ -23,7 +23,7 @@ const ProductDetail = (props) => {
     styleResults.forEach(style => {
       if (style.style_id === id) {
         setCurrStyle(style);
-        props.changeStyle(style)
+        props.changeStyle(style);
       }
     });
   }
