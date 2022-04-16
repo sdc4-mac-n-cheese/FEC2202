@@ -29,7 +29,7 @@ class Feed extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     if (this.state.id !== this.props.id) {
       this.setState({
         id: this.props.id

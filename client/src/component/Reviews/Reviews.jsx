@@ -38,54 +38,40 @@ class Reviews extends React.Component {
         this.getMetaData();
         this.getReviewInfo();
       })
-
-    // this.getReviewsArr();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // console.log(this.props.id, prevProps.id, this.state.product_id);
     if (this.props.id !== prevProps.id) {
       this.componentDidMount();
     }
-
-    // console.log('current:',this.state.sortType, '\nprevious:',prevState.sortType);
     if (this.state.sortType !== prevState.sortType) {
       this.componentDidMount();
     }
-
-
-
   }
-  // ?page=1&count=200&sort=newest&product_id=65633
+
   getReviewInfo() {
     axios.get(`reviews/?page=1&count=100000&sort=${this.state.sortType}&product_id=${this.props.id}`)
       .then((result) => {
         var temp = result.data;
-
         var initialPageFilterFlag = true;
         for (let i = 0; i < this.state.currentRatingFilter.length; i++) {
           if (this.state.currentRatingFilter[i] !== 0) {
             initialPageFilterFlag = false;
           }
         }
-
         if(initialPageFilterFlag) {
         var tempHelpfulness = 0;
         var tempRatings = 0;
         var tempAvg = 0;
         var ratingCtr = 0;
         var temphelpfulRatings = [];
-        //to get tempRatings/TempAvg/TotalRatings
         for (let i = 0; i < temp.length; i++) {
           ratingCtr++;
           tempRatings += temp[i].rating;
           temphelpfulRatings.push(temp[i].helpfulness)
         }
-
         tempAvg = tempRatings / ratingCtr;
         tempAvg = tempAvg.toFixed(1);
-        // console.log(temphelpfulRatings);
-        //setting the % would recommend value to prop
         var wouldRecommend = 0;
         for (let i = 0; i < temp.length; i++) {
           if (temp[i].recommend === true) {
@@ -94,14 +80,10 @@ class Reviews extends React.Component {
           tempHelpfulness += temp[i].helpfulness;
         }
         var recPct = 100 * (wouldRecommend / ratingCtr).toFixed(2);
-
-        //getting the star reviews array
         var tempReviewsArr = [0, 0, 0, 0, 0];
         for (var i = 0; i < temp.length; i++) {
           tempReviewsArr[temp[i].rating - 1]++
         }
-
-        //setting up initial render array
         var tempDisplayArr = [];
         var tempDisplay = 0
         if (tempReviewsArr.length === 1) {
@@ -120,9 +102,7 @@ class Reviews extends React.Component {
             }
           }
           for (let j = 0; j < getStarsArr.length; j++) {
-            //getting the new array to work with, filtered
             for (let k = 0; k < temp.length; k++) {
-              // console.log(6 - getStarsArr[j])
               if ((6 - getStarsArr[j]) === temp[k].rating) {
                 newTemp.push(temp[k]);
               }
@@ -140,15 +120,11 @@ class Reviews extends React.Component {
             filteredtempRatings += temp[i].rating;
             filteredtemphelpfulRatings.push(temp[i].helpfulness)
           }
-
           filteredtempAvg = filteredtempRatings / filteredratingCtr;
           filteredtempAvg = filteredtempAvg.toFixed(1);
-
           for (let i = 0; i < newTemp.length; i++) {
             actualFilteredRatingCtr++;
           }
-          // console.log('ctr and avg',filteredratingCtr, filteredtempAvg);
-
           var filteredwouldRecommend = 0;
           for (let i = 0; i < temp.length; i++) {
             if (temp[i].recommend === true) {
@@ -157,15 +133,10 @@ class Reviews extends React.Component {
             filteredtempHelpfulness += temp[i].helpfulness;
           }
           var filteredrecPct = 100 * (filteredwouldRecommend / filteredratingCtr).toFixed(2);
-
-          // console.log('filterred helpfulness would rec and recPct', filteredtempHelpfulness, filteredwouldRecommend, filteredrecPct)
-
           var filteredtempReviewsArr = [0, 0, 0, 0, 0];
           for (let i = 0; i < newTemp.length; i++) {
             filteredtempReviewsArr[newTemp[i].rating - 1]++
           }
-          // console.log(filteredtempReviewsArr);
-
           var filteredtempDisplayArr = [];
           var filteredtempDisplay = 0
           if (filteredtempReviewsArr.length === 1) {
@@ -175,11 +146,8 @@ class Reviews extends React.Component {
             filteredtempDisplayArr.push(newTemp[0], newTemp[1]);
             filteredtempDisplay = 2;
           }
-          console.log(filteredtempDisplayArr, filteredtempDisplay, filteredtempReviewsArr)
-
         }
 
-        // console.log(newTemp);
         var tempBarRating = filteredratingCtr;
         if (actualFilteredRatingCtr) {
           filteredratingCtr = actualFilteredRatingCtr
@@ -202,7 +170,6 @@ class Reviews extends React.Component {
       });
   }
 
-  //gets meta and sets the reviews array
   getMetaData() {
     axios.get(`reviews/meta?product_id=${this.state.product_id}`)
       .then((result) => {
@@ -215,7 +182,6 @@ class Reviews extends React.Component {
       })
       .catch((err) => {
         console.log(err);
-        // console.log('no success')
       })
   }
 
@@ -225,10 +191,8 @@ class Reviews extends React.Component {
   }
 
   changeRatingFilter(index, newRating) {
-    console.log('in change filter:', index, newRating);
     let tempRevs = [...this.state.currentRatingFilter];
     tempRevs[index] = newRating;
-    console.log('index',index,'new rating', newRating,'should be new array', tempRevs)
     this.setState({
       sortType: 'relevant',
       currentRatingFilter: tempRevs
@@ -270,10 +234,6 @@ class Reviews extends React.Component {
     } else {
       loadingDiv =
         <div className={ReviewsCSS.RC_FeedContainer}>
-          {/*This div will hold
-      the css for the feed
-      and star ratings, idealy
-      split into a 2:1*/}
           <div >
             <div className={ReviewsCSS.RC_Feed_Flex1}>
               <RatingsCharacteristics
@@ -333,11 +293,7 @@ class Reviews extends React.Component {
     )
   }
 }
-
 Reviews.propTypes = {
   id: PropTypes.number
 }
-
 export default Reviews;
-
-// // //65631, 65632, 65633,65634, 65635
