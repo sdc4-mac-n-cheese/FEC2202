@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import ProductCSS from '../cssModules/QA.module.css';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
-class Answers extends React.Component {
+class Answers extends Component {
   constructor(props) {
     super(props);
     this.state = {

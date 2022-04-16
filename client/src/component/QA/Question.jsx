@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Answers from './Answers.jsx';
 import ProductCSS from '../cssModules/QA.module.css';
 import axios from 'axios';
@@ -6,7 +6,7 @@ import AnswerModal from './AnswerModal.jsx';
 import PropTypes from 'prop-types';
 import { scroller } from 'react-scroll';
 
-class Question extends React.Component {
+class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {

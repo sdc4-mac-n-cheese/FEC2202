@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ProductCSS from '../cssModules/QA.module.css';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -32,7 +32,7 @@ const QUESTION_STYLE = {
   height: '110px',
 }
 
-class QuestionModal extends React.Component {
+class QuestionModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
