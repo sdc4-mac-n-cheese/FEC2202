@@ -35,10 +35,9 @@ function Relateditem(props) {
   const changeItem = (e) => {
     e.preventDefault();
     props.changeProduct(props.item.id);
-    props.changeinRelated(props.item.id);
   };
 
-  
+
   return (
     <div
       className={RelateditemsCSS.card}

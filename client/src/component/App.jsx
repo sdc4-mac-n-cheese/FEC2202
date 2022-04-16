@@ -97,7 +97,6 @@ class App extends React.Component {
 
     let currProduct = JSON.parse(localStorage.getItem(product_id + ' currProductData'));
     let currStyles = JSON.parse(localStorage.getItem(product_id + ' currStyleData'));
-    console.log('current style', currStyles);
 
     if (currProduct) {
       this.setState({
