@@ -2,13 +2,16 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const api = require('./api');
-// const compression = require('compression');
 
 const app = express();
 
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
-// app.use(compression());
+app.get('*.js', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
+});
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 //***** PRODUCTS */
