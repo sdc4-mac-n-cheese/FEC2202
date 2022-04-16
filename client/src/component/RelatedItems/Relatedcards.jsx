@@ -3,7 +3,6 @@ import RelateditemsCSS from "../cssModules/RelatedItems.module.css";
 import PropTypes from 'prop-types';
 import Carousel from "./Carousel.jsx";
 import axios from "axios";
-import { scroller } from 'react-scroll';
 
 function Relatedcards(props) {
   const [relatedProducts, setRelatedProducts] = useState([])
@@ -21,14 +20,14 @@ function Relatedcards(props) {
           axios
             .get("/product", { params: { product_id: product_id } })
             .then(function (res) {
-            
+
               axios
                 .get("/productStyle", { params: { product_id: product_id } })
                 .then((styleres) => {
                   res.data.image =
                     styleres.data.results[0].photos[0].thumbnail_url;
                   relatedProductsData.push(res.data);
-                  setRelatedProducts(relatedProductsData); 
+                  setRelatedProducts(relatedProductsData);
                 })
                 .catch((err) => {
                   console.log(err);
