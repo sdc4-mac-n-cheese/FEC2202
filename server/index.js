@@ -8,6 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.get('*.js', function (req, res, next) {
+  console.log('exec11')
   req.url = req.url + '.gz';
   res.set('Content-Encoding', 'gzip');
   next();
@@ -18,13 +19,14 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 //route to get all product data
 //fixed a bug of sending response.data instead of response
 app.get('/products', (req, res) => {
-  api.getData('products')
+  console.log('exec22')
+  api.getDataR('products')
     .then(response => {
-      // console.log(response);
+      console.log('23: ', response);
       res.status(200).send(response.data);
     })
     .catch(err => {
-      // console.log('in get catch');
+      console.log('in get catch');
       res.setStatus(500).send(err);
     })
 });
@@ -33,22 +35,23 @@ app.get('/products', (req, res) => {
 //ss noticed if we used endpoint '/products' we will always getting the fullist
 //of all products
 app.get('/product', (req, res) => {
+  console.log('exec38')
   // console.log('here', req.query)
-  api.getData(`products/${req.query.product_id}`)
+  api.getDataR(`products/${req.query.product_id}`)
     .then(response => {
-      //   console.log(response);
+        console.log('39: ', response);
       res.status(200).send(response.data);
     })
     .catch(err => {
-      res.status(500).send(err);
+      res.status(231).send(err);
     })
 });
 
 //route to get single product style data
 app.get('/productStyle', (req, res) => {
-  api.getData(`products/${req.query.product_id}/styles`)
+  api.getDataR(`products/${req.query.product_id}/styles`)
     .then(response => {
-      //  console.log(response);
+      //  console.log('51: ', response);
       res.status(200).send(response.data);
     })
     .catch(err => {
