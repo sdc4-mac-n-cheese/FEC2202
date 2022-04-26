@@ -3,8 +3,4 @@
 config.js
 node_modules/
 coverage/
-<<<<<<< HEAD
-first.pem
-=======
 FEC-HR.pem
->>>>>>> main
