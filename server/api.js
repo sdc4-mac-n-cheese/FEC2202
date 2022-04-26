@@ -2,7 +2,7 @@ require('dotenv').config();
 const axios = require('axios');
 
 module.exports = {
-  getDataR: function (category) {
+  getDataP: function (category) {
     let options = {
       url: `http://localhost:3000/${category}`,
       headers: {

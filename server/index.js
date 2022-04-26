@@ -8,7 +8,6 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.get('*.js', function (req, res, next) {
-  console.log('exec11')
   req.url = req.url + '.gz';
   res.set('Content-Encoding', 'gzip');
   next();
@@ -19,8 +18,7 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 //route to get all product data
 //fixed a bug of sending response.data instead of response
 app.get('/products', (req, res) => {
-  console.log('exec22')
-  api.getDataR('products')
+  api.getDataP('products')
     .then(response => {
       console.log('23: ', response);
       res.status(200).send(response.data);
@@ -37,7 +35,7 @@ app.get('/products', (req, res) => {
 app.get('/product', (req, res) => {
   console.log('exec38')
   // console.log('here', req.query)
-  api.getDataR(`products/${req.query.product_id}`)
+  api.getDataP(`products/${req.query.product_id}`)
     .then(response => {
         console.log('39: ', response);
       res.status(200).send(response.data);
@@ -49,7 +47,7 @@ app.get('/product', (req, res) => {
 
 //route to get single product style data
 app.get('/productStyle', (req, res) => {
-  api.getDataR(`products/${req.query.product_id}/styles`)
+  api.getDataP(`products/${req.query.product_id}/styles`)
     .then(response => {
       //  console.log('51: ', response);
       res.status(200).send(response.data);
